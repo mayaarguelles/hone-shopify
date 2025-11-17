@@ -2,16 +2,14 @@
   position: initial;
 }
 
-.js menu-drawer > details > summary::before,
-.js menu-drawer > details[open]:not(.menu-opening) > summary::before {
+.js menu-drawer>details>summary::before,
+.js menu-drawer>details[open]:not(.menu-opening)>summary::before {
   content: '';
   position: absolute;
   cursor: default;
   width: 100%;
   height: calc(100vh - 100%);
-  height: calc(
-    var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%))
-  );
+  height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
   top: 100%;
   left: 0;
   background: rgba(var(--color-foreground), 0.5);
@@ -21,7 +19,7 @@
   transition: opacity 0s, visibility 0s;
 }
 
-menu-drawer > details[open] > summary::before {
+menu-drawer>details[open]>summary::before {
   visibility: visible;
   opacity: 1;
   transition: opacity var(--duration-default) ease,
@@ -39,34 +37,29 @@ menu-drawer > details[open] > summary::before {
   padding: 0;
   background-color: rgb(var(--color-background));
   overflow-x: hidden;
-  filter: drop-shadow(
-    var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset)
-      var(--drawer-shadow-blur-radius)
-      rgba(var(--color-shadow), var(--drawer-shadow-opacity))
-  );
+  filter: drop-shadow(var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset) var(--drawer-shadow-blur-radius) rgba(var(--color-shadow), var(--drawer-shadow-opacity)));
 }
 
 .js .menu-drawer {
   height: calc(100vh - 100%);
-  height: calc(
-    var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%))
-  );
+  height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
 }
 
-.js details[open] > .menu-drawer,
-.js details[open] > .menu-drawer__submenu {
+.js details[open]>.menu-drawer,
+.js details[open]>.menu-drawer__submenu {
   transition: transform var(--duration-default) ease,
     visibility var(--duration-default) ease;
 }
 
-.js details[open].menu-opening > .menu-drawer,
-details[open].menu-opening > .menu-drawer__submenu {
+.js details[open].menu-opening>.menu-drawer,
+details[open].menu-opening>.menu-drawer__submenu {
   transform: translateX(0);
   visibility: visible;
 }
 
 .js .menu-drawer__navigation .submenu-open {
-  visibility: hidden; /* hide menus from screen readers when hidden by submenu */
+  visibility: hidden;
+  /* hide menus from screen readers when hidden by submenu */
 }
 
 @media screen and (min-width: 750px) {
@@ -132,7 +125,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   display: none;
 }
 
-.menu-drawer__menu-item > .svg-wrapper {
+.menu-drawer__menu-item>.svg-wrapper {
   width: 15px;
   position: absolute;
   right: 3rem;
@@ -165,7 +158,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   font-size: 1.4rem;
   width: 100%;
   background-color: transparent;
-  font-family: var(--font-body-family);
+  font-family: var(--font-sans);
   font-style: var(--font-body-style);
   text-align: left;
 }
@@ -187,15 +180,13 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 @media screen and (max-width: 749px) {
-  .header--has-account:where(:not(.header--has-social):not(.header--has-localizations))
-    .menu-drawer__utility-links {
+  .header--has-account:where(:not(.header--has-social):not(.header--has-localizations)) .menu-drawer__utility-links {
     padding: 2rem 3rem;
   }
 }
 
 @media screen and (max-width: 989px) {
-  .header--has-localizations:where(:not(.header--has-social))
-    .menu-drawer__utility-links {
+  .header--has-localizations:where(:not(.header--has-social)) .menu-drawer__utility-links {
     padding: 2rem 3rem;
   }
 }
@@ -210,12 +201,11 @@ details[open].menu-opening > .menu-drawer__submenu {
   margin-bottom: 0;
 }
 
-.menu-drawer__utility-links:has(.menu-drawer__localization)
-  .menu-drawer__account {
+.menu-drawer__utility-links:has(.menu-drawer__localization) .menu-drawer__account {
   margin: 0;
 }
 
-.menu-drawer__account account-icon > .svg-wrapper {
+.menu-drawer__account account-icon>.svg-wrapper {
   height: 2rem;
   width: 2rem;
   margin-right: 1rem;
@@ -227,7 +217,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   margin-left: -0.45rem;
 }
 
-.menu-drawer__account:hover account-icon > .svg-wrapper {
+.menu-drawer__account:hover account-icon>.svg-wrapper {
   transform: scale(1.07);
 }
 

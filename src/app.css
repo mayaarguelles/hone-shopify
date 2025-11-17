@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@source not "../assets";
+
+@theme {
+  --font-sans: 'pp-neue-montreal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+  --color-black: #000000;
+  --color-cloud: #EAE6DD;
+  --color-white: #FFFFFF;
+  --color-brown: #321B0F;
+  --color-terracotta: #B67239;
+  --color-fawn: #E0AC69;
+  --color-olive: #53523E;
+  --color-shadow: #837A66;
+  --color-smoke: #5E5A53;
+  --color-sage: #D4D2A5;
+  --color-olivine: #A1C181;
+  --color-sun: #FFA126;
+
+  --color-sapphire: #266484;
+
+  --text-hone: 6rem;
+  --text-hone--line-height: 6.25rem;
+  --text-hone--letter-spacing: -0.01em;
+
+  --text-htwo: 4rem;
+  --text-htwo--line-height: 4.5rem;
+
+  --text-hthree: 3rem;
+  --text-hthree--line-height: 3.5rem;
+
+  --text-hfour: 2rem;
+  --text-hfour--line-height: 2.25rem;
+
+  --text-hfive: 1.5rem;
+  --text-hfive--line-height: 2rem;
+
+  --text-hsix: 1.125rem;
+  --text-hsix--line-height: 1.125rem;
+
+  --tw-ease: cubic-bezier(0.64, 0.04, 0.35, 1);
+}
+
+@layer utilities {
+  .text-hsix {
+    @apply uppercase;
+  }
+
+  .contain-vertical-margins {
+    &>*:first-child {
+      margin-top: 0 !important;
+    }
+
+    &>*:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .grid-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    >* {
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+    }
+  }
+
+  .inline-icon {
+    @apply inline-block w-[0.8em] h-[0.8em] relative -top-[0.1em];
+  }
+
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .hone-dropdown {
+    @apply relative z-20;
+  }
+
+  .hone-dropdown__toggle {
+    @apply border border-current/50 p-4 py-2 w-full text-left;
+  }
+
+  .hone-dropdown__inner {
+    @apply relative w-full min-w-full;
+  }
+
+  .hone-dropdown__dropdown {
+    @apply absolute py-2 border border-current/50 border-t-0;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background-color: var(--color-cloud);
+    margin: 0 !important;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    /* transition: opacity 600ms var(--tw-ease), visibility 0ms linear 600ms; */
+    transition: unset;
+    z-index: 1;
+  }
+
+  .hone-dropdown__dropdown.is-visible {
+    opacity: 1;
+    transition: opacity 600ms var(--tw-ease);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .hone-dropdown__input__label {
+    @apply p-4 py-2 transition-colors duration-300;
+  }
+
+  .hone-dropdown__input__label:hover {
+    @apply bg-current/10;
+  }
+}
+
+@utility number-input-no-spin {
+  @apply [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none;
+}
+
+:root {
+  --plyr-color-main: var(--color-olivine);
+  --plyr-control-radius: 0;
+}
