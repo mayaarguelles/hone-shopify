@@ -1,1 +1,11 @@
-<svg class="icon icon-caret" viewBox="0 0 10 6"><path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/></svg>
+ <svg
+      class='icon icon-caret'
+      width='14'
+      height='13'
+      viewBox='0 0 14 13'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path d="M1.34315 6.49999L7 12.1568L12.6569 6.49999" stroke="currentcolor" fill="none"/>
+      <line x1="7" y1="12" x2="7" y2="4" stroke="currentcolor" fill="none"/>
+    </svg>

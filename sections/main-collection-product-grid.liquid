@@ -22,29 +22,15 @@
   <script src='{{ 'quick-order-list.js' | asset_url }}' defer='defer'></script>
 {%- endif -%}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
 <div class='section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}'>
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
-      <facet-filters-form class='facets facets-vertical-sort page-width small-hide'>
+      <facet-filters-form class='facets facets-vertical-sort w-full px-4 small-hide'>
         <form class='facets-vertical-form' id='FacetSortForm'>
           <div class='facet-filters sorting caption'>
             <div class='facet-filters__field'>
-              <h2 class='facet-filters__label caption-large text-body'>
+              <h2 class='facet-filters__label text-xs uppercase tracking-wide'>
                 <label for='SortBy'>{{ 'products.facets.sort_by_label' | t }}</label>
               </h2>
               <div class='select'>
@@ -74,7 +60,7 @@
           </div>
 
           <div class='product-count-vertical light' role='status'>
-            <h2 class='product-count__text text-body'>
+            <h2 class='product-count__text text-xs uppercase tracking-wide'>
               <span id='ProductCountDesktop'>
                 {%- if collection.results_count -%}
                   {{
@@ -97,13 +83,13 @@
       </facet-filters-form>
     {%- endif -%}
 
-    <div class='{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}'>
+    <div class='{% if section.settings.filter_type == 'vertical' %} facets-vertical w-full bg-cloud px-4 md:sticky py-2 top-(--navigation-height-current) z-50{% endif %}'>
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
       <script src='{{ 'facets.js' | asset_url }}' defer='defer'></script>
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby='verticalTitle'
-          class='facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}'
+          class='facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} w-full bg-cloud px-4 md:sticky py-2 top-(--navigation-height-current) z-50{% endif %}'
           id='main-collection-filters'
           data-id='{{ section.id }}'
         >
@@ -125,7 +111,7 @@
         {% endif %}
       >
         {%- if collection.products.size == 0 -%}
-          <div class='collection collection--empty page-width' id='product-grid' data-id='{{ section.id }}'>
+          <div class='collection collection--empty w-full px-4' id='product-grid' data-id='{{ section.id }}'>
             <div class='loading-overlay gradient'></div>
             <div class='title-wrapper center'>
               <h2 class='title title--primary'>
@@ -140,7 +126,7 @@
           </div>
         {%- else -%}
           <div
-            class='collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}'
+            class='collection{% if section.settings.filter_type != 'vertical' %} w-full px-4{% endif %}'
           >
             <div class='loading-overlay gradient'></div>
             <ul
@@ -205,7 +191,7 @@
       "id": "products_per_page",
       "min": 8,
       "max": 36,
-      "step": 4,
+      "step": 1,
       "default": 16,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
     },
@@ -387,30 +373,6 @@
           "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
         }
       ]
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
     }
   ]
 }

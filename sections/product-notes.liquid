@@ -1,0 +1,84 @@
+{%- assign product_details = product.metafields.custom.product_details.value -%}
+{% if product_details %}
+  <div class='w-full py-16 px-4 color-{{ section.settings.color_scheme }} gradient'>
+    <div class='flex flex-col md:flex-row gap-4'>
+      <div class='md:flex-[1_0_0] md:px-4 pt-2 [&>p]:text-current/80'>
+        {% if section.settings.heading %}
+          <h2 class='text-lg uppercase leading-none mb-4'>{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.subheading %}
+          <p class='text-base'>{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+      <div class='md:w-10/12 *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins'>
+        <horizontal-carousel class='alignfull'>
+          <div class='overflow-x-auto snap-x snap-mandatory no-scrollbar w-[calc(100%+var(--spacing)*4)]'>
+            <ul class='flex gap-4 *:w-[calc((var(--container-7xl)-((var(--spacing)*4)*3))/4)] w-max last:mr-4'>
+              {% for detail in product_details %}
+                {% assign detail = detail %}
+                <li class='snap-start'>
+                  <img
+                    class='block w-full mb-4'
+                    src='{{ detail.image | image_url: width: 800 }}'
+                    alt='{{ detail.title }}'
+                    width='{{ detail.image.width }}'
+                    height='{{ detail.image.height }}'
+                  >
+                  <h3 class='text-lg'>
+                    {{ detail.title }}
+                  </h3>
+                  {% if detail.short_description %}
+                    <p class='mt-1 text-current/80'>
+                      {{ detail.short_description }}
+                    </p>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class='alignwide flex items-center justify-between gap-4 mt-4'>
+            <div class='flex gap-2 text-current/70 shrink-0 justify-end flex-1'>
+              <button class='prev aspect-square flex items-center justify-center w-8 h-8 hover:bg-white transition-colors duration-300'>
+                {% render 'icon', name: 'arrow-left', class: 'h-4 w-auto' %}
+              </button>
+              <button class='next aspect-square flex items-center justify-center w-8 h-8 hover:bg-white transition-colors duration-300'>
+                {% render 'icon', name: 'arrow-right', class: 'h-4 w-auto' %}
+              </button>
+            </div>
+          </div>
+        </horizontal-carousel>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Product Notes",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Product Notes Section"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Key Features"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Each piece is engineered with intention."
+    }
+  ]
+}
+{% endschema %}

@@ -28,6 +28,7 @@
   assign size = size | default: 'standard'
   assign class_name = class_name | default: ''
   assign uses_margins = uses_margins | default: true
+  assign align = align | default: 'left'
 
   if tag == blank
     assign tag = 'a'
@@ -81,6 +82,15 @@
   else
     assign margin_classes = ''
   endif
+
+  case align
+    when 'full'
+      assign margin_classes = margin_classes | append: ' w-full'
+    when 'right'
+      assign margin_classes = margin_classes | append: ' ml-auto'
+    else
+      # left align, do nothing
+  endcase
 -%}
 
 <hone-button class='hone-button {{ margin_classes }} grid'>

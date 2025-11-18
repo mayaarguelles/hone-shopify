@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
     end: 'bottom top',
     onEnter: () => {
       if (announcementBar) {
+        gsap.to(document.body, {
+          '--navigation-height-current': `${
+            nav.offsetHeight - announcementBar.offsetHeight
+          }px`,
+          duration: 0.3,
+          ease: 'power2.inOut',
+        });
+
         gsap.to(nav, {
           y: '-' + announcementBar.offsetHeight,
           duration: 0.3,
@@ -34,6 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (autoplayTL) {
           autoplayTL.play();
         }
+
+        gsap.to(document.body, {
+          '--navigation-height-current': `${nav.offsetHeight}px`,
+          duration: 0.3,
+          ease: 'power2.inOut',
+        });
 
         gsap.to(nav, {
           y: '0',
@@ -148,6 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body,
         {
           '--navigation-height': `${
+            nav.offsetHeight - announcementBarHeight
+          }px`,
+          '--navigation-height-current': `${
             nav.offsetHeight - announcementBarHeight
           }px`,
           duration: 0.3,

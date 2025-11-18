@@ -5,8 +5,8 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
-<nav class='header__inline-menu'>
-  <ul class='flex-1 flex items-stretch self-stretch pt-px gap-6' role='list'>
+<nav class='header__inline-menu flex-1 hidden md:flex items-stretch self-stretch pt-px gap-6'>
+  <ul class='flex-1 flex items-stretch justify-start self-stretch pt-px gap-6' role='list'>
     {%- for link in section.settings.menu.links -%}
       <li class='text-xs group/navitem flex items-center'>
         {%- if link.links != blank -%}
@@ -74,7 +74,7 @@
           <a
             id='HeaderMenu-{{ link.handle }}'
             href='{{ link.url }}'
-            class='header__menu-item list-menu__item link link--text focus-inset'
+            class='group'
             {% if link.current %}
               aria-current='page'
             {% endif %}
@@ -84,7 +84,7 @@
                 class='header__active-menu-item'
               {% endif %}
             >
-              {{- link.title | escape -}}
+              {% render 'inline-hover-underline', content: link.title %}
             </span>
           </a>
         {%- endif -%}

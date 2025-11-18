@@ -186,6 +186,20 @@
       <line x1="11.8891" y1="11.8891" x2="6.23227" y2="6.23222" stroke="currentcolor"/>
     </svg>
 
+  {% when 'arrow-down' %}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 14 13'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M1.34315 6.49999L7 12.1568L12.6569 6.49999" stroke="currentcolor" fill="none"/>
+      <line x1="7" y1="12" x2="7" y2="4" stroke="currentcolor" fill="none"/>
+    </svg>
+
   {%- when 'arrow-left' -%}
     <svg
       class='{{ icon_classes }}'

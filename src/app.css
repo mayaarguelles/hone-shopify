@@ -22,6 +22,11 @@
   --color-olivine: #a1c181;
   --color-sun: #ffa126;
 
+  --color-button-color: rgb(var(--color-button));
+  --color-button-text-color: rgb(var(--color-button-text));
+  --color-secondary-button-color: rgb(var(--color-secondary-button));
+  --color-secondary-button-text-color: rgb(var(--color-secondary-button-text));
+
   --color-sapphire: #266484;
 
   /* Type scaling variable */

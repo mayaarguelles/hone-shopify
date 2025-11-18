@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('[data-navigation-area]');
   gsap.set(document.body, {
     '--navigation-height': `${nav.offsetHeight}px`,
+    '--navigation-height-current': `${nav.offsetHeight}px`,
   });
   const navBorder = nav.querySelector('.navigation-border');
 

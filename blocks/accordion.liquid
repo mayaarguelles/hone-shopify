@@ -1,0 +1,68 @@
+{% comment %}
+  Accordion Block
+  Renders an accordion component with collapsible content
+{% endcomment %}
+
+{%- liquid
+  assign title = block.settings.title | default: ''
+  assign content = block.settings.content | default: ''
+  assign is_open = block.settings.is_open | default: false
+  assign accordion_id = 'accordion-' | append: block.id
+-%}
+<hone-accordion class=''>
+  <div class='accordion-section mb-4' {{ block.shopify_attributes }}>
+    <button
+      class='group accordion-title w-full border-b border-current/30 pb-2 text-left flex items-center justify-between mb-4 cursor-pointer'
+      aria-controls='{{ accordion_id }}'
+      id='{{ accordion_id }}-button'
+      aria-expanded='{{ is_open }}'
+      aria-disabled='false'
+      data-accordion-toggle
+    >
+      {{ title }}
+      {% render 'icon',
+        name: 'arrow-down',
+        class: 'inline-icon relative group-aria-expanded:rotate-180 transition-transform duration-300',
+        aria_hidden: true
+      %}
+    </button>
+    <div
+      aria-labelledby='{{ accordion_id }}-button'
+      id='{{ accordion_id }}'
+      class='accordion-content [&>p]:text-current/80 [&>p]:mb-1 [&>p]:text-xs [&>p]:leading-relaxed contain-vertical-margins'
+      {% unless is_open %}
+        style='display:none;'
+      {% endunless %}
+      data-accordion-content
+    >
+      {{ content }}
+    </div>
+  </div>
+</hone-accordion>
+
+{% schema %}
+{
+  "name": "Accordion",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Accordion Title",
+      "default": "Accordion Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Accordion Content",
+      "default": "<p>Add your accordion content here.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_open",
+      "label": "Open by default",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
