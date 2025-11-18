@@ -133,8 +133,8 @@
         "secondary_button_label": {
           "label": "Outline button"
         },
-        "shadow": {
-          "label": "Shadow"
+        "secondary_button_outline": {
+          "label": "Outline button border"
         }
       }
     },

@@ -1,0 +1,57 @@
+{% doc %}
+  Renders a text block.
+
+  @example
+  {% content_for 'block', type: 'text', id: 'text' %}
+{% enddoc %}
+{%- liquid
+  assign prose_classes = 'prose'
+  if block.settings.text_style == 'large'
+    assign prose_classes = 'prose-lg'
+  endif
+-%}
+<div
+  class='{{ prose_classes }} alignfull *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins'
+  style='--text-align: {{ block.settings.alignment }}'
+  {{ block.shopify_attributes }}
+>
+  {{ block.settings.text }}
+</div>
+
+{% stylesheet %}
+  .text {
+    text-align: var(--text-align);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius faucibus massa sollicitudin amet augue. Nibh metus a semper purus mauris duis. Lorem eu neque, tristique quis duis. Nibh scelerisque ac adipiscing velit non nulla in amet pellentesque. Sit turpis pretium eget maecenas. Vestibulum dolor mattis consectetur eget commodo vitae.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "Text Scale",
+      "options": [
+        { "value": "large", "label": "Large" },
+        { "value": "base", "label": "Normal" }
+      ],
+      "default": "base"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:labels.alignment",
+      "default": "left"
+    }
+  ],
+  "presets": [{ "name": "Text" }]
+}
+{% endschema %}

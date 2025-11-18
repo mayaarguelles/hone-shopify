@@ -1,0 +1,51 @@
+{%- assign section_classes = 'w-full py-16 px-4' -%}
+<div class='{{ section_classes }} color-{{ section.settings.color_scheme }}'>
+  <div class='flex flex-col md:flex-row gap-4'>
+    <div class='md:flex-[1_0_0] md:px-4 pt-2 [&>p]:text-current/80 md:sticky md:top-[var(--navigation-height)] self-start'>
+      {% if section.settings.header != blank %}
+        <h2 class='text-hsix mb-4'>{{ section.settings.header }}</h2>
+      {% endif %}
+      {% if section.settings.subheader != blank %}
+        <p class='leading-tight'>{{ section.settings.subheader }}</p>
+      {% endif %}
+    </div>
+    <div class='md:w-10/12 *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins'>
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Simple Section",
+  "tag": "section",
+  "class": "simple-section",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header",
+      "default": "Section Header"
+    },
+    {
+      "type": "textarea",
+      "id": "subheader",
+      "label": "Subheader",
+      "default": "This is a simple section subheader to provide additional context."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Simple Section",
+      "category": "Sections",
+      "blocks": [{ "type": "text" }]
+    }
+  ]
+}
+{% endschema %}

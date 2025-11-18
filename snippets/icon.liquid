@@ -1,0 +1,335 @@
+{% comment %}
+  Renders an SVG icon based on a slug
+  Accepts:
+  - name: string (required) - The icon name/slug
+  - class: string (optional) - Additional CSS classes
+  - size: string (optional) - Size preset: 'xs', 'sm', 'md', 'lg', 'xl', or custom size
+  - width: string (optional) - Custom width (overrides size)
+  - height: string (optional) - Custom height (overrides size)
+  - aria_label: string (optional) - Accessibility label
+  - aria_hidden: boolean (optional) - Hide from screen readers, defaults to false
+
+  Usage:
+  {% render 'icon', name: 'cart' %}
+  {% render 'icon', name: 'account', size: 'lg', class: 'text-red-500' %}
+  {% render 'icon', name: 'close', width: '32', height: '32', aria_label: 'Close menu' %}
+{% endcomment %}
+
+{%- liquid
+  assign name = name | strip
+  assign class = class | default: ''
+  assign size = size | default: 'none'
+  assign width = width | default: ''
+  assign height = height | default: ''
+  assign aria_label = aria_label | default: ''
+  assign aria_hidden = aria_hidden | default: false
+
+  assign default_width = '12'
+  assign default_height = '12'
+
+  # Size presets
+  case size
+    when 'xs'
+      assign default_width = '12'
+      assign default_height = '12'
+    when 'sm'
+      assign default_width = '16'
+      assign default_height = '16'
+    when 'md'
+      assign default_width = '24'
+      assign default_height = '24'
+    when 'lg'
+      assign default_width = '32'
+      assign default_height = '32'
+    when 'xl'
+      assign default_width = '48'
+      assign default_height = '48'
+    else
+      assign default_width = '24'
+      assign default_height = '24'
+  endcase
+
+  # Use custom dimensions if provided, otherwise use size presets
+  assign final_width = width | default: default_width
+  assign final_height = height | default: default_height
+
+  # Build class string
+  assign icon_classes = 'inline-block icon icon-' | append: name
+  if class != blank
+    assign icon_classes = icon_classes | append: ' ' | append: class
+  endif
+
+  if size == 'none'
+    assign icon_classes = icon_classes | append: ' w-[0.8em] h-[0.8em] relative -top-[0.1em]'
+  endif
+
+  # Accessibility attributes
+  assign aria_attributes = ''
+  if aria_label != blank
+    assign aria_attributes = aria_attributes | append: ' aria-label="' | append: aria_label | append: '"'
+  endif
+  if aria_hidden
+    assign aria_attributes = aria_attributes | append: ' aria-hidden="true"'
+  endif
+-%}
+
+{%- case name -%}
+  {%- when 'cart' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V16.5M9 19.5C9.8 19.5 10.5 20.2 10.5 21S9.8 22.5 9 22.5 7.5 21.8 7.5 21 8.2 19.5 9 19.5ZM20 19.5C20.8 19.5 21.5 20.2 21.5 21S20.8 22.5 20 22.5 18.5 21.8 18.5 21 19.2 19.5 20 19.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'account', 'user' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M20 21V19C20 17.9 19.1 16 17 16H7C4.9 16 4 17.9 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'close', 'x' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'menu', 'hamburger' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'search' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'arrow-right' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='13'
+      height='14'
+      viewBox='0 0 13 14'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M5.65685 12.6569L11.3137 7L5.65685 1.34315" stroke="currentcolor"/>
+      <line x1="11.1567" y1="7" x2="3.15674" y2="7" stroke="currentcolor"/>
+    </svg>
+
+  {%- when 'arrow-up-right' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 16 16'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M11.5 12.5V4.5L3.5 4.5" stroke="currentColor"/>
+        <path d="M11.3891 4.61075L5.73224 10.2676" stroke="currentColor"/>
+    </svg>
+
+  {%- when 'arrow-down-right' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 16 16'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M4 12H12V4" stroke="currentcolor"/>
+      <line x1="11.8891" y1="11.8891" x2="6.23227" y2="6.23222" stroke="currentcolor"/>
+    </svg>
+
+  {%- when 'arrow-left' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <line x1="19" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="12,19 5,12 12,5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'chevron-down' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <polyline points="6,9 12,15 18,9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'chevron-up' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <polyline points="18,15 12,9 6,15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'heart' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M20.84 4.61C20.3 4.07 19.65 3.64 18.93 3.36C18.21 3.08 17.44 2.94 16.66 2.94C15.88 2.94 15.11 3.08 14.39 3.36C13.67 3.64 13.02 4.07 12.48 4.61L12 5.09L11.52 4.61C10.43 3.52 8.98 2.94 7.34 2.94C5.7 2.94 4.25 3.52 3.16 4.61C2.07 5.7 1.49 7.15 1.49 8.79C1.49 10.43 2.07 11.88 3.16 12.97L12 21.8L20.84 12.97C21.93 11.88 22.51 10.43 22.51 8.79C22.51 7.15 21.93 5.7 20.84 4.61Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'star' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'plus' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'minus' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'check' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <polyline points="20,6 9,17 4,12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- when 'external-link' -%}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {{ aria_attributes }}
+    >
+      <path d="M18 13V19C18 19.5 17.5 20 17 20H5C4.5 20 4 19.5 4 19V7C4 6.5 4.5 6 5 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="15,3 21,3 21,9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  {%- else -%}
+    {%- comment -%} Fallback: Try to load from assets folder {%- endcomment -%}
+    {%- assign asset_name = 'icon-' | append: name | append: '.svg' -%}
+    {%- assign fallback_asset = asset_name | asset_url -%}
+
+    {%- if assets[asset_name] -%}
+      <svg class='{{ icon_classes }}' width='{{ final_width }}' height='{{ final_height }}' {{ aria_attributes }}>
+        <use href="{{ fallback_asset }}#icon"></use>
+      </svg>
+    {%- else -%}
+      {%- comment -%} Final fallback: generic icon {%- endcomment -%}
+      <svg
+        class='{{ icon_classes }}'
+        width='{{ final_width }}'
+        height='{{ final_height }}'
+        viewBox='0 0 24 24'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+        {{ aria_attributes }}
+      >
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    {%- endif -%}
+{%- endcase -%}

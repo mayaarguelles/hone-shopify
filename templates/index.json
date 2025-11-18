@@ -1,5 +1,58 @@
 {
   "sections": {
+    "split-header": {
+      "type": "split-header",
+      "settings": {
+        "left_image": "",
+        "left_image_alt": "",
+        "left_hover_video": "",
+        "right_image": "",
+        "right_image_alt": "",
+        "right_hover_video": "",
+        "left_button_text": "Get Pierced",
+        "left_button_link": "#",
+        "right_button_text": "Shop Jewelry",
+        "right_button_link": "#"
+      }
+    },
+    "intro-section": {
+      "type": "simple-section",
+      "settings": {
+        "header": "A new kind of piercing studio",
+        "subheader": "",
+        "color_scheme": "scheme-3"
+      },
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Hone is the authority on fine piercing and intentional placement. We've redefined the piercing experience in our safe, sophisticated boutique—combining clinical expertise with a refined design sensibility.<\/p>",
+            "text_style": "large"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "blocks": {
+            "button-1": {
+              "type": "button",
+              "settings": {
+                "button_text": "Who We Are",
+                "button_icon": "arrow-down-right",
+                "button_link": "#",
+                "button_style": "fill"
+              }
+            }
+          },
+          "block_order": [
+            "button-1"
+          ],
+        }
+      },
+      "block_order": [
+        "text",
+        "buttons"
+      ]
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -200,6 +253,8 @@
     }
   },
   "order": [
+    "split-header",
+    "intro-section",
     "image_banner",
     "rich_text",
     "featured_collection",

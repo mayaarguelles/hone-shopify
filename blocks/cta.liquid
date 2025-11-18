@@ -1,0 +1,68 @@
+{% comment %}
+  Button Block
+  Renders a button component from the button.liquid snippet
+{% endcomment %}
+
+<div class='button-block'>
+  {% render 'cta',
+    content: block.settings.button_text,
+    url: block.settings.button_url,
+    target: block.settings.button_target,
+    icon: block.settings.button_icon
+  %}
+</div>
+
+{% schema %}
+{
+  "name": "CTA",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Click Me"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_target",
+      "label": "Open in new tab",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "button_icon",
+      "label": "Button Icon",
+      "options": [
+        {
+          "value": "arrow-down-right",
+          "label": "Arrow Down Right"
+        },
+        {
+          "value": "arrow-up-right",
+          "label": "Arrow Up Right"
+        },
+        {
+          "value": "arrow-right",
+          "label": "Arrow Right"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "none"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA"
+    }
+  ]
+}
+{% endschema %}

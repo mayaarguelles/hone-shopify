@@ -1,0 +1,23 @@
+{% comment %}
+  Renders an inline hover underline effect
+
+  Accepts:
+  - multiline: {Boolean} Whether the text spans multiple lines (optional, default: false)
+  - content: {String} The text content to display
+
+  Usage:
+  {% render 'inline-hover-underline', multiline: true, content: 'Your text here' %}
+{% endcomment %}
+
+{%- liquid
+  assign multiline = multiline | default: false
+  if multiline
+    assign hover_position = 'bg-bottom-right'
+  else
+    assign hover_position = 'bg-bottom-right pb-1'
+  endif
+-%}
+
+<span class='bg-linear-to-l from-current/30 to-current/30 bg-size-[0%_1px] bg-no-repeat {{ hover_position }} group-hover:bg-bottom-left group-hover:bg-size-[100%_1px] transition-[background-size] duration-500 inline'>
+  {{ content }}
+</span>

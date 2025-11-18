@@ -1,0 +1,113 @@
+{% comment %}
+  Renders a split header section with image, optional hover effects, and content overlay
+  Accepts:
+  - image: object (optional) - Shopify image object from image picker
+  - alt: string (optional) - Alt text for main image (fallback if image.alt is empty)
+  - hover_image: object (optional) - Shopify image object from image picker
+  - hover_image_alt: string (optional) - Alt text for hover image (fallback if hover_image.alt is empty)
+  - hover_video: object (optional) - Shopify video object from video picker
+  - content: string - HTML content to display in the overlay
+  - index: number (optional) - Index for unique IDs if needed
+
+  Usage:
+  {% render 'split-header-section',
+     image: section.settings.hero_image,
+     alt: 'Hero image description',
+     hover_image: section.settings.hover_image,
+     hover_image_alt: 'Hover image description',
+     content: '<h2>Your content here</h2>' %}
+{% endcomment %}
+
+{% if index != blank %}
+  {% assign unique_id = index %}
+{% else %}
+  {% assign unique_id = 0 %}
+{% endif %}
+
+<hone-split-section class='flex-1 relative grid text-brown group before:w-full before:h-48 before:absolute before:bottom-0 before:left-0 before:bg-gradient-to-t before:from-cloud/70 before:to-transparent overflow-hidden before:z-[3] before:transition-transform before:duration-300 hover:before:translate-y-1/2 cursor-pointer'>
+  {% if image != blank %}
+    {%- liquid
+      assign image_alt = image.alt | default: alt | default: ''
+      assign image_url_1920 = image | image_url: width: 1920
+      assign image_url_1200 = image | image_url: width: 1200
+      assign image_url_800 = image | image_url: width: 800
+    -%}
+    <img
+      src='{{ image_url_1920 }}'
+      srcset='{{ image_url_800 }} 800w, {{ image_url_1200 }} 1200w, {{ image_url_1920 }} 1920w'
+      sizes='(max-width: 768px) 100vw, 50vw'
+      alt='{{ image_alt }}'
+      width='{{ image.width }}'
+      height='{{ image.height }}'
+      loading='eager'
+      fetchpriority='high'
+      class='absolute left-0 top-0 w-full h-full object-cover z-1'
+    >
+  {% else %}
+    {% assign placeholder_image = 'hero-l.jpg' | asset_url %}
+    {% if unique_id == 2 %}
+      {% assign placeholder_image = 'hero-r.jpg' | asset_url %}
+    {% endif %}
+    <img
+      src='{{ placeholder_image }}'
+      width='1024'
+      height='1024'
+      alt='Placeholder image'
+      class='absolute left-0 top-0 w-full h-full object-cover z-1'
+    >
+  {% endif %}
+
+  {% if hover_image != blank %}
+    {%- liquid
+      assign hover_image_alt_text = hover_image.alt | default: hover_image_alt | default: ''
+      assign hover_image_url_1920 = hover_image | image_url: width: 1920
+      assign hover_image_url_1200 = hover_image | image_url: width: 1200
+      assign hover_image_url_800 = hover_image | image_url: width: 800
+    -%}
+    <img
+      src='{{ hover_image_url_1920 }}'
+      srcset='{{ hover_image_url_800 }} 800w, {{ hover_image_url_1200 }} 1200w, {{ hover_image_url_1920 }} 1920w'
+      sizes='(max-width: 768px) 100vw, 50vw'
+      alt='{{ hover_image_alt_text }}'
+      width='{{ hover_image.width }}'
+      height='{{ hover_image.height }}'
+      loading='lazy'
+      class='absolute left-0 top-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-[2]'
+    >
+  {% endif %}
+
+  {% if hover_video != blank %}
+    {{
+      hover_video
+      | video_tag:
+        class: 'absolute left-0 top-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-[1.01] z-[2]',
+        autoplay: true,
+        muted: true,
+        loop: true,
+        playsinline: true
+    }}
+  {% endif %}
+
+  <div class='relative z-[4] p-12 flex justify-end items-start flex-col contain-vertical-margins'>
+    {{ content }}
+  </div>
+</hone-split-section>
+
+{% javascript %}
+  class HoneSplitSection extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      const button = this.querySelector('hone-button a');
+      if (button !== null) {
+        this.addEventListener('click', () => {
+          button.click();
+        });
+      }
+    }
+  }
+
+  customElements.define('hone-split-section', HoneSplitSection);
+{% endjavascript %}

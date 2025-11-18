@@ -1,0 +1,153 @@
+{% comment %}
+  Renders a customizable button component
+
+  Accepts:
+  - href: {String} The URL to link to (optional, default: '')
+  - target: {String} The link target (optional, default: '_self')
+  - uses_group_hover: {Boolean} Whether to use group hover styles (optional, default: false)
+  - style: {String} Button style - 'fill' or 'outline' (optional, default: 'fill')
+  - size: {String} Button size - 'standard', 'small', 'large', or 'standardLegacy' (optional, default: 'standard')
+  - icon: {String} Icon name to display (optional, default: 'arrow-down-right')
+  - class_name: {String} Additional CSS classes (optional, default: '')
+  - color_classes: {String} Custom color classes to override defaults (optional)
+  - uses_margins: {Boolean} Whether to add vertical margins (optional, default: true)
+  - content: {String} The button text content
+  --tag {String} HTML tag to use - 'a' or 'button' (optional, default: 'a')
+  --disabled {Boolean} Whether the button is disabled (optional, default: false)
+
+  Usage:
+  {% render 'button', href: '/products', content: 'Shop Now' %}
+  {% render 'button', style: 'outline', size: 'large', icon: 'arrow-right', content: 'Learn More' %}
+{% endcomment %}
+
+{%- liquid
+  assign href = href | default: ''
+  assign target = target | default: '_self'
+  assign uses_group_hover = uses_group_hover | default: false
+  assign style = style | default: 'fill'
+  assign size = size | default: 'standard'
+  assign class_name = class_name | default: ''
+  assign uses_margins = uses_margins | default: true
+
+  if tag == blank
+    assign tag = 'a'
+  endif
+
+  # Set default color classes based on style
+  if color_classes == blank
+    if style == 'fill'
+      assign use_color_classes = 'bg-dynamic-300 text-smoke'
+    else
+      assign use_color_classes = 'text-current border-current/50'
+    endif
+  else
+    assign use_color_classes = color_classes
+  endif
+
+  # Set base classes for different styles
+  if style == 'fill'
+    assign base_classes = 'border-0 bg-linear-to-b bg-bottom from-white/95 to-white bg-size-[100%_0%] bg-no-repeat'
+    if uses_group_hover
+      assign hover_classes = 'uses-group-hover group-hover:bg-size-[100%_100%] group-hover:text-black'
+    else
+      assign hover_classes = 'group/button hover:bg-size-[100%_100%] hover:text-black'
+    endif
+  else
+    assign base_classes = 'bg-transparent'
+    if uses_group_hover
+      assign hover_classes = 'uses-group-hover group-hover:bg-dynamic-200 group-hover:text-black group-hover:border-dynamic-200'
+    else
+      assign hover_classes = 'group/button hover:bg-dynamic-200 hover:text-black hover:border-dynamic-200'
+    endif
+  endif
+
+  # Set size classes
+  case size
+    when 'standard'
+      assign size_classes = 'px-3 py-2 text-xs tracking-wide'
+    when 'standardLegacy'
+      assign size_classes = 'px-4 py-2 text-base'
+    when 'small'
+      assign size_classes = 'px-3 py-2 text-xs'
+    when 'large'
+      assign size_classes = 'px-6 py-3'
+    else
+      assign size_classes = 'px-3 py-2 text-xs tracking-wide'
+  endcase
+
+  # Build margin classes
+  if uses_margins
+    assign margin_classes = 'my-4'
+  else
+    assign margin_classes = ''
+  endif
+-%}
+
+<hone-button class='hone-button {{ margin_classes }} grid'>
+  <{{ tag }}
+    {% if tag == 'a' %}
+      href='{{ href }}'
+      target='{{ target }}'
+    {% endif %}
+    class='hone-button__link relative overflow-hidden block border-solid border color-dynamic transition-all duration-500 cursor-pointer text-center {{ use_color_classes }} {{ size_classes }} {{ base_classes }} {{ hover_classes }} {{ class_name }}'
+    style='--color-dynamic:var(--color-shadow);'
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if name != blank %}
+      name='{{ name }}'
+    {% endif %}
+    {% if type != blank %}
+      type='{{ type }}'
+    {% endif %}
+  >
+    <span class='hone-button__link-inner inline-flex items-center'>
+      {{ content }}
+      {%- if icon != blank and icon != 'none' -%}
+        {% render 'icon', name: icon, class: 'w-[1em] h-[1em] inline-block ml-[0.3em] relative' %}
+      {%- endif -%}
+    </span>
+  </{{ tag }}>
+</hone-button>
+
+{% javascript %}
+  class HoneButton extends HTMLElement {
+    constructor() {
+      super();
+      this.linkElement = this.querySelector('a, button');
+    }
+
+    connectedCallback() {
+      if (this.linkElement) {
+        const canonSpan = this.linkElement.querySelector('span.hone-button__link-inner');
+        const hoverSpan = canonSpan.cloneNode(true);
+        hoverSpan.setAttribute('aria-hidden', 'true');
+        hoverSpan.classList.remove('inline-flex');
+        hoverSpan.classList.add(
+          'absolute',
+          'inset-0',
+          'flex',
+          'items-center',
+          'justify-center',
+          'transition-transform',
+          'transform',
+          'translate-y-full',
+          'duration-500',
+          'pointer-events-none',
+        );
+        this.linkElement.appendChild(hoverSpan);
+
+        this.style.setProperty('--hone-button-height', `${this.offsetHeight}px`);
+        canonSpan.classList.add('relative', 'z-10', 'transition-transform', 'transform', 'duration-500');
+        if (this.linkElement.classList.contains('uses-group-hover')) {
+          hoverSpan.classList.add('group-hover:translate-y-0');
+          canonSpan.classList.add('group-hover:-translate-y-[var(--hone-button-height)]');
+        } else {
+          hoverSpan.classList.add('group-hover/button:translate-y-0');
+          canonSpan.classList.add('group-hover/button:-translate-y-[var(--hone-button-height)]');
+        }
+      }
+    }
+  }
+  customElements.define('hone-button', HoneButton);
+{% endjavascript %}

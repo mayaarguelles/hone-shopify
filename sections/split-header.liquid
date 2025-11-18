@@ -1,0 +1,169 @@
+{% comment %}
+  Split Header Section
+  A full-width hero section with dual image/video areas and call-to-action buttons
+{% endcomment %}
+
+{%- comment -%} Define content for left section {%- endcomment -%}
+{%- capture content_for_left_section -%}
+    {% render 'button', 
+       href: section.settings.left_button_url, 
+       content: section.settings.left_button_text,
+       uses_group_hover: true, 
+       icon: 'arrow-down-right',
+       style: 'outline' %}
+{%- endcapture -%}
+
+{%- comment -%} Define content for right section {%- endcomment -%}
+{%- capture content_for_right_section -%}
+    {% render 'button', 
+       href: section.settings.right_button_url, 
+       content: section.settings.right_button_text,
+       uses_group_hover: true, 
+       icon: 'arrow-down-right',
+       style: 'outline' %}
+{%- endcapture -%}
+
+<div class='min-h-[calc(100vh-(var(--navigation-height))-(var(--spacing)*4))] md:min-h-auto px-4 pb-4 flex flex-col md:flex-row justify-end items-end text-black'>
+  <div
+    class='flex-1 w-full color-dynamic bg-dynamic-100 flex flex-col md:flex-row md:h-[calc(100vh-(var(--navigation-height))-(var(--spacing)*4)-80px)]'
+    style='--color-dynamic:var(--color-cloud);'
+  >
+    {%- comment -%} Left Split Section {%- endcomment -%}
+    {% render 'split-header-section',
+      image: section.settings.left_image,
+      alt: section.settings.left_image_alt,
+      hover_video: section.settings.left_hover_video,
+      content: content_for_left_section
+    %}
+
+    {%- comment -%} Right Split Section {%- endcomment -%}
+    {% render 'split-header-section',
+      image: section.settings.right_image,
+      alt: section.settings.right_image_alt,
+      hover_video: section.settings.right_hover_video,
+      content: content_for_right_section,
+      index: 2
+    %}
+  </div>
+</div>
+
+<div class='px-4 min-h-[80px] grid'>
+  <div class='flex-1 p-4 pt-0 flex items-center self-stretch gap-4'>
+    <svg
+      class='flex-[1_0_0] h-[48px] text-shadow/70'
+      viewBox='0 0 100 100'
+      preserveAspectRatio='none'
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      stroke='currentColor'
+    >
+      <line x1="0" y1="0" x2="100" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="0" y1="100" x2="100" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+    </svg>
+    <h1 class='text-xl text-center self-center uppercase flex-[0_0_auto]'>
+      {{ section.settings.tagline | default: 'A contemporary piercing studio' }}
+    </h1>
+    <svg
+      class='flex-[1_0_0] h-[48px] text-shadow/70'
+      viewBox='0 0 100 100'
+      preserveAspectRatio='none'
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      stroke='currentColor'
+    >
+      <line x1="100" y1="0" x2="0" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="100" y1="50" x2="0" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="100" y1="100" x2="0" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+    </svg>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Split Header",
+  "tag": "section",
+  "class": "split-header-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "text",
+      "id": "left_image_alt",
+      "label": "Left Image Alt Text",
+      "default": "Left hero image"
+    },
+    {
+      "type": "video",
+      "id": "left_hover_video",
+      "label": "Left Hover Video",
+      "info": "Video that appears on hover"
+    },
+    {
+      "type": "text",
+      "id": "left_button_text",
+      "label": "Left Button Text",
+      "default": "Get Pierced"
+    },
+    {
+      "type": "url",
+      "id": "left_button_url",
+      "label": "Left Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Right Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Image"
+    },
+    {
+      "type": "text",
+      "id": "right_image_alt",
+      "label": "Right Image Alt Text",
+      "default": "Right hero image"
+    },
+    {
+      "type": "video",
+      "id": "right_hover_video",
+      "label": "Right Hover Video",
+      "info": "Video that appears on hover"
+    },
+    {
+      "type": "text",
+      "id": "right_button_text",
+      "label": "Right Button Text",
+      "default": "Shop Jewelry"
+    },
+    {
+      "type": "url",
+      "id": "right_button_url",
+      "label": "Right Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "A contemporary piercing studio"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Header"
+    }
+  ]
+}
+{% endschema %}

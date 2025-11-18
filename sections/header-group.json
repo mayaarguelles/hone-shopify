@@ -8,15 +8,21 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
-            "text_alignment": "center",
-            "color_scheme": "scheme-1",
+            "text": "Free shipping on orders over $50",
             "link": ""
+          }
+        },
+        "announcement-bar-1": {
+          "type": "announcement",
+          "settings": {
+            "text": "Book now for $10 off all weekend",
+            "link": "/book"
           }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement-bar-0",
+        "announcement-bar-1"
       ]
     },
     "header": {
@@ -24,9 +30,8 @@
       "settings": {
         "color_scheme": "scheme-1",
         "logo_position": "middle-left",
-        "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
+        "menu": "navigation",
+        "menu_type_desktop": "mega",
         "show_line_separator": true,
         "enable_country_selector": true,
         "enable_language_selector": true,

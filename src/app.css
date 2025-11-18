@@ -1,42 +1,132 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@zyphox/tailwind-dynamic-colors';
+@plugin "@tailwindcss/typography";
 @source not "../assets";
+@config "../tailwind.config.js";
 
 @theme {
-  --font-sans: 'pp-neue-montreal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  --font-sans: 'pp-neue-montreal', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
   --color-black: #000000;
-  --color-cloud: #EAE6DD;
-  --color-white: #FFFFFF;
-  --color-brown: #321B0F;
-  --color-terracotta: #B67239;
-  --color-fawn: #E0AC69;
-  --color-olive: #53523E;
-  --color-shadow: #837A66;
-  --color-smoke: #5E5A53;
-  --color-sage: #D4D2A5;
-  --color-olivine: #A1C181;
-  --color-sun: #FFA126;
+  --color-cloud: #eae6dd;
+  --color-white: #ffffff;
+  --color-brown: #321b0f;
+  --color-terracotta: #b67239;
+  --color-fawn: #e0ac69;
+  --color-olive: #53523e;
+  --color-shadow: #837a66;
+  --color-smoke: #5e5a53;
+  --color-sage: #d4d2a5;
+  --color-olivine: #a1c181;
+  --color-sun: #ffa126;
 
   --color-sapphire: #266484;
 
-  --text-hone: 6rem;
-  --text-hone--line-height: 6.25rem;
+  /* Type scaling variable */
+  --type-scale: 1;
+
+  /* Custom font sizes - 1rem = 10px base */
+  --text-hone: 9.6rem;
+  --text-hone--line-height: 10rem;
   --text-hone--letter-spacing: -0.01em;
 
-  --text-htwo: 4rem;
-  --text-htwo--line-height: 4.5rem;
+  --text-htwo: 6.4rem;
+  --text-htwo--line-height: 7.2rem;
 
-  --text-hthree: 3rem;
-  --text-hthree--line-height: 3.5rem;
+  --text-hthree: 4.8rem;
+  --text-hthree--line-height: 5.6rem;
 
-  --text-hfour: 2rem;
-  --text-hfour--line-height: 2.25rem;
+  --text-hfour: 3.2rem;
+  --text-hfour--line-height: 3.6rem;
 
-  --text-hfive: 1.5rem;
-  --text-hfive--line-height: 2rem;
+  --text-hfive: 2.4rem;
+  --text-hfive--line-height: 3.2rem;
 
-  --text-hsix: 1.125rem;
-  --text-hsix--line-height: 1.125rem;
+  --text-hsix: 1.8rem;
+  --text-hsix--line-height: 1.8rem;
+
+  /* Override Tailwind default text sizes - 1rem = 10px base */
+  --text-xs: 1.2rem;
+  --text-xs--line-height: 1.6rem;
+
+  --text-sm: 1.4rem;
+  --text-sm--line-height: 2rem;
+
+  --text-base: 1.6rem;
+  --text-base--line-height: 2.4rem;
+
+  --text-lg: 1.8rem;
+  --text-lg--line-height: 2.8rem;
+
+  --text-xl: 2rem;
+  --text-xl--line-height: 2.8rem;
+
+  --text-2xl: 2.4rem;
+  --text-2xl--line-height: 3.2rem;
+
+  --text-3xl: 3rem;
+  --text-3xl--line-height: 3.6rem;
+
+  --text-4xl: 3.6rem;
+  --text-4xl--line-height: 4rem;
+
+  --text-5xl: 4.8rem;
+  --text-5xl--line-height: 1;
+
+  --text-6xl: 6rem;
+  --text-6xl--line-height: 1;
+
+  --text-7xl: 7.2rem;
+  --text-7xl--line-height: 1;
+
+  --text-8xl: 9.6rem;
+  --text-8xl--line-height: 1;
+
+  --text-9xl: 12.8rem;
+  --text-9xl--line-height: 1;
+
+  /* Width/Height sizes - 1rem = 10px base */
+  --size-xs: 1.2rem;
+  --size-sm: 1.4rem;
+  --size-base: 1.6rem;
+  --size-lg: 1.8rem;
+  --size-xl: 2rem;
+  --size-2xl: 2.4rem;
+  --size-3xl: 3rem;
+  --size-4xl: 3.6rem;
+  --size-5xl: 4.8rem;
+  --size-6xl: 6rem;
+  --size-7xl: 7.2rem;
+  --size-8xl: 9.6rem;
+  --size-9xl: 12.8rem;
+
+  /* Container sizes - 1rem = 10px base (matching Tailwind's container variables) */
+  --container-xs: 32rem;
+  /* 320px */
+  --container-sm: 38.4rem;
+  /* 384px */
+  --container-md: 44.8rem;
+  /* 448px */
+  --container-lg: 51.2rem;
+  /* 512px */
+  --container-xl: 57.6rem;
+  /* 576px */
+  --container-2xl: 67.2rem;
+  /* 672px */
+  --container-3xl: 76.8rem;
+  /* 768px */
+  --container-4xl: 89.6rem;
+  /* 896px - adjusted from Tailwind's 56rem to match 10px base */
+  --container-5xl: 102.4rem;
+  /* 1024px */
+  --container-6xl: 115.2rem;
+  /* 1152px */
+  --container-7xl: 128rem;
+  /* 1280px */
+
+  --spacing: 0.4rem;
 
   --tw-ease: cubic-bezier(0.64, 0.04, 0.35, 1);
 }
@@ -47,11 +137,11 @@
   }
 
   .contain-vertical-margins {
-    &>*:first-child {
+    & > *:first-child {
       margin-top: 0 !important;
     }
 
-    &>*:last-child {
+    & > *:last-child {
       margin-bottom: 0 !important;
     }
   }
@@ -61,7 +151,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
 
-    >* {
+    > * {
       grid-column: 1 / -1;
       grid-row: 1 / -1;
     }

@@ -1,0 +1,20 @@
+{% content_for 'blocks' %}
+{% schema %}
+{
+  "name": "Buttons",
+  "tag": "div",
+  "class": "hone-buttons flex flex-wrap gap-4",
+  "blocks": [{ "type": "@app" }, { "type": "button" }, { "type": "cta" }],
+  "presets": [
+    {
+      "name": "Buttons",
+      "category": "Buttons",
+      "blocks": [
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

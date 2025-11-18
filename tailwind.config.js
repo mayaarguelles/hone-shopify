@@ -1,5 +1,4 @@
 module.exports = {
-  prefix: 'twcss-',
   content: [
     './layout/*.liquid',
     './templates/*.liquid',
@@ -8,18 +7,26 @@ module.exports = {
     './snippets/*.liquid',
   ],
   theme: {
-    screens: {
-      sm: '320px',
-      md: '750px',
-      lg: '990px',
-      xlg: '1440px',
-      x2lg: '1920px',
-      pageMaxWidth: '1440px',
-    },
     extend: {
-      fontFamily: {
-        heading: 'var(--font-heading-family)',
-      },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: 'none',
+            p: {
+              fontSize: 'var(--text-base)',
+              lineHeight: 'var(--text-base--line-height)',
+            },
+          },
+        },
+        lg: {
+          css: {
+            p: {
+              fontSize: 'var(--text-hfour)',
+              lineHeight: 'var(--text-hfour--line-height)',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [],

@@ -21,13 +21,18 @@
   },
   "homepage": "https://github.com/TrellisCommerce/shopify-dawn-tailwind-starter-base#readme",
   "devDependencies": {
+    "@rollup/plugin-multi-entry": "^7.1.0",
     "@shopify/cli": "^3.87.4",
     "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/typography": "^0.5.19",
+    "@zyphox/tailwind-dynamic-colors": "^1.0.5",
     "autoprefixer": "^10.4.4",
+    "glob": "^12.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
     "postcss": "^8.4.12",
     "prettier": "^2.5.1",
+    "rollup-plugin-multi-entry": "^2.1.0",
     "tailwindcss": "^4.1.17",
     "vite": "^7.2.2"
   },

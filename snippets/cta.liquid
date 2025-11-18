@@ -1,0 +1,60 @@
+{% comment %}
+  Renders a call-to-action component with hover underline and icon
+
+  Accepts:
+  - href: {String} The URL to link to (optional, default: '')
+  - target: {String} The link target (optional, default: '')
+  - rel: {String} The link rel attribute (optional, default: '')
+  - icon: {String} Icon name to display (optional, default: 'arrow-down-right')
+  - uses_group_hover: {Boolean} Whether to use group hover styles (optional, default: false)
+  - tag: {String} HTML tag to use - 'a' or 'span' (optional, default: 'a')
+  - classes: {String} Additional CSS classes (optional, default: '')
+  - content: {String} The CTA text content
+
+  Usage:
+  {% render 'cta', href: '/products', content: 'Shop Now' %}
+  {% render 'cta', tag: 'span', icon: 'arrow-right', content: 'Learn More' %}
+{% endcomment %}
+
+{%- liquid
+  assign href = href | default: ''
+  assign target = target | default: ''
+  assign rel = rel | default: ''
+  assign icon = icon | default: 'arrow-down-right'
+  assign uses_group_hover = uses_group_hover | default: false
+  assign tag = tag | default: 'a'
+  assign classes = classes | default: ''
+
+  # Build class string
+  if uses_group_hover
+    assign group_class = ''
+  else
+    assign group_class = 'group'
+  endif
+
+  if classes != blank
+    assign combined_classes = group_class | append: ' ' | append: classes
+  else
+    assign combined_classes = group_class
+  endif
+-%}
+
+{%- if tag == 'a' -%}
+  <a href='{{ href }}' target='{{ target }}' rel='{{ rel }}' class='{{ combined_classes }}'>
+    {% render 'inline-hover-underline', uses_group_hover: uses_group_hover, content: content %}
+    {%- if icon != blank and icon != 'none' -%}
+      {% render 'icon', name: icon, class: 'inline ml-1 relative -top-[0.1em]' %}
+    {%- endif -%}
+  </a>
+{%- elsif tag == 'span' -%}
+  <span class='{{ combined_classes }}'>
+    {%- if classes != blank -%}
+      <span class='{{ classes }}'>{{ content }}</span>
+    {%- else -%}
+      <span class='text-current/60'>{{ content }}</span>
+    {%- endif -%}
+    {%- if icon != blank and icon != 'none' -%}
+      {% render 'icon', name: icon, class: 'inline ml-1 relative -top-[0.1em]' %}
+    {%- endif -%}
+  </span>
+{%- endif -%}
