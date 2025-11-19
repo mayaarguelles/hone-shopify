@@ -320,6 +320,20 @@
       <polyline points="15,3 21,3 21,9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
+  {% when 'sale' %}
+    <svg
+      class='{{ icon_classes }}'
+      width='{{ final_width }}'
+      height='{{ final_height }}'
+      viewBox='0 0 131 131'
+      stroke='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path d="M88.7401 129.641L35.9 2.06963L40.9 -0.000396729L93.7401 127.571L88.7401 129.641Z" fill="currentcolor"/>
+      <path d="M127.57 93.7393L0 40.8973L2.07002 35.9003L129.64 88.7412L127.57 93.7393Z" fill="currentcolor"/>
+      <path d="M2.07002 93.7393L0 88.7412L127.57 35.9003L129.64 40.8973L2.07002 93.7393Z" fill="currentcolor"/>
+      <path d="M40.9 129.641L35.9 127.571L88.7401 -0.000396729L93.7401 2.06963L40.9 129.641Z" fill="currentcolor"/>
+    </svg>
 
   {%- else -%}
     {%- comment -%} Fallback: Try to load from assets folder {%- endcomment -%}

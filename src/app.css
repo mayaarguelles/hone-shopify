@@ -21,11 +21,13 @@
   --color-sage: #d4d2a5;
   --color-olivine: #a1c181;
   --color-sun: #ffa126;
+  --color-oxblood: #851a10;
 
   --color-button-color: rgb(var(--color-button));
   --color-button-text-color: rgb(var(--color-button-text));
   --color-secondary-button-color: rgb(var(--color-secondary-button));
   --color-secondary-button-text-color: rgb(var(--color-secondary-button-text));
+  --color-sale-color: rgb(var(--color-sale));
 
   --color-sapphire: #266484;
 

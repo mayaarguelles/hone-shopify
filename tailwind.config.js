@@ -18,6 +18,14 @@ module.exports = {
             },
           },
         },
+        md: {
+          css: {
+            p: {
+              fontSize: 'var(--text-hfive)',
+              lineHeight: 'var(--text-hfive--line-height)',
+            },
+          },
+        },
         lg: {
           css: {
             p: {

@@ -1,0 +1,11 @@
+<div class='alignwide flex items-center justify-between gap-4 mt-4'>
+  {{ additional_content }}
+  <div class='flex gap-2 text-current/70 shrink-0 justify-end flex-1' data-carousel-buttons>
+    <button class='prev aspect-square flex items-center justify-center w-8 h-8 hover:bg-white transition-colors duration-300'>
+      {% render 'icon', name: 'arrow-left', class: 'h-4 w-auto' %}
+    </button>
+    <button class='next aspect-square flex items-center justify-center w-8 h-8 hover:bg-white transition-colors duration-300'>
+      {% render 'icon', name: 'arrow-right', class: 'h-4 w-auto' %}
+    </button>
+  </div>
+</div>

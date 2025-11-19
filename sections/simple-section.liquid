@@ -1,6 +1,65 @@
-{%- assign section_classes = 'w-full py-16 px-4' -%}
-<div class='{{ section_classes }} color-{{ section.settings.color_scheme }}'>
-  <div class='flex flex-col md:flex-row gap-4'>
+{%- assign section_classes = 'relative w-full py-16 px-4' -%}
+{% case section.settings.sizing %}
+  {% when 'browser-height' %}
+    {%- assign section_classes = section_classes
+      | append: ' min-h-[calc(100vh-(var(--navigation-height))-(var(--spacing)*4))] flex items-center overflow-hidden'
+    -%}
+{% endcase %}
+{% case section.settings.section_type %}
+  {% when 'cover-image' %}
+    {%- assign section_classes = section_classes
+      | append: ' text-white before:absolute before:inset-0 before:bg-black/30 before:z-1 before:pointer-events-none'
+    -%}
+  {% when 'cover-video' %}
+    {%- assign section_classes = section_classes
+      | append: ' text-white before:absolute before:inset-0 before:bg-black/30 before:z-1 before:pointer-events-none'
+    -%}
+  {% else %}
+    {% assign color_class = ' color-' | append: section.settings.color_scheme %}
+    {%- assign section_classes = section_classes | append: color_class -%}
+{% endcase %}
+<div class='{{ section_classes }} '>
+  {% case section.settings.section_type %}
+    {% when 'cover-image' %}
+      {% if section.settings.cover_image != blank %}
+        <div class='absolute inset-0 z-0'>
+          {{
+            section.settings.cover_image
+            | image_url: width: 1920
+            | image_tag: loading: 'lazy', class: 'w-full h-full object-cover'
+          }}
+        </div>
+      {% endif %}
+    {% when 'cover-video' %}
+      {% if section.settings.cover_video != blank %}
+        <div class='absolute inset-0 z-0'>
+          {{
+            section.settings.cover_video
+            | video_tag:
+              controls: false,
+              muted: true,
+              autoplay: true,
+              loop: true,
+              playsinline: true,
+              class: 'w-full h-full object-cover'
+          }}
+        </div>
+      {% else %}
+        <div class='absolute inset-0 z-0'>
+          <video
+            src='{{ "video-example.mp4" | asset_url }}'
+            class='w-full h-full object-cover'
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+      {% endif %}
+    {% else %}
+
+  {% endcase %}
+  <div class='flex flex-col md:flex-row gap-4 relative z-2'>
     <div class='md:flex-[1_0_0] md:px-4 pt-2 [&>p]:text-current/80 md:sticky md:top-[var(--navigation-height)] self-start'>
       {% if section.settings.header != blank %}
         <h2 class='text-hsix mb-4'>{{ section.settings.header }}</h2>
@@ -38,6 +97,37 @@
       "id": "color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "sizing",
+      "label": "Section Sizing",
+      "options": [
+        { "value": "standard", "label": "Standard" },
+        { "value": "browser-height", "label": "Browser Height" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_type",
+      "label": "Select Section Type",
+      "options": [
+        { "value": "simple", "label": "Simple" },
+        { "value": "cover-image", "label": "Cover Image" },
+        { "value": "cover-video", "label": "Cover Video" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Cover Image",
+      "info": "Upload an image to use as the cover for this section."
+    },
+    {
+      "type": "video",
+      "id": "cover_video",
+      "label": "Cover Video",
+      "info": "Upload a video to use as the cover for this section."
     }
   ],
   "presets": [

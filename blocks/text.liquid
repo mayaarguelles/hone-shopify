@@ -8,10 +8,12 @@
   assign prose_classes = 'prose'
   if block.settings.text_style == 'large'
     assign prose_classes = 'prose-lg'
+  elsif block.settings.text_style == 'medium'
+    assign prose_classes = 'prose-md'
   endif
 -%}
 <div
-  class='{{ prose_classes }} alignfull *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins'
+  class='{{ prose_classes }} alignfull *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins my-4'
   style='--text-align: {{ block.settings.alignment }}'
   {{ block.shopify_attributes }}
 >
@@ -41,6 +43,7 @@
       "label": "Text Scale",
       "options": [
         { "value": "large", "label": "Large" },
+        { "value": "medium", "label": "Medium" },
         { "value": "base", "label": "Normal" }
       ],
       "default": "base"

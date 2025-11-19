@@ -13,6 +13,7 @@
             "button_label": "#5e5a53",
             "secondary_button_label": "#000000",
             "secondary_button_outline": "#00000080",
+            "sale": "#851A10"
           }
         },
         "scheme-2": {
@@ -24,6 +25,7 @@
             "button_label": "#FFFFFF",
             "secondary_button_label": "#000000",
             "secondary_button_outline": "#00000080",
+            "sale": "#851A10"
           }
         },
         "scheme-3": {
@@ -35,6 +37,7 @@
             "button_label": "#5e5a53",
             "secondary_button_label": "#000000",
             "secondary_button_outline": "#00000080",
+            "sale": "#851A10"
           }
         },
         "scheme-4": {
@@ -46,6 +49,7 @@
             "button_label": "#5e5a53",
             "secondary_button_label": "#000000",
             "secondary_button_outline": "#00000080",
+            "sale": "#851A10"
           }
         },
         "scheme-5": {
@@ -57,6 +61,7 @@
             "button_label": "#5e5a53",
             "secondary_button_label": "#FFFFFF",
             "secondary_button_outline": "#FFFFFF80",
+            "sale": "#851A10"
           }
         }
       },

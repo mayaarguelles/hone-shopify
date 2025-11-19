@@ -53,98 +53,56 @@
         "buttons"
       ]
     },
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+    "about-section": {
+      "type": "simple-section",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
+        "header": "Experience the Art of Piercing",
+        "subheader": "",
         "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "rich_text": {
-      "type": "rich-text",
+        "section_type": "cover-video",
+        "sizing": "browser-height"
+      },
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "text": "<p>At Hone, every piercing is treated as a collaboration between anatomy, jewelry, and personal style. Our piercing experts bring both precision and artistry to each placement, ensuring your piece feels balanced, considered, and entirely your own.<\/p>",
+            "text_style": "large"
+          }
+        },
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>From consultation to aftercare, we make every step comfortable and clear. Whether it’s your first piercing or your next addition, our studio focuses on craftsmanship, safety, and a calm, elevated experience that lets you enjoy the experience as much as the result.<\/p>",
+            "text_style": "medium"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
-      }
+        "text",
+        "text-1"
+      ]
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
+        "header": "New Arrivals",
+        "subheader": "Discover the latest additions and find your next piece.",
         "collection": "all",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
+        "show_view_all": true,
+        "enable_desktop_slider": true,
+        "swipe_on_mobile": true,
         "image_ratio": "adapt",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "columns_mobile": "2",
         "padding_top": 28,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "sale_display": "badge"
       }
     },
     "collage": {
@@ -255,8 +213,7 @@
   "order": [
     "split-header",
     "intro-section",
-    "image_banner",
-    "rich_text",
+    "about-section",
     "featured_collection",
     "collage",
     "video",

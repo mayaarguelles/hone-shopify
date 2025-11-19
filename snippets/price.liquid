@@ -104,7 +104,7 @@
           </span>
         {%- endunless -%}
         <span class='visually-hidden visually-hidden--inline'>{{ 'products.product.price.sale_price' | t }}</span>
-        <span class='price-item price-item--sale price-item--last'>
+        <span class='price-item price-item--sale price-item--last text-(--color-sale-color)'>
           {{ money_price }}
         </span>
       </span>
@@ -124,8 +124,9 @@
       </small>
     </span>
     {%- if show_badges -%}
-      <span class='price__badge-sale inline-block relative ml-1 text-xs px-2 py-1 bg-button-color text-button-text-color'>
-        {{ 'products.product.on_sale' | t }}
+      <span class='price__badge-sale inline-block relative ml-1 text-xs px-2 py-1 bg-sale-color/10 text-sale-color'>
+        {% render 'icon', name: 'sale', class: 'inline-icon relative top-[0.1em] mr-1' %}
+        {{- 'products.product.on_sale' | t -}}
       </span>
 
       <span class='price__badge-sold-out inline-block relative ml-1 text-xs px-2 py-1 bg-background-color text-secondary-button-text-color border-secondary-button-text-color border'>

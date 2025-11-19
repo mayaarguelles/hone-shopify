@@ -20,6 +20,11 @@
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
+{%- liquid
+  if sale_display == blank
+    assign sale_display = 'badge'
+  endif
+-%}
 {%- unless skip_styles -%}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
@@ -204,12 +209,30 @@
                 >
                   {{- 'products.product.sold_out' | t -}}
                 </span>
-              {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+              {%- elsif card_product.compare_at_price > card_product.price
+                and card_product.available
+                and sale_display == 'badge'
+              -%}
                 <span
                   id='NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}'
-                  class='inline-block relative -top-[0.2em] ml-1 text-xs px-2 py-1 bg-button-color text-button-text-color'
+                  class='inline-block relative -top-[0.2em] ml-1 text-xs px-2 py-1 bg-sale-color/10 text-sale-color'
                 >
+                  {% render 'icon', name: 'sale', class: 'inline-icon relative top-[0.1em] mr-px' %}
                   {{- 'products.product.on_sale' | t -}}
+                </span>
+              {%- elsif card_product.compare_at_price > card_product.price
+                and card_product.available
+                and sale_display == 'percentage'
+              -%}
+                {% assign percentage = card_product.compare_at_price
+                  | minus: card_product.price
+                  | times: 100
+                  | divided_by: card_product.compare_at_price
+                %}
+                <span class='text-(--color-sale-color)'>
+                  (
+                  {{- 'products.product.on_sale_percentage' | t: percentage: percentage -}}
+                  )
                 </span>
               {%- endif -%}
             </p>

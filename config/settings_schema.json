@@ -81,6 +81,12 @@
             "id": "secondary_button_outline",
             "label": "t:settings_schema.colors.settings.secondary_button_outline.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "sale",
+            "label": "Sale Color",
+            "default": "#851A10"
           }
         ],
         "role": {
