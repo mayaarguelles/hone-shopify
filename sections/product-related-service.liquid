@@ -1,0 +1,206 @@
+{%- assign section_classes = 'relative w-full px-4 pt-6 pb-6' -%}
+{%- liquid
+  assign header_level = section.settings.header_level | default: 'h2'
+
+  case section.settings.padding_top
+    when 'none'
+      assign section_classes = section_classes | append: ' pt-0'
+    when 'small'
+      assign section_classes = section_classes | append: ' md:pt-8'
+    when 'medium'
+      assign section_classes = section_classes | append: ' md:pt-16'
+    when 'large'
+      assign section_classes = section_classes | append: ' md:pt-24'
+  endcase
+
+  case section.settings.padding_bottom
+    when 'none'
+      assign section_classes = section_classes | append: ' pb-0'
+    when 'small'
+      assign section_classes = section_classes | append: ' md:pb-8'
+    when 'medium'
+      assign section_classes = section_classes | append: ' md:pb-16'
+    when 'large'
+      assign section_classes = section_classes | append: ' md:pb-24'
+  endcase
+-%}
+{% case section.settings.sizing %}
+  {% when 'browser-height' %}
+    {%- assign section_classes = section_classes | append: ' min-h-screen flex items-center overflow-hidden' -%}
+{% endcase %}
+{% case section.settings.section_type %}
+  {% when 'cover-image' %}
+    {%- assign section_classes = section_classes
+      | append: ' text-white before:absolute before:inset-0 before:bg-black/30 before:z-1 before:pointer-events-none'
+    -%}
+  {% when 'cover-video' %}
+    {%- assign section_classes = section_classes
+      | append: ' text-white before:absolute before:inset-0 before:bg-black/30 before:z-1 before:pointer-events-none'
+    -%}
+  {% else %}
+    {% assign color_class = ' color-' | append: section.settings.color_scheme %}
+    {%- assign section_classes = section_classes | append: color_class -%}
+{% endcase %}
+<div class='{{ section_classes }} '>
+  {% case section.settings.section_type %}
+    {% when 'cover-image' %}
+      {% if section.settings.cover_image != blank %}
+        <div class='absolute inset-0 z-0'>
+          {{
+            section.settings.cover_image
+            | image_url: width: 1920
+            | image_tag: loading: 'lazy', class: 'w-full h-full object-cover'
+          }}
+        </div>
+      {% endif %}
+    {% when 'cover-video' %}
+      {% if section.settings.cover_video != blank %}
+        <div class='absolute inset-0 z-0'>
+          {{
+            section.settings.cover_video
+            | video_tag:
+              controls: false,
+              muted: true,
+              autoplay: true,
+              loop: true,
+              playsinline: true,
+              class: 'w-full h-full object-cover'
+          }}
+        </div>
+      {% else %}
+        <div class='absolute inset-0 z-0'>
+          <video
+            src='{{ "video-example.mp4" | asset_url }}'
+            class='w-full h-full object-cover'
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+      {% endif %}
+    {% else %}
+
+  {% endcase %}
+  <div class='flex flex-col md:flex-row gap-4 relative z-2'>
+    {% assign left_classes = 'md:flex-[1_0_0] md:px-4 pt-2 [&>p]:text-current/80 self-start' %}
+    {% if section.settings.sizing != 'browser-height' %}
+      {% assign left_classes = left_classes | append: ' md:sticky md:top-(--navigation-height)' %}
+    {% endif %}
+    <div class='{{ left_classes }}'>
+      {% if section.settings.title != blank %}
+        <{{ header_level }} class='text-hsix mb-4'>{{ section.settings.title }}</{{ header_level }}>
+      {% endif %}
+      {% if section.settings.subheader != blank %}
+        <p class='leading-tight'>{{ section.settings.subheader }}</p>
+      {% endif %}
+    </div>
+    <div class='md:w-10/12 *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins'>
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Simple Section",
+  "tag": "section",
+  "class": "simple-section",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Header",
+      "default": "Section Header"
+    },
+    {
+      "type": "select",
+      "id": "header_level",
+      "label": "Header Level",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "textarea",
+      "id": "subheader",
+      "label": "Subheader",
+      "default": "This is a simple section subheader to provide additional context."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "sizing",
+      "label": "Section Sizing",
+      "options": [
+        { "value": "standard", "label": "Standard" },
+        { "value": "browser-height", "label": "Browser Height" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_type",
+      "label": "Select Section Type",
+      "options": [
+        { "value": "simple", "label": "Simple" },
+        { "value": "cover-image", "label": "Cover Image" },
+        { "value": "cover-video", "label": "Cover Video" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Cover Image",
+      "info": "Upload an image to use as the cover for this section."
+    },
+    {
+      "type": "video",
+      "id": "cover_video",
+      "label": "Cover Video",
+      "info": "Upload a video to use as the cover for this section."
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Simple Section",
+      "category": "Sections",
+      "blocks": [{ "type": "text" }]
+    }
+  ]
+}
+{% endschema %}

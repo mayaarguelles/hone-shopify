@@ -10,6 +10,7 @@
   background-color: color-mix(in oklab, var(--color-black) 10%, transparent);
   backdrop-filter: blur(4px);
   transition: visibility 400ms ease;
+  transform: translateZ(0);
 }
 
 .drawer.active {
