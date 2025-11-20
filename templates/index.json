@@ -391,108 +391,34 @@
         "section_type": "simple"
       }
     },
-    "collage": {
-      "type": "collage",
+    "simple_section_k3Napb": {
+      "type": "simple-section",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "locations_Uh7mjY": {
+          "type": "locations",
+          "name": "Locations",
           "settings": {
-            "collection": ""
-          }
-        },
-        "product": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "second_image": false
-          }
-        },
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
+            "reference_product": "sapphire-neo-trinity-cluster-stud",
+            "show_map": true,
+            "google_maps_api_key": "AIzaSyB6ab5h4LSDSbxX3G1zlcH_ubqYlUEkHYw",
+            "map_zoom": 12,
+            "contact_email": "hello@honepiercing.com"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
+        "locations_Uh7mjY"
       ],
+      "name": "Simple Section",
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "header": "Visit Hone",
+        "subheader": "Get pierced or shop in person at our studio in Downtown Willow Glen.",
+        "color_scheme": "scheme-5",
+        "sizing": "standard",
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium"
       }
     }
   },
@@ -504,8 +430,6 @@
     "featured_collection",
     "blog_posts",
     "instagram",
-    "collage",
-    "video",
-    "multicolumn"
+    "simple_section_k3Napb"
   ]
 }

@@ -1,0 +1,334 @@
+{% comment %}
+  Locations Block
+  Displays store locations with map integration using Shopify location data
+{% endcomment %}
+
+{%- liquid
+  assign reference_product = block.settings.reference_product
+  assign google_maps_api_key = block.settings.google_maps_api_key
+  assign show_map = block.settings.show_map
+  assign map_zoom = block.settings.map_zoom | default: 12
+  assign contact_email = block.settings.contact_email
+
+  # Get locations from product pickup availability
+  assign available_locations = ''
+  if reference_product != blank
+    assign available_locations = reference_product.variants.first.store_availabilities
+  else
+    # Fall back to first product with store availabilities
+    for product in collections.all.products limit: 1
+      if product.store_availabilities.size > 0
+        assign available_locations = product.store_availabilities
+        break
+      endif
+    endfor
+  endif
+-%}
+<div class='alignwide' {{ block.shopify_attributes }}>
+  <div class='max-w-7xl w-full mx-auto grid {% if show_map %}md:grid-cols-2{% else %}grid-cols-1{% endif %} gap-6 md:gap-16'>
+    {%- if show_map and google_maps_api_key != blank -%}
+      <div class='self-start aspect-4/3 w-full relative'>
+        <div
+          id='map-{{ block.id }}'
+          class='absolute inset-0 h-full w-full bg-gray-100 flex items-center justify-center'
+        >
+          <div class='text-center text-gray-500'>
+            <svg class='w-12 h-12 mx-auto mb-4' fill='currentColor' viewBox='0 0 20 20'>
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            <p>Map loading...</p>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class=''>
+      {%- if available_locations.size > 1 -%}
+        {%- assign location_variants = '' -%}
+        {%- for store_availability in available_locations -%}
+          {%- assign location = store_availability.location -%}
+          {%- assign is_first = forloop.first -%}
+          {%- assign location_variant = '{"id": "location-'
+            | append: location.id
+            | append: '", "label": "'
+            | append: location.name
+            | append: '", "checked": '
+            | append: is_first
+            | append: '}'
+          -%}
+          {%- if forloop.first -%}
+            {%- assign location_variants = '[' | append: location_variant -%}
+          {%- else -%}
+            {%- assign location_variants = location_variants | append: ', ' | append: location_variant -%}
+          {%- endif -%}
+          {%- if forloop.last -%}
+            {%- assign location_variants = location_variants | append: ']' -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {% render 'select-slider', variants: location_variants, input_name: 'location' %}
+      {%- endif -%}
+
+      {%- for store_availability in available_locations -%}
+        {%- assign location = store_availability.location -%}
+        {%- assign is_first_location = forloop.first -%}
+        <div
+          id='location-{{ location.id }}-info'
+          class='{% unless is_first_location %}hidden {% endunless %}[&>h2]:text-hfive [&>h2]:mb-4 [&>h2]:mt-8 [&>h2]:text-current *:text-current/70 *:mb-4 [&>p]:tracking-wide contain-vertical-margins mt-4'
+        >
+          {%- if location.metafields.custom.hours != blank -%}
+            <h2>Open Hours</h2>
+            <div class='text-current/70'>
+              {{ location.metafields.custom.hours | metafield_tag }}
+            </div>
+          {%- endif -%}
+
+          <h2>Location</h2>
+          <p>
+            {%- if location.address.street != blank -%}
+              {{ location.address.street -}}
+              <br>
+            {%- endif -%}
+            {%- if location.address.city != blank -%}
+              {{ location.address.city -}}
+              {%- if location.address.province_code %}, {{ location.address.province_code }}{% endif %}
+              {%- if location.address.zip %} {{ location.address.zip }}{% endif -%}
+            {%- endif -%}
+          </p>
+
+          {%- if location.address != blank -%}
+            {%- assign directions_url = 'https://www.google.com/maps/dir/?api=1&destination='
+              | append: location.address.street
+              | url_encode
+            -%}
+            {%- if location.address.city != blank -%}
+              {%- assign directions_url = directions_url
+                | append: '%20'
+                | append: location.address.city
+                | url_encode
+              -%}
+            {%- endif -%}
+            {% render 'cta',
+              icon: 'arrow-up-right',
+              href: directions_url,
+              target: '_blank',
+              content: 'Get Directions'
+            %}
+          {%- endif -%}
+
+          {%- if location.phone != blank or contact_email != blank -%}
+            <h2>Contact Us</h2>
+            {%- if location.phone != blank -%}
+              <p>
+                <a href='tel:{{ location.phone }}' class='group'>
+                  {% render 'inline-hover-underline', content: location.phone %}
+                </a>
+              </p>
+            {%- endif -%}
+            {%- if contact_email != blank -%}
+              <p>
+                <a href='mailto:{{ contact_email }}' class='group'>
+                  {% render 'inline-hover-underline', content: contact_email %}
+                </a>
+              </p>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- if show_map and google_maps_api_key != blank -%}
+  <script>
+    window.initMap{{ block.id | replace: '-', '' }} = function() {
+      const mapStyles = [
+        {
+          "elementType": "geometry",
+          "stylers": [{ "color": "#eae6dd" }]
+        },
+        {
+          "elementType": "labels.text.fill",
+          "stylers": [{ "color": "#523735" }]
+        },
+        {
+          "elementType": "labels.text.stroke",
+          "stylers": [{ "color": "#f5f1e6" }]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry",
+          "stylers": [{ "visibility": "off" }]
+        },
+        {
+          "featureType": "poi",
+          "stylers": [{ "visibility": "off" }]
+        },
+        {
+          "featureType": "road",
+          "elementType": "geometry",
+          "stylers": [{ "color": "#f5f1e6" }]
+        },
+        {
+          "featureType": "road",
+          "elementType": "labels",
+          "stylers": [{ "visibility": "off" }]
+        },
+        {
+          "featureType": "water",
+          "elementType": "geometry.fill",
+          "stylers": [{ "color": "#9abfc6" }]
+        }
+      ];
+
+      // Location data from Shopify store availabilities
+      const locations = [
+        {%- for store_availability in available_locations -%}
+          {%- assign location = store_availability.location -%}
+          {
+            id: 'location-{{ location.id }}',
+            name: '{{ location.name | escape }}',
+            lat: {{ location.latitude | default: 0 }},
+            lng: {{ location.longitude | default: 0 }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ];
+
+      if (locations.length === 0) return;
+
+      // Set center to first location or calculate bounds
+      const center = { lat: locations[0].lat, lng: locations[0].lng };
+
+      const map = new google.maps.Map(document.getElementById("map-{{ block.id }}"), {
+        center: center,
+        zoom: {{ map_zoom }},
+        disableDefaultUI: true,
+        styles: mapStyles,
+        scrollwheel: false
+      });
+
+      const markers = {};
+      const bounds = new google.maps.LatLngBounds();
+
+      const markerIcon = {
+        url: '{{ 'map-tag.png' | asset_url }}',
+        scaledSize: new google.maps.Size(28, 42), // Scaled size
+        origin: new google.maps.Point(0, 0), // Origin
+        anchor: new google.maps.Point(14, 42) // Anchor
+        };
+
+      // Create markers for each location
+      locations.forEach(location => {
+        if (location.lat && location.lng) {
+          const marker = new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map: map,
+            title: location.name,
+            icon: markerIcon
+          });
+
+          markers[location.id] = marker;
+          bounds.extend(marker.getPosition());
+        }
+      });
+
+      // Fit map to show all markers if multiple locations
+      if (locations.length > 1) {
+        map.fitBounds(bounds);
+      }
+
+      // Handle location selection changes
+      const locationInputs = document.querySelectorAll('input[name="location"]');
+      locationInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+          const selectedId = e.target.value;
+
+          // Hide all location info divs
+          document.querySelectorAll('[id$="-info"]').forEach(infoDiv => {
+            infoDiv.classList.add('hidden');
+          });
+
+          // Show selected location info
+          const selectedInfo = document.getElementById(selectedId + '-info');
+          if (selectedInfo) {
+            selectedInfo.classList.remove('hidden');
+          }
+
+          // Center map on selected marker
+          const selectedMarker = markers[selectedId];
+          if (selectedMarker) {
+            map.panTo(selectedMarker.getPosition());
+          }
+        });
+      });
+    };
+  </script>
+
+  <script
+    async
+    defer
+    src='https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap{{ block.id | replace: '-', '' }}'
+  ></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Locations",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Location Data Source"
+    },
+    {
+      "type": "product",
+      "id": "reference_product",
+      "label": "Reference product",
+      "info": "Select a product to get location data from its pickup availability. Leave blank to use the first product with store availability."
+    },
+    {
+      "type": "paragraph",
+      "content": "Locations are retrieved from product pickup availability. Ensure your products have store pickup enabled for the locations you want to display."
+    },
+    {
+      "type": "header",
+      "content": "Map Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_map",
+      "label": "Show map",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "google_maps_api_key",
+      "label": "Google Maps API Key",
+      "info": "Required for map functionality. Get your API key from Google Cloud Console."
+    },
+    {
+      "type": "range",
+      "id": "map_zoom",
+      "min": 8,
+      "max": 18,
+      "step": 1,
+      "label": "Map zoom level",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact email",
+      "info": "Email address to display for all locations"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Locations"
+    }
+  ]
+}
+{% endschema %}
