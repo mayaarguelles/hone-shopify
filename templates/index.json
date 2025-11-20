@@ -67,20 +67,79 @@
           "type": "text",
           "settings": {
             "text": "<p>At Hone, every piercing is treated as a collaboration between anatomy, jewelry, and personal style. Our piercing experts bring both precision and artistry to each placement, ensuring your piece feels balanced, considered, and entirely your own.<\/p>",
-            "text_style": "large"
+            "text_style": "medium"
           }
         },
         "text-1": {
           "type": "text",
           "settings": {
             "text": "<p>From consultation to aftercare, we make every step comfortable and clear. Whether it’s your first piercing or your next addition, our studio focuses on craftsmanship, safety, and a calm, elevated experience that lets you enjoy the experience as much as the result.<\/p>",
-            "text_style": "medium"
           }
+        },
+        "carousel_d4ciVe": {
+          "type": "carousel",
+          "name": "Testimonial Carousel",
+          "settings": {},
+          "blocks": {
+            "testimonial_LAPgXh": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Whether you're a first-timer or experienced with piercings, Hone Piercing Studio offers a wonderful, professional, and personalized service that exceeds expectations. I highly recommend this studio to anyone looking for a high-quality, friendly, and clean piercing experience in San Jose.</p>",
+                "author_name": "Steven",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_9PnhTw": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>I’ve had my daith cartilage piercing manipulated several times and never has it been so gentle and painless. The jewelry selection was good and I was able to find exactly what I wanted.<br/>Definitely going back to get my next piercing.</p>",
+                "author_name": "Mar",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_T8Lcbf": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Had my friend Chloe bring a few of us graduate students in. Sondra greeted us and gave us a friendly welcome and a fresh bev, and after talking with her about my hesitations about level of pain, I knew this was the right place for my nose piercing. The place is immaculate, pristine, and well thought out.</p>",
+                "author_name": "Sunny",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_aRrzEp": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Lorem ipsum dolor sit amet</p>",
+                "author_name": "Jane Doe",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_L6chnD": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Lorem ipsum dolor sit amet</p>",
+                "author_name": "Jane Doe",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "testimonial_LAPgXh",
+            "testimonial_9PnhTw",
+            "testimonial_T8Lcbf",
+            "testimonial_aRrzEp",
+            "testimonial_L6chnD"
+          ]
         }
       },
       "block_order": [
         "text",
-        "text-1"
+        "text-1",
+        "carousel_d4ciVe"
       ]
     },
     "services": {

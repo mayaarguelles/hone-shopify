@@ -1,0 +1,80 @@
+<horizontal-carousel class='alignfull'>
+  <div class='overflow-x-auto snap-x snap-mandatory no-scrollbar w-[calc(100%+var(--spacing)*4)]'>
+    <div class='flex gap-4 *:w-[calc((var(--container-7xl)-((var(--spacing)*4)*3))/4)] w-max last:mr-4 *:snap-start'>
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+  {% render 'carousel-controls' %}
+</horizontal-carousel>
+{% schema %}
+{
+  "name": "Carousel",
+  "tag": null,
+  "blocks": [{ "type": "@app" }, { "type": "@theme" }],
+  "presets": [
+    {
+      "name": "Image Card Carousel",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "image-card"
+        },
+        {
+          "type": "image-card"
+        },
+        {
+          "type": "image-card"
+        },
+        {
+          "type": "image-card"
+        },
+        {
+          "type": "image-card"
+        }
+      ]
+    },
+    {
+      "name": "Collection Carousel",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "collection-card"
+        },
+        {
+          "type": "collection-card"
+        },
+        {
+          "type": "collection-card"
+        },
+        {
+          "type": "collection-card"
+        },
+        {
+          "type": "collection-card"
+        }
+      ]
+    },
+    {
+      "name": "Testimonial Carousel",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

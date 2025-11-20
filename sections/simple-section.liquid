@@ -1,9 +1,30 @@
-{%- assign section_classes = 'relative w-full py-16 px-4' -%}
+{%- assign section_classes = 'relative w-full px-4 pt-6 pb-6' -%}
+{%- liquid
+  case section.settings.padding_top
+    when 'none'
+      assign section_classes = section_classes | append: ' pt-0'
+    when 'small'
+      assign section_classes = section_classes | append: ' md:pt-8'
+    when 'medium'
+      assign section_classes = section_classes | append: ' md:pt-16'
+    when 'large'
+      assign section_classes = section_classes | append: ' md:pt-24'
+  endcase
+
+  case section.settings.padding_bottom
+    when 'none'
+      assign section_classes = section_classes | append: ' pb-0'
+    when 'small'
+      assign section_classes = section_classes | append: ' pb-8'
+    when 'medium'
+      assign section_classes = section_classes | append: ' pb-16'
+    when 'large'
+      assign section_classes = section_classes | append: ' pb-24'
+  endcase
+-%}
 {% case section.settings.sizing %}
   {% when 'browser-height' %}
-    {%- assign section_classes = section_classes
-      | append: ' min-h-[calc(100vh-(var(--navigation-height))-(var(--spacing)*4))] flex items-center overflow-hidden'
-    -%}
+    {%- assign section_classes = section_classes | append: ' min-h-screen flex items-center overflow-hidden' -%}
 {% endcase %}
 {% case section.settings.section_type %}
   {% when 'cover-image' %}
@@ -60,7 +81,11 @@
 
   {% endcase %}
   <div class='flex flex-col md:flex-row gap-4 relative z-2'>
-    <div class='md:flex-[1_0_0] md:px-4 pt-2 [&>p]:text-current/80 md:sticky md:top-[var(--navigation-height)] self-start'>
+    {% assign left_classes = 'md:flex-[1_0_0] md:px-4 pt-2 [&>p]:text-current/80 self-start' %}
+    {% if section.settings.sizing != 'browser-height' %}
+      {% assign left_classes = left_classes | append: ' md:sticky md:top-(--navigation-height)' %}
+    {% endif %}
+    <div class='{{ left_classes }}'>
       {% if section.settings.header != blank %}
         <h2 class='text-hsix mb-4'>{{ section.settings.header }}</h2>
       {% endif %}
@@ -128,6 +153,30 @@
       "id": "cover_video",
       "label": "Cover Video",
       "info": "Upload a video to use as the cover for this section."
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
     }
   ],
   "presets": [

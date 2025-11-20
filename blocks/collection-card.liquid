@@ -1,0 +1,230 @@
+{% comment %}
+  Collection Card Block
+  Displays a collection with its image, title, and description as overlay text
+{% endcomment %}
+
+{%- liquid
+  assign collection = collections[block.settings.collection]
+  assign use_custom_image = block.settings.use_custom_image
+  assign custom_image = block.settings.custom_image
+  assign custom_title = block.settings.custom_title
+  assign custom_description = block.settings.custom_description
+  assign additional_classes = block.settings.additional_classes | default: ''
+  assign text_position = block.settings.text_position | default: 'bottom-left'
+  assign overlay_opacity = block.settings.overlay_opacity | default: 70
+
+  # Use collection data or custom overrides
+  if collection != blank
+    assign href = collection.url
+    assign title = custom_title | default: collection.title
+    assign subtitle = custom_description | default: collection.description
+    if use_custom_image and custom_image != blank
+      assign image = custom_image
+      assign alt_text = custom_title | default: collection.title
+    else
+      assign image = collection.featured_image | default: collection.products.first.featured_image
+      assign alt_text = collection.title
+    endif
+  else
+    assign href = ''
+    assign title = custom_title
+    assign subtitle = custom_description
+    assign image = custom_image
+    assign alt_text = custom_title
+  endif
+
+  assign base_classes = 'block aspect-4/3 w-full text-white grid-stack before:absolute before:w-full before:left-0 before:top-0 before:z-[1] before:h-full before:bg-gradient-to-t overflow-hidden relative group cursor-pointer'
+
+  case overlay_opacity
+    when '30'
+      assign overlay_classes = 'before:from-black/30 before:to-transparent'
+    when '50'
+      assign overlay_classes = 'before:from-black/50 before:to-transparent'
+    when '70'
+      assign overlay_classes = 'before:from-black/70 before:to-transparent'
+    when '90'
+      assign overlay_classes = 'before:from-black/90 before:to-transparent'
+  endcase
+
+  assign card_classes = base_classes | append: ' ' | append: overlay_classes
+
+  if additional_classes != blank
+    assign card_classes = card_classes | append: ' ' | append: additional_classes
+  endif
+
+  case text_position
+    when 'top-left'
+      assign text_classes = 'z-[2] relative p-4 flex items-start'
+    when 'top-right'
+      assign text_classes = 'z-[2] relative p-4 flex items-start justify-end'
+    when 'bottom-left'
+      assign text_classes = 'z-[2] relative p-4 flex items-end'
+    when 'bottom-right'
+      assign text_classes = 'z-[2] relative p-4 flex items-end justify-end'
+    when 'center'
+      assign text_classes = 'z-[2] relative p-4 flex items-center justify-center text-center'
+  endcase
+-%}
+
+{%- if href != blank -%}
+  <a href='{{ href }}' class='{{ card_classes }}' {{ block.shopify_attributes }}>
+{%- else -%}
+  <div class='{{ card_classes }}' {{ block.shopify_attributes }}>
+{%- endif -%}
+
+{%- if image != blank -%}
+  {{
+    image
+    | image_url: width: 800
+    | image_tag:
+      class: 'aspect-4/3 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-600',
+      alt: alt_text,
+      loading: 'lazy'
+  }}
+{%- else -%}
+  <div class='aspect-4/3 w-full h-full bg-gray-200 z-0 flex items-center justify-center'>
+    <svg class='w-16 h-16 text-gray-400' fill='currentColor' viewBox='0 0 20 20'>
+      <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+    </svg>
+  </div>
+{%- endif -%}
+
+{%- if title != blank or subtitle != blank -%}
+  <div class='{{ text_classes }}'>
+    <div>
+      {%- if title != blank -%}
+        <span>
+          {% render 'cta',
+            content: title,
+            tag: 'span',
+            icon: 'arrow-down-right',
+            classes: 'text-current',
+            uses_group_hover: true
+          %}
+        </span>
+      {%- endif -%}
+      {%- if subtitle != blank -%}
+        <p class='text-sm text-current/70 mt-1'>
+          {{ subtitle }}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{%- if href != blank -%}
+  </a>
+{%- else -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Collection Card",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Select a collection to display"
+    },
+    {
+      "type": "header",
+      "content": "Custom Overrides"
+    },
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Custom title",
+      "info": "Override the collection title (optional)"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_description",
+      "label": "Custom description",
+      "info": "Override the collection description (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_image",
+      "label": "Use custom image",
+      "info": "Override the collection's featured image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Custom image",
+      "info": "Only used if 'Use custom image' is enabled"
+    },
+    {
+      "type": "header",
+      "content": "Display Settings"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom right"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "select",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "options": [
+        {
+          "value": "30",
+          "label": "Light (30%)"
+        },
+        {
+          "value": "50",
+          "label": "Medium (50%)"
+        },
+        {
+          "value": "70",
+          "label": "Strong (70%)"
+        },
+        {
+          "value": "90",
+          "label": "Very strong (90%)"
+        }
+      ],
+      "default": "70",
+      "info": "Darkness of the gradient overlay for text readability"
+    },
+    {
+      "type": "text",
+      "id": "additional_classes",
+      "label": "Additional CSS classes",
+      "info": "Add custom CSS classes separated by spaces"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Card"
+    }
+  ]
+}
+{% endschema %}

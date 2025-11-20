@@ -1,0 +1,48 @@
+<div class='not-prose bg-shadow/30 grid backdrop-blur-md'>
+  <blockquote class='p-4 font-normal [>*:not(cite)]:text-current/80 flex flex-col'>
+    <div>
+      {{ block.settings.quote }}
+    </div>
+    <cite class='not-italic font-normal text-xs uppercase tracking-widest leading-tight mt-4 flex-1 grow shrink-0 gap-4 flex items-end justify-between'>
+      <span
+        ><strong class='block font-normal'>{{ block.settings.author_name }}</strong>
+        <span class='text-current/60'>{{ block.settings.author_location }}</span></span
+      ><span>
+        {% for i in (1..5) %}
+          {% render 'icon', name: 'sale', class: 'inline-icon h-4 w-auto text-yellow-400' %}
+        {% endfor %}
+      </span>
+    </cite>
+  </blockquote>
+</div>
+{% schema %}
+{
+  "name": "Testimonial",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Quote",
+      "default": "<p>Lorem ipsum dolor sit amet</p>"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name",
+      "default": "Jane Doe"
+    },
+    {
+      "type": "text",
+      "id": "author_location",
+      "label": "Author Location",
+      "default": "San Jose"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial"
+    }
+  ]
+}
+{% endschema %}

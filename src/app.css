@@ -138,6 +138,11 @@
   --tw-ease: cubic-bezier(0.64, 0.04, 0.35, 1);
 }
 
+@utility prose {
+  --tw-prose-body: color-mix(in oklab, currentcolor 80%, transparent 20%);
+  --tw-prose-headings: currentcolor;
+}
+
 @layer utilities {
   .text-hsix {
     @apply uppercase;
