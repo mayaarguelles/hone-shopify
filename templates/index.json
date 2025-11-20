@@ -434,7 +434,7 @@
           "settings": {
             "reference_product": "sapphire-neo-trinity-cluster-stud",
             "show_map": true,
-            "google_maps_api_key": "AIzaSyB6ab5h4LSDSbxX3G1zlcH_ubqYlUEkHYw",
+            "google_maps_api_key": "",
             "map_zoom": 12,
             "contact_email": "hello@honepiercing.com"
           },
