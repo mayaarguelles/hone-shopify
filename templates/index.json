@@ -18,7 +18,7 @@
     "intro-section": {
       "type": "simple-section",
       "settings": {
-        "header": "A new kind of piercing studio",
+        "title": "A new kind of piercing studio",
         "subheader": "",
         "color_scheme": "scheme-3"
       },
@@ -56,7 +56,7 @@
     "about-section": {
       "type": "simple-section",
       "settings": {
-        "header": "Experience the Art of Piercing",
+        "title": "Experience the Art of Piercing",
         "subheader": "",
         "color_scheme": "scheme-3",
         "section_type": "cover-video",
@@ -302,7 +302,7 @@
       ],
       "name": "Simple Section",
       "settings": {
-        "header": "Our Services",
+        "title": "Our Services",
         "subheader": "Explore our full range of in-studio services.",
         "color_scheme": "scheme-4",
         "sizing": "standard",
@@ -312,7 +312,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "header": "New Arrivals",
+        "title": "New Arrivals",
         "subheader": "Discover the latest additions and find your next piece.",
         "collection": "all",
         "products_to_show": 8,
@@ -350,7 +350,7 @@
       ],
       "name": "Simple Section",
       "settings": {
-        "header": "From Our Blog",
+        "title": "From Our Blog",
         "subheader": "A closer look at our approach from materials and methods to styling and aftercare.",
         "color_scheme": "scheme-3",
         "sizing": "standard",
@@ -377,21 +377,55 @@
             "feed_id": "",
             "html_area": ""
           }
+        },
+        "buttons_iLc3fr": {
+          "type": "buttons",
+          "name": "Buttons",
+          "settings": {},
+          "blocks": {
+            "cta_tH6X9f": {
+              "type": "cta",
+              "name": "CTA",
+              "settings": {
+                "button_text": "Instagram",
+                "button_url": "https://www.instagram.com/honepiercing/",
+                "button_target": true,
+                "button_icon": "arrow-up-right"
+              },
+              "blocks": {}
+            },
+            "cta_HJwjNT": {
+              "type": "cta",
+              "name": "CTA",
+              "settings": {
+                "button_text": "Facebook",
+                "button_url": "https://www.instagram.com/honepiercing/",
+                "button_target": true,
+                "button_icon": "arrow-up-right"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "cta_tH6X9f",
+            "cta_HJwjNT"
+          ]
         }
       },
       "block_order": [
-        "instafeed_app_block_d7XaKh"
+        "instafeed_app_block_d7XaKh",
+        "buttons_iLc3fr"
       ],
       "name": "Simple Section",
       "settings": {
-        "header": "Follow Us",
+        "title": "Follow Us",
         "subheader": "Stay connected to Hone on social media for events, new pieces, and studio inspiration.",
         "color_scheme": "scheme-1",
         "sizing": "standard",
         "section_type": "simple"
       }
     },
-    "simple_section_k3Napb": {
+    "locations": {
       "type": "simple-section",
       "blocks": {
         "locations_Uh7mjY": {
@@ -412,7 +446,7 @@
       ],
       "name": "Simple Section",
       "settings": {
-        "header": "Visit Hone",
+        "title": "Visit Hone",
         "subheader": "Get pierced or shop in person at our studio in Downtown Willow Glen.",
         "color_scheme": "scheme-5",
         "sizing": "standard",
@@ -430,6 +464,6 @@
     "featured_collection",
     "blog_posts",
     "instagram",
-    "simple_section_k3Napb"
+    "locations"
   ]
 }

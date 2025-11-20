@@ -86,8 +86,8 @@
       {% assign left_classes = left_classes | append: ' md:sticky md:top-(--navigation-height)' %}
     {% endif %}
     <div class='{{ left_classes }}'>
-      {% if section.settings.header != blank %}
-        <h2 class='text-hsix mb-4'>{{ section.settings.header }}</h2>
+      {% if section.settings.title != blank %}
+        <h2 class='text-hsix mb-4'>{{ section.settings.title }}</h2>
       {% endif %}
       {% if section.settings.subheader != blank %}
         <p class='leading-tight'>{{ section.settings.subheader }}</p>
@@ -107,7 +107,7 @@
   "settings": [
     {
       "type": "text",
-      "id": "header",
+      "id": "title",
       "label": "Header",
       "default": "Section Header"
     },

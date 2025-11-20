@@ -117,7 +117,7 @@
             ],
             "name": "Simple Section",
             "settings": {
-                "header": "Specialty Services",
+                "title": "Specialty Services",
                 "subheader": "Enhance your piercing experience with our curated specialty services.",
                 "color_scheme": "scheme-3",
                 "sizing": "standard",
@@ -396,7 +396,7 @@
             ],
             "name": "Simple Section",
             "settings": {
-                "header": "Frequently Asked Questions",
+                "title": "Frequently Asked Questions",
                 "subheader": "",
                 "color_scheme": "",
                 "sizing": "standard",
