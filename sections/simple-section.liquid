@@ -1,5 +1,7 @@
 {%- assign section_classes = 'relative w-full px-4 pt-6 pb-6' -%}
 {%- liquid
+  assign header_level = section.settings.header_level | default: 'h2'
+
   case section.settings.padding_top
     when 'none'
       assign section_classes = section_classes | append: ' pt-0'
@@ -15,11 +17,11 @@
     when 'none'
       assign section_classes = section_classes | append: ' pb-0'
     when 'small'
-      assign section_classes = section_classes | append: ' pb-8'
+      assign section_classes = section_classes | append: ' md:pb-8'
     when 'medium'
-      assign section_classes = section_classes | append: ' pb-16'
+      assign section_classes = section_classes | append: ' md:pb-16'
     when 'large'
-      assign section_classes = section_classes | append: ' pb-24'
+      assign section_classes = section_classes | append: ' md:pb-24'
   endcase
 -%}
 {% case section.settings.sizing %}
@@ -87,7 +89,7 @@
     {% endif %}
     <div class='{{ left_classes }}'>
       {% if section.settings.title != blank %}
-        <h2 class='text-hsix mb-4'>{{ section.settings.title }}</h2>
+        <{{ header_level }} class='text-hsix mb-4'>{{ section.settings.title }}</{{ header_level }}>
       {% endif %}
       {% if section.settings.subheader != blank %}
         <p class='leading-tight'>{{ section.settings.subheader }}</p>
@@ -110,6 +112,20 @@
       "id": "title",
       "label": "Header",
       "default": "Section Header"
+    },
+    {
+      "type": "select",
+      "id": "header_level",
+      "label": "Header Level",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
     },
     {
       "type": "textarea",

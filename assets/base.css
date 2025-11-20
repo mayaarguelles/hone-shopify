@@ -1605,7 +1605,7 @@
     box-sizing: border-box;
     transition: box-shadow var(--duration-short) ease;
     border-radius: var(--inputs-radius);
-    height: 4.5rem;
+    height: 5rem;
     min-height: calc(var(--inputs-border-width) * 2);
     min-width: calc(7rem + (var(--inputs-border-width) * 2));
     position: relative;
@@ -1671,13 +1671,30 @@
     border-radius: var(--inputs-radius);
   }
 
+  .field__input,
+  .select__select,
+  .customer .field input,
+  .customer select,
+  .localization-form__select.localization-form__select:after {
+    background-image: linear-gradient(
+      rgba(var(--color-foreground), 0.6),
+      rgba(var(--color-foreground), 0.6)
+    );
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    background-position: left bottom;
+    transition: background-size 500ms var(--tw-ease),
+      box-shadow 500ms var(--tw-ease);
+  }
+
   .field__input:focus-visible,
   .select__select:focus-visible,
   .customer .field input:focus-visible,
   .customer select:focus-visible,
   .localization-form__select:focus-visible.localization-form__select:after {
-    box-shadow: 0 0 0 calc(0.1rem + var(--inputs-border-width))
-      rgba(var(--color-foreground));
+    box-shadow: 0 0 0 calc(var(--inputs-border-width))
+      rgba(var(--color-foreground), 0.6);
+    background-size: 100% 1px;
     outline: 0;
     border-radius: var(--inputs-radius);
   }
@@ -1687,8 +1704,9 @@
   .customer .field input:focus,
   .customer select:focus,
   .localization-form__select:focus.localization-form__select:after {
-    box-shadow: 0 0 0 calc(0.1rem + var(--inputs-border-width))
-      rgba(var(--color-foreground));
+    box-shadow: 0 0 0 calc(var(--inputs-border-width))
+      rgba(var(--color-foreground), 0.6);
+    background-size: 100% 1px;
     outline: 0;
     border-radius: var(--inputs-radius);
   }
@@ -1754,16 +1772,17 @@
 
   .field__label,
   .customer .field label {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     left: calc(var(--inputs-border-width) + 2rem);
-    top: calc(1rem + var(--inputs-border-width));
+    top: calc(1.4rem + var(--inputs-border-width));
     margin-bottom: 0;
     pointer-events: none;
     position: absolute;
     transition: top var(--duration-short) ease,
       font-size var(--duration-short) ease;
-    color: rgba(var(--color-foreground), 0.75);
-    letter-spacing: 0.1rem;
+    color: rgba(var(--color-foreground), 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     line-height: 1.5;
   }
 
@@ -1773,8 +1792,8 @@
   .customer .field input:focus ~ label,
   .customer .field input:not(:placeholder-shown) ~ label,
   .customer .field input:-webkit-autofill ~ label {
-    font-size: 1rem;
-    top: calc(var(--inputs-border-width) + 0.5rem);
+    font-size: 0.8rem;
+    top: calc(var(--inputs-border-width) + 0.8rem);
     left: calc(var(--inputs-border-width) + 2rem);
     letter-spacing: 0.04rem;
   }
