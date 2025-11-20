@@ -1,0 +1,44 @@
+{% comment %}
+  Select Slider Snippet
+
+  Usage:
+    {% render 'select-slider', variants: variants_array, input_name: 'size' %}
+
+  Parameters:
+    - variants: array of variant objects with id, label, and checked properties
+    - input_name: string for the radio input name attribute
+{% endcomment %}
+
+{%- liquid
+  assign variants = variants | default: empty
+  assign input_name = input_name | default: 'variant'
+-%}
+
+<hone-indicator-hover class='flex'>
+  <ul class='flex gap-4 wrap group/indicator flex-none'>
+    {%- for variant in variants -%}
+      <li class=''>
+        <input
+          type='radio'
+          name='{{ input_name }}'
+          id='{{ variant.id }}'
+          value='{{ variant.id }}'
+          class='hidden peer'
+          {%- if variant.checked %}
+            checked
+          {% endif %}
+        >
+        <label
+          for='{{ variant.id }}'
+          class='cursor-pointer hover-area group-hover/indicator:text-current/30! hover:text-current! text-current/50 peer-checked:text-current relative pb-px transition-colors'
+        >
+          {{ variant.label }}
+          {%- if variant.checked -%}
+            <span class='hover-indicator absolute h-px w-full bg-current/30 left-0 bottom-0'></span>
+          {%- endif -%}
+        </label>
+      </li>
+    {%- endfor -%}
+  </ul>
+  <script src='{{ "component-hoverIndicator.js" | asset_url }}' defer></script>
+</hone-indicator-hover>

@@ -1488,3 +1488,68 @@ class BulkAdd extends HTMLElement {
 if (!customElements.get('bulk-add')) {
   customElements.define('bulk-add', BulkAdd);
 }
+
+document.addEventListener('instafeedAppLoaded', function () {
+  const feeds = document.querySelectorAll('.instafeed-new-layout-container');
+  feeds.forEach((feed) => {
+    feed.classList.remove('instafeed-new-layout-container');
+    feed.classList.add(
+      'overflow-x-auto',
+      'snap-x',
+      'snap-mandatory',
+      'no-scrollbar',
+      'w-[calc(100%+var(--spacing)*4)]',
+    );
+    feed.style.width = 'auto';
+
+    const newContainer = document.createElement('horizontal-carousel');
+    feed.parentNode.insertBefore(newContainer, feed);
+    const scrollContainer = newContainer.querySelector('.overflow-x-auto');
+    const wrapper = feed.querySelector('.instafeed-new-layout-wrapper');
+    scrollContainer.append(wrapper);
+    window.dispatchEvent(new Event('resize'));
+
+    feed.remove();
+    feed = scrollContainer;
+
+    wrapper.setAttribute('class', '');
+    if (wrapper) {
+      wrapper.classList.add(
+        'flex',
+        'gap-4',
+        '*:w-[calc((var(--container-7xl)-((var(--spacing)*4)*3))/4)]',
+        'w-max',
+        '[&:last-child]:mr-4',
+      );
+      wrapper.setAttribute('style', '');
+    }
+
+    const appBlock = feed.closest('.shopify-app-block');
+    if (appBlock) {
+      appBlock.classList.add('alignfull');
+    }
+
+    const items = feed.querySelectorAll('.instafeed-new-layout-item');
+    items.forEach((item) => {
+      item.setAttribute('class', '');
+      item.classList.add('snap-start', 'group', 'relative', 'overflow-hidden');
+      item.setAttribute('style', '');
+      const img = item.querySelector('img');
+      img.style.position = 'static';
+      img.style.maxWidth = '100%';
+      img.style.height = 'auto';
+      img.style.width = '100%';
+      img.style.aspectRatio = '4 / 5';
+      img.classList.add(
+        'block',
+        'w-full',
+        'h-auto',
+        'aspect-4/5',
+        'object-cover',
+        'group-hover:scale-105',
+        'transition-transform',
+        'duration-600',
+      );
+    });
+  });
+});

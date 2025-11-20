@@ -597,18 +597,6 @@
     text-decoration: none;
   }
 
-  span.active-facets__button-inner {
-    color: rgb(var(--color-foreground));
-    box-shadow: 0 0 0 0.1rem rgb(var(--color-foreground));
-    border-radius: 2.6rem;
-    font-size: 1rem;
-    min-height: 0;
-    min-width: 0;
-    padding: 0.25rem 1.25rem;
-    display: flex;
-    align-items: center;
-  }
-
   span.active-facets__button-inner:before,
   span.active-facets__button-inner:after {
     display: none;
@@ -629,11 +617,6 @@
     .active-facets__button {
       margin-right: 1.5rem;
     }
-
-    .active-facets__button-wrapper *,
-    span.active-facets__button-inner {
-      font-size: 1.4rem;
-    }
   }
 
   @media screen and (max-width: 989px) {
@@ -647,27 +630,10 @@
       padding: 1.2rem;
     }
 
-    span.active-facets__button-inner {
-      padding-bottom: 0.1rem;
-      padding-top: 0.1rem;
-    }
-
     .active-facets__button-wrapper {
       padding-top: 0;
       margin-left: 1.2rem;
     }
-  }
-
-  .active-facets__button:hover .active-facets__button-inner {
-    box-shadow: 0 0 0 0.2rem rgb(var(--color-foreground));
-  }
-
-  .active-facets__button--light .active-facets__button-inner {
-    box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.2);
-  }
-
-  .active-facets__button--light:hover .active-facets__button-inner {
-    box-shadow: 0 0 0 0.2rem rgba(var(--color-foreground), 0.4);
   }
 
   a.active-facets__button:focus-visible {
@@ -685,20 +651,6 @@
   a.active-facets__button.focused {
     outline: none;
     box-shadow: none;
-  }
-
-  a.active-facets__button:focus-visible .active-facets__button-inner {
-    box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.2),
-      0 0 0 0.2rem rgb(var(--color-background)),
-      0 0 0 0.4rem rgb(var(--color-foreground));
-    outline: none;
-  }
-
-  a.active-facets__button.focused .active-facets__button-inner {
-    box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.2),
-      0 0 0 0.2rem rgb(var(--color-background)),
-      0 0 0 0.4rem rgb(var(--color-foreground));
-    outline: none;
   }
 
   .active-facets__button .svg-wrapper {

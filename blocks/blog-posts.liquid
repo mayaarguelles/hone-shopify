@@ -1,0 +1,181 @@
+{% comment %}
+  Blog Posts Block
+  Displays a featured blog post and a sidebar of recent posts
+{% endcomment %}
+
+{%- liquid
+  assign blog_handle = block.settings.blog | default: 'posts'
+  assign blog = blogs[blog_handle]
+  assign featured_post_handle = block.settings.featured_post
+  assign posts_count = block.settings.posts_count | default: 5
+
+  # Get featured post - either from settings or latest post
+  if featured_post_handle != blank
+    assign featured_post = featured_post_handle
+  else
+    assign featured_post = blog.articles.first
+  endif
+
+  assign additional_classes = block.settings.additional_classes | default: ''
+-%}
+
+<div
+  class='alignwide{% if additional_classes != blank %} {{ additional_classes }}{% endif %}'
+  {{ block.shopify_attributes }}
+>
+  <div class='max-w-7xl mx-auto'>
+    <div class='grid grid-cols-1 lg:grid-cols-5 gap-8'>
+      <!-- Featured Article (Left Side) -->
+      {%- if featured_post != blank -%}
+        <div class='lg:col-span-3'>
+          <article class='group cursor-pointer'>
+            <a href='{{ featured_post.url }}' class='block'>
+              <div class='aspect-video w-full overflow-hidden mb-6 bg-cloud'>
+                {%- if featured_post.image != blank -%}
+                  {{
+                    featured_post.image
+                    | image_url: width: 800
+                    | image_tag:
+                      class: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[var(--tw-ease)]',
+                      alt: featured_post.image.alt
+                    | default: featured_post.title, loading: 'lazy'
+                  }}
+                {%- else -%}
+                  <div class='w-full h-full bg-cloud flex items-center justify-center'>
+                    <svg class='w-16 h-16 text-shadow' fill='currentColor' viewBox='0 0 20 20'>
+                      <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class='space-y-4'>
+                <div class='flex items-center space-x-4'>
+                  <span class='bg-cloud block'>
+                    <span class='block text-xs px-2 py-1 font-medium bg-brown/80 text-white/80'>
+                      {% render 'icon', name: 'sale', class: 'inline-icon' %}
+                      Featured
+                    </span>
+                  </span>
+                  <time class='text-sm text-shadow' datetime='{{ featured_post.published_at | date: '%Y-%m-%d' }}'>
+                    {{ featured_post.published_at | date: '%B %d, %Y' }}
+                  </time>
+                </div>
+
+                <div class='flex flex-col space-y-1'>
+                  <h2 class='text-hfive md:text-hfour'>
+                    {% render 'inline-hover-underline', multiline: true, content: featured_post.title %}
+                  </h2>
+                  {%- if featured_post.metafields.custom.subtitle != blank -%}
+                    <h3 class='md:text-hfive text-current/80'>
+                      {{ featured_post.metafields.custom.subtitle }}
+                    </h3>
+                  {%- endif -%}
+                </div>
+
+                {%- if featured_post.excerpt != blank -%}
+                  <p class='text-current/80 leading-relaxed'>
+                    {{ featured_post.excerpt }}
+                  </p>
+                {%- endif -%}
+              </div>
+            </a>
+          </article>
+        </div>
+      {%- endif -%}
+
+      <!-- Blog List (Right Side) -->
+      <div class='space-y-6 lg:col-span-2'>
+        {%- assign post_count = 0 -%}
+        {%- for article in blog.articles reversed -%}
+          {%- unless article.id == featured_post.id -%}
+            {%- if post_count < posts_count -%}
+              <article class='group cursor-pointer'>
+                <a href='{{ article.url }}' class='block'>
+                  <div class='flex gap-3 items-center'>
+                    <div class='w-32 shrink-0 overflow-hidden bg-cloud'>
+                      {%- if article.image != blank -%}
+                        {{
+                          article.image
+                          | image_url: width: 200
+                          | image_tag:
+                            class: 'w-full h-auto aspect-5/4 object-cover group-hover:scale-105 transition-transform duration-700 ease-[var(--tw-ease)]',
+                            alt: article.image.alt
+                          | default: article.title, loading: 'lazy'
+                        }}
+                      {%- else -%}
+                        <div class='w-full h-full bg-cloud flex items-center justify-center aspect-5/4'>
+                          <svg class='w-8 h-8 text-shadow' fill='currentColor' viewBox='0 0 20 20'>
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                          </svg>
+                        </div>
+                      {%- endif -%}
+                    </div>
+
+                    <div class='flex-1 space-y-2'>
+                      <time
+                        class='text-xs text-shadow uppercase tracking-wide'
+                        datetime='{{ article.published_at | date: '%Y-%m-%d' }}'
+                      >
+                        {{ article.published_at | date: '%B %d, %Y' }}
+                      </time>
+
+                      <div class='flex flex-col space-y-1'>
+                        <h3 class='text-md md:text-hfive'>
+                          {% render 'inline-hover-underline', uses_group_hover: true, content: article.title %}
+                        </h3>
+                        {%- if article.metafields.custom.subtitle != blank -%}
+                          <h4 class='text-current/60'>
+                            {{ article.metafields.custom.subtitle }}
+                          </h4>
+                        {%- endif -%}
+                      </div>
+
+                      {% render 'cta', tag: 'span', classes: 'text-sm', content: 'Read more' %}
+                    </div>
+                  </div>
+                </a>
+              </article>
+              {%- assign post_count = post_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Posts",
+  "tag": null,
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "article",
+      "id": "featured_post",
+      "label": "Featured Post",
+      "info": "Leave blank to use the latest post"
+    },
+    {
+      "type": "range",
+      "id": "posts_count",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "label": "Number of sidebar posts",
+      "default": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Posts",
+      "category": "Sections"
+    }
+  ]
+}
+{% endschema %}

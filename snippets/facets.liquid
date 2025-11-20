@@ -20,6 +20,7 @@
   assign sort_by = results.sort_by | default: results.default_sort_by
   assign total_active_values = 0
   assign default_presentation = 'text'
+  assign clear_all_label = 'products.facets.clear_all' | t
   if results.url
     assign results_url = results.url
   else
@@ -71,16 +72,19 @@
                     </h2>
                   {%- endunless -%}
                   <facet-remove class='active-facets__button-wrapper'>
-                    <a href='{{ results_url }}' class='active-facets__button-remove underlined-link'>
-                      <span>{{ 'products.facets.clear_all' | t }}</span>
+                    <a href='{{ results_url }}' class='active-facets__button-remove underlined-link group'>
+                      {% render 'inline-hover-underline', content: clear_all_label, multiline: true %}
                     </a>
                   </facet-remove>
                 </div>
                 {%- for filter in results.filters -%}
                   {%- for value in filter.active_values -%}
                     <facet-remove>
-                      <a href='{{ value.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-                        <span class='active-facets__button-inner button button--tertiary'>
+                      <a
+                        href='{{ value.url_to_remove }}'
+                        class='active-facets__button active-facets__button--light group'
+                      >
+                        <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
                           {{ filter.label | escape }}: {{ value.label | escape }}
                           <span class='svg-wrapper'>
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -95,8 +99,11 @@
                     {% assign max = filter.max_value.value %}
                     {%- if min != null or max != null -%}
                       <facet-remove>
-                        <a href='{{ filter.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-                          <span class='active-facets__button-inner button button--tertiary'>
+                        <a
+                          href='{{ filter.url_to_remove }}'
+                          class='active-facets__button active-facets__button--light group'
+                        >
+                          <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
                             {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                             <span class='svg-wrapper'>
                               {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -348,8 +355,11 @@
               {%- for filter in results.filters -%}
                 {%- for value in filter.active_values -%}
                   <facet-remove>
-                    <a href='{{ value.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-                      <span class='active-facets__button-inner button button--tertiary'>
+                    <a
+                      href='{{ value.url_to_remove }}'
+                      class='active-facets__button active-facets__button--light group'
+                    >
+                      <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
                         {{ filter.label | escape }}: {{ value.label | escape }}
                         <span class='svg-wrapper'>
                           {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -364,8 +374,11 @@
                   {% assign max = filter.max_value.value %}
                   {%- if min != null or max != null -%}
                     <facet-remove>
-                      <a href='{{ filter.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-                        <span class='active-facets__button-inner button button--tertiary'>
+                      <a
+                        href='{{ filter.url_to_remove }}'
+                        class='active-facets__button active-facets__button--light group'
+                      >
+                        <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
                           {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                           <span class='svg-wrapper'>
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -378,8 +391,8 @@
                 {% endif %}
               {%- endfor -%}
               <facet-remove class='active-facets__button-wrapper'>
-                <a href='{{ results_url }}' class='active-facets__button-remove underlined-link'>
-                  <span>{{ 'products.facets.clear_all' | t }}</span>
+                <a href='{{ results_url }}' class='active-facets__button-remove underlined-link group'>
+                  {% render 'inline-hover-underline', content: clear_all_label, multiline: true %}
                 </a>
               </facet-remove>
             </div>
@@ -790,8 +803,8 @@
     {%- for filter in results.filters -%}
       {%- for value in filter.active_values -%}
         <facet-remove>
-          <a href='{{ value.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-            <span class='active-facets__button-inner button button--tertiary'>
+          <a href='{{ value.url_to_remove }}' class='active-facets__button active-facets__button--light group'>
+            <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
               {{ filter.label | escape }}: {{ value.label | escape }}
               <span class='svg-wrapper'>
                 {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -807,8 +820,8 @@
         {% assign max = filter.max_value.value %}
         {%- if min != null or max != null -%}
           <facet-remove>
-            <a href='{{ filter.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-              <span class='active-facets__button-inner button button--tertiary'>
+            <a href='{{ filter.url_to_remove }}' class='active-facets__button active-facets__button--light group'>
+              <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
                 {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                 <span class='svg-wrapper'>
                   {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -821,8 +834,8 @@
       {%- endif -%}
     {%- endfor -%}
     <facet-remove class='active-facets__button-wrapper'>
-      <a href='{{ results_url }}' class='active-facets__button-remove underlined-link'>
-        <span>{{ 'products.facets.clear_all' | t }}</span>
+      <a href='{{ results_url }}' class='active-facets__button-remove underlined-link group'>
+        {% render 'inline-hover-underline', content: clear_all_label, multiline: true %}
       </a>
     </facet-remove>
   </div>
@@ -899,8 +912,8 @@
           {%- for filter in results.filters -%}
             {%- for value in filter.active_values -%}
               <facet-remove>
-                <a href='{{ value.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-                  <span class='active-facets__button-inner button button--tertiary'>
+                <a href='{{ value.url_to_remove }}' class='active-facets__button active-facets__button--light group'>
+                  <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
                     {{ filter.label | escape }}: {{ value.label | escape }}
                     <span class='svg-wrapper'>
                       {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -916,8 +929,8 @@
               {% assign max = filter.max_value.value %}
               {%- if min != null or max != null -%}
                 <facet-remove>
-                  <a href='{{ filter.url_to_remove }}' class='active-facets__button active-facets__button--light'>
-                    <span class='active-facets__button-inner button button--tertiary'>
+                  <a href='{{ filter.url_to_remove }}' class='active-facets__button active-facets__button--light group'>
+                    <span class='active-facets__button-inner py-1 px-3 bg-shadow/10 text-black/80 border border-shadow/0 tracking-none text-xs flex gap-1 items-center leading-none group-hover:bg-shadow/0 group-hover:border-shadow/60 transition-colors'>
                       {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                       <span class='svg-wrapper'>
                         {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -930,8 +943,8 @@
             {%- endif -%}
           {%- endfor -%}
           <facet-remove class='active-facets__button-wrapper'>
-            <a href='{{ results_url }}' class='active-facets__button-remove underlined-link'>
-              <span>{{ 'products.facets.clear_all' | t }}</span>
+            <a href='{{ results_url }}' class='active-facets__button-remove underlined-link group'>
+              {% render 'inline-hover-underline', content: clear_all_label, multiline: true %}
             </a>
           </facet-remove>
         </div>

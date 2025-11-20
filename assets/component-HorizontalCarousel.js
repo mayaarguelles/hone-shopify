@@ -2,9 +2,43 @@ class HorizontalCarousel extends HTMLElement {
   connectedCallback() {
     this.container = this;
     this.scrollContainer = this.querySelector('.overflow-x-auto');
+    this.buttonContainer = this.querySelector('.flex.gap-4.text-current\\/70');
+
+    if (!this.scrollContainer) {
+      const scrollContainer = document.createElement('div');
+      scrollContainer.setAttribute(
+        'class',
+        'overflow-x-auto snap-x snap-mandatory no-scrollbar w-[calc(100%+var(--spacing)*4)]',
+      );
+      this.scrollContainer = scrollContainer;
+      this.container.prepend(scrollContainer);
+    }
+
+    if (this.buttonContainer === null) {
+      const buttonControls = document.createElement('div');
+      buttonControls.innerHTML = `<div class="alignwide flex items-center justify-between gap-4 mt-4"><div class="flex gap-2 text-current/70 shrink-0 justify-end flex-1" data-carousel-buttons="">
+    <button class="prev aspect-square flex items-center justify-center w-8 h-8 hover:bg-white transition-colors duration-300">
+<svg class="inline-block icon icon-arrow-left h-4 w-auto w-[0.8em] h-[0.8em] relative -top-[0.1em]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="19" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></line>
+      <polyline points="12,19 5,12 12,5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    </svg>
+    </button>
+    <button class="next aspect-square flex items-center justify-center w-8 h-8 hover:bg-white transition-colors duration-300">
+      
+<svg class="inline-block icon icon-arrow-right h-4 w-auto w-[0.8em] h-[0.8em] relative -top-[0.1em]" width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5.65685 12.6569L11.3137 7L5.65685 1.34315" stroke="currentcolor"></path>
+      <line x1="11.1567" y1="7" x2="3.15674" y2="7" stroke="currentcolor"></line>
+    </svg>
+    </button>
+  </div></div>`;
+      const buttonContainer = buttonControls.querySelector('div');
+      this.container.appendChild(buttonContainer);
+      this.buttonContainer = buttonContainer;
+      buttonControls.remove();
+    }
+
     this.prevButton = this.querySelector('button.prev');
     this.nextButton = this.querySelector('button.next');
-    this.buttonContainer = this.querySelector('.flex.gap-4.text-current\\/70');
 
     if (!this.scrollContainer || !this.prevButton || !this.nextButton) {
       console.warn('HorizontalCarousel: Required elements not found');

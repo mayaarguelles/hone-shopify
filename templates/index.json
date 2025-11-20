@@ -105,6 +105,66 @@
         "sale_display": "badge"
       }
     },
+    "blog_posts": {
+      "type": "simple-section",
+      "blocks": {
+        "blog_posts_PpF9ww": {
+          "type": "blog-posts",
+          "name": "Blog Posts",
+          "settings": {
+            "blog": "posts",
+            "featured_post": "posts/your-aftercare-ritual",
+            "posts_count": 3
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_posts_PpF9ww"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "header": "From Our Blog",
+        "subheader": "A closer look at our approach from materials and methods to styling and aftercare.",
+        "color_scheme": "scheme-3",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
+    },
+    "instagram": {
+      "type": "simple-section",
+      "blocks": {
+        "instafeed_app_block_d7XaKh": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_d7XaKh"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "header": "Follow Us",
+        "subheader": "Stay connected to Hone on social media for events, new pieces, and studio inspiration.",
+        "color_scheme": "scheme-1",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
+    },
     "collage": {
       "type": "collage",
       "blocks": {
@@ -215,6 +275,8 @@
     "intro-section",
     "about-section",
     "featured_collection",
+    "blog_posts",
+    "instagram",
     "collage",
     "video",
     "multicolumn"

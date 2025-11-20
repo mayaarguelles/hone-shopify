@@ -5,7 +5,6 @@
 
 {%- liquid
   assign title = block.settings.title | default: ''
-  assign content = block.settings.content | default: ''
   assign is_open = block.settings.is_open | default: false
   assign accordion_id = 'accordion-' | append: block.id
 -%}
@@ -62,6 +61,18 @@
       "id": "is_open",
       "label": "Open by default",
       "default": false
+    }
+  ],
+  "blocks": [{ "type": "@app" }, { "type": "@theme" }],
+  "presets": [
+    {
+      "name": "Accordion",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
     }
   ]
 }

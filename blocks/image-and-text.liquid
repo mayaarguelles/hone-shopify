@@ -1,0 +1,73 @@
+{% comment %}
+  Image and Text Block
+  Renders an image alongside text content with configurable layout direction
+{% endcomment %}
+
+{%- liquid
+  assign image = block.settings.image
+  assign image_alt = block.settings.image_alt | default: image.alt | default: ''
+  assign direction = block.settings.direction | default: 'image-left'
+
+  # Set layout classes based on direction
+  if direction == 'image-left'
+    assign flex_direction = 'md:flex-row'
+    assign text_padding = 'md:pl-16 md:pr-0'
+  else
+    assign flex_direction = 'md:flex-row-reverse'
+    assign text_padding = 'md:pr-16 md:pl-0'
+  endif
+-%}
+
+<div class='flex gap-6 md:gap-0 flex-col items-center alignwide {{ flex_direction }}' {{ block.shopify_attributes }}>
+  <div class='md:w-1/2 box-border'>
+    {%- if image != blank -%}
+      {{
+        image
+        | image_url: width: 800
+        | image_tag: class: 'w-full h-auto', alt: image_alt, loading: 'lazy', width: image.width, height: image.height
+      }}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'w-full h-auto placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  <div class='w-full md:w-auto md:flex-[1_0_0] box-border *:mb-6 [&>p]:text-current/80 [&>p]:mb-4 {{ text_padding }}'>
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image and Text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "info": "Optional. If not provided, will use the image's alt text."
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Layout direction",
+      "options": [
+        { "value": "image-left", "label": "Image on left" },
+        { "value": "image-right", "label": "Image on right" }
+      ],
+      "default": "image-left"
+    }
+  ],
+  "blocks": [{ "type": "@app" }, { "type": "@theme" }],
+  "presets": [
+    {
+      "name": "Image and Text",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
