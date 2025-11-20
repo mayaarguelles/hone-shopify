@@ -17,7 +17,8 @@
 {% endcomment %}
 
 {%- liquid
-  assign href = href | default: ''
+  assign url = url | default: ''
+  assign href = href | default: url
   assign target = target | default: ''
   assign rel = rel | default: ''
   assign icon = icon | default: 'arrow-down-right'

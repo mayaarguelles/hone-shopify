@@ -1,9 +1,10 @@
-{% content_for 'blocks' %}
+<div class='hone-buttons flex flex-wrap gap-4 items-center my-6 [&_hone-button]:my-0'>
+  {% content_for 'blocks' %}
+</div>
 {% schema %}
 {
   "name": "Buttons",
-  "tag": "div",
-  "class": "hone-buttons flex flex-wrap gap-4 items-center",
+  "tag": null,
   "blocks": [{ "type": "@app" }, { "type": "button" }, { "type": "cta" }],
   "presets": [
     {

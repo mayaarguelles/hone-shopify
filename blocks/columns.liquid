@@ -1,0 +1,117 @@
+{%- liquid
+  assign mobile_columns = block.settings.mobile_columns | default: 1
+  assign column_gap = block.settings.column_gap | default: 'gap-4'
+  assign full_width = block.settings.full_width
+  assign additional_classes = block.settings.additional_classes | default: ''
+
+  assign section_classes = 'grid md:flex md:flex-row ' | append: column_gap
+
+  unless full_width
+    assign section_classes = section_classes | append: ' alignwide md:[&>*]:flex-[1_0_0]'
+  endunless
+
+  case mobile_columns
+    when 1
+      assign section_classes = section_classes | append: ' grid-cols-1'
+    when 2
+      assign section_classes = section_classes | append: ' grid-cols-2'
+    when 3
+      assign section_classes = section_classes | append: ' grid-cols-3'
+  endcase
+
+  if additional_classes != blank
+    assign section_classes = section_classes | append: ' ' | append: additional_classes
+  endif
+-%}
+
+<div class='{{ section_classes }}' {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+{% schema %}
+{
+  "name": "Columns",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        }
+      ],
+      "default": "1",
+      "info": "Number of columns to display on mobile devices"
+    },
+    {
+      "type": "select",
+      "id": "column_gap",
+      "label": "Column spacing",
+      "options": [
+        {
+          "value": "gap-2",
+          "label": "Small"
+        },
+        {
+          "value": "gap-4",
+          "label": "Medium"
+        },
+        {
+          "value": "gap-6",
+          "label": "Large"
+        },
+        {
+          "value": "gap-8",
+          "label": "Extra large"
+        }
+      ],
+      "default": "gap-4"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false,
+      "info": "Remove maximum width constraint"
+    },
+    {
+      "type": "text",
+      "id": "additional_classes",
+      "label": "Additional CSS classes",
+      "info": "Add custom CSS classes separated by spaces"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Columns",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -2,7 +2,7 @@ class HorizontalCarousel extends HTMLElement {
   connectedCallback() {
     this.container = this;
     this.scrollContainer = this.querySelector('.overflow-x-auto');
-    this.buttonContainer = this.querySelector('.flex.gap-4.text-current\\/70');
+    this.buttonContainer = this.querySelector('[data-carousel-buttons]');
 
     if (!this.scrollContainer) {
       const scrollContainer = document.createElement('div');

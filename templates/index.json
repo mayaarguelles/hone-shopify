@@ -83,6 +83,173 @@
         "text-1"
       ]
     },
+    "services": {
+      "type": "simple-section",
+      "blocks": {
+        "columns_tCWwY4": {
+          "type": "columns",
+          "name": "Columns",
+          "settings": {
+            "mobile_columns": "2",
+            "column_gap": "gap-4",
+            "full_width": false,
+            "additional_classes": ""
+          },
+          "blocks": {
+            "column_qDgKrX": {
+              "type": "column",
+              "settings": {
+                "mobile_column_span": "2"
+              },
+              "blocks": {
+                "image_card_ij4hYw": {
+                  "type": "image-card",
+                  "name": "Image Card",
+                  "settings": {
+                    "image": "shopify://shop_images/service-ear-2.jpg",
+                    "alt_text": "",
+                    "title": "Ear Piercings",
+                    "subtitle": "Curated ear piercings that reflect your unique style.",
+                    "link_url": "shopify://pages/services",
+                    "text_position": "bottom-left",
+                    "overlay_opacity": "70",
+                    "additional_classes": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_card_ij4hYw"
+              ]
+            },
+            "column_KYLcDY": {
+              "type": "column",
+              "settings": {
+                "mobile_column_span": "1"
+              },
+              "blocks": {
+                "image_card_E3czK4": {
+                  "type": "image-card",
+                  "name": "Image Card",
+                  "settings": {
+                    "image": "shopify://shop_images/service-face.jpg",
+                    "alt_text": "",
+                    "title": "Facial Piercings",
+                    "subtitle": "Make a statement with a nose, eyebrow, or lip piercing.",
+                    "link_url": "shopify://pages/services",
+                    "text_position": "bottom-left",
+                    "overlay_opacity": "70",
+                    "additional_classes": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_card_E3czK4"
+              ]
+            },
+            "column_YMJeYG": {
+              "type": "column",
+              "settings": {
+                "mobile_column_span": "1"
+              },
+              "blocks": {
+                "image_card_CnewAL": {
+                  "type": "image-card",
+                  "name": "Image Card",
+                  "settings": {
+                    "image": "shopify://shop_images/service-body.jpg",
+                    "alt_text": "",
+                    "title": "Body Piercings",
+                    "subtitle": "Navel and nipple piercings done with precision and care.",
+                    "link_url": "shopify://pages/services",
+                    "text_position": "bottom-left",
+                    "overlay_opacity": "70",
+                    "additional_classes": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_card_CnewAL"
+              ]
+            }
+          },
+          "block_order": [
+            "column_qDgKrX",
+            "column_KYLcDY",
+            "column_YMJeYG"
+          ]
+        },
+        "buttons_ipz94W": {
+          "type": "buttons",
+          "name": "Buttons",
+          "settings": {},
+          "blocks": {
+            "cta_WapQGG": {
+              "type": "cta",
+              "name": "CTA",
+              "settings": {
+                "button_text": "Jewelry Exchange",
+                "button_url": "shopify://pages/services",
+                "button_target": false,
+                "button_icon": "arrow-down-right"
+              },
+              "blocks": {}
+            },
+            "cta_YBfWKp": {
+              "type": "cta",
+              "name": "CTA",
+              "settings": {
+                "button_text": "Curated Styling Sessions",
+                "button_url": "shopify://pages/services",
+                "button_target": false,
+                "button_icon": "arrow-down-right"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "cta_WapQGG",
+            "cta_YBfWKp"
+          ]
+        },
+        "buttons_rmbfCb": {
+          "type": "buttons",
+          "name": "Buttons",
+          "settings": {},
+          "blocks": {
+            "button_ejWzEY": {
+              "type": "button",
+              "settings": {
+                "button_text": "View All Services",
+                "button_url": "shopify://pages/services",
+                "button_style": "fill",
+                "button_target": false,
+                "button_icon": "arrow-down-right"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "button_ejWzEY"
+          ]
+        }
+      },
+      "block_order": [
+        "columns_tCWwY4",
+        "buttons_ipz94W",
+        "buttons_rmbfCb"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "header": "Our Services",
+        "subheader": "Explore our full range of in-studio services.",
+        "color_scheme": "scheme-4",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -273,6 +440,7 @@
   "order": [
     "split-header",
     "intro-section",
+    "services",
     "about-section",
     "featured_collection",
     "blog_posts",
