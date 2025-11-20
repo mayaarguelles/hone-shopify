@@ -18,12 +18,15 @@
   endif
 -%}
 
-<div class='flex gap-6 md:gap-0 flex-col items-center alignwide {{ flex_direction }}' {{ block.shopify_attributes }}>
+<div
+  class='flex gap-6 md:gap-0 flex-col items-center alignwide my-4 md:my-12 {{ flex_direction }}'
+  {{ block.shopify_attributes }}
+>
   <div class='md:w-1/2 box-border'>
     {%- if image != blank -%}
       {{
         image
-        | image_url: width: 800
+        | image_url: width: 1200
         | image_tag: class: 'w-full h-auto', alt: image_alt, loading: 'lazy', width: image.width, height: image.height
       }}
     {%- else -%}
@@ -38,6 +41,7 @@
 {% schema %}
 {
   "name": "Image and Text",
+  "tag": null,
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Image" },
     {

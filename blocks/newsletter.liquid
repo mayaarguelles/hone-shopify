@@ -1,0 +1,103 @@
+{%- liquid
+  assign bg_video = settings.newsletter_background_video | default: ''
+  assign bg_image = settings.newsletter_background_image | default: ''
+  assign color_scheme = settings.newsletter_color_scheme | default: 'scheme-1'
+  assign heading = settings.newsletter_heading | default: ''
+  assign subheading = settings.newsletter_subheading | default: ''
+
+  assign classes = 'newsletter alignwide relative overflow-hidden p-6 md:p-16'
+  assign overlay_classes = ' text-white before:absolute before:inset-0 before:bg-black/30 before:bg-linear-30 before:from-black/70 before:to-black/0 before:z-10 before:pointer-events-none'
+  if bg_video != blank
+    assign classes = classes | append: overlay_classes
+  elsif bg_image != blank
+    assign classes = classes | append: overlay_classes
+  else
+    assign classes = classes | append: ' color-' | append: color_scheme
+  endif
+-%}
+<div class='{{ classes }}'>
+  {% if bg_video != blank %}
+    {{
+      bg_video
+      | video_tag:
+        controls: false,
+        muted: true,
+        autoplay: true,
+        loop: true,
+        playsinline: true,
+        class: 'absolute inset-0 w-full h-full object-cover plyrize--textural'
+    }}
+  {% endif %}
+  <div class='relative z-10'>
+    <h2 class='text-hfour'>{{ heading }}</h2>
+    <p class='md:text-hfive text-current/90 mt-2 max-w-2xl'>{{ subheading }}</p>
+    {% form 'customer', class: 'w-full mt-6' %}
+      <input type='hidden' name='contact[tags]' value='newsletter'>
+      <div class='flex flex-col sm:flex-row gap-4'>
+        <div class='flex-1 shrink-0'>
+          <input
+            id='NewsletterForm--{{ section.id }}'
+            type='email'
+            name='contact[email]'
+            value='{{ form.email }}'
+            aria-required='true'
+            autocorrect='off'
+            autocapitalize='off'
+            autocomplete='email'
+            placeholder='Your email address'
+            class='w-full h-[48px] box-border p-2 px-4 appearance-none number-input-no-spin border border-current/50'
+          >
+        </div>
+        <div class='flex-0 shrink-0 basis-auto'>
+          {% render 'button',
+            content: 'Subscribe',
+            tag: 'button',
+            type: 'submit',
+            size: 'large',
+            icon: 'arrow-up-right',
+            uses_margins: 'no',
+            color_classes: 'bg-cloud text-black w-auto'
+          %}
+        </div>
+      </div>
+      {%- if form.errors -%}
+        <small class='newsletter-form__message form__message' id='Newsletter-error--{{ section.id }}'>
+          <span class='svg-wrapper'>
+            {{- 'icon-error.svg' | inline_asset_content -}}
+          </span>
+          {{- form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email -}}
+        </small>
+      {%- endif -%}
+      <p class='text-xs text-current/70 mt-2'>
+        By subscribing, you agree to our <a href='/privacy-policy' class='underline'>Privacy Policy</a>.
+      </p>
+      {%- if form.posted_successfully? -%}
+        <h3
+          class='newsletter-form__message newsletter-form__message--success form__message'
+          id='Newsletter-success--{{ section.id }}'
+          tabindex='-1'
+          autofocus
+        >
+          <span class='svg-wrapper'>
+            {{- 'icon-success.svg' | inline_asset_content -}}
+          </span>
+          {{- 'newsletter.success' | t }}
+        </h3>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "tag": null,
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Sections"
+    }
+  ]
+}
+{% endschema %}

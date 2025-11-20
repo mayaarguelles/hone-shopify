@@ -1,0 +1,46 @@
+<hone-slideshow class='alignwide image-slideshow' {{ block.shopify_attributes }}>
+  <div class='image-slideshow--slides [&_.img-block]:my-0'>
+    {% content_for 'blocks' %}
+  </div>
+  <div class='image-slideshow--controls'>
+    {% render 'carousel-controls' %}
+  </div>
+  <script
+    src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+    defer
+    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+    crossorigin='anonymous'
+    referrerpolicy='no-referrer'
+  ></script>
+  <script src=' https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.js' defer></script>
+  <script src='{{ "component-Slideshow.js" | asset_url }}' defer></script>
+  <link
+    href=' https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css '
+    rel='stylesheet'
+  >
+</hone-slideshow>
+{% schema %}
+{
+  "name": "Slideshow",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

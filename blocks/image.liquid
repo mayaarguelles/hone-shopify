@@ -1,0 +1,125 @@
+{%- liquid
+  assign classes = 'img-block w-full h-auto block my-8'
+  case block.settings.image_ratio
+    when 'natural'
+      assign ratio_classes = ''
+    when 'square'
+      assign ratio_classes = 'aspect-square object-center'
+    when 'landscape'
+      assign ratio_classes = 'aspect-video object-center'
+    when 'portrait'
+      assign ratio_classes = 'aspect-[3/4] object-center'
+    else
+      assign ratio_classes = ''
+  endcase
+
+  assign classes = classes | append: ' ' | append: ratio_classes
+
+  case block.settings.image_fit
+    when 'cover'
+      assign fit_classes = 'object-cover'
+    when 'contain'
+      assign fit_classes = 'object-contain bg-shadow/30'
+    when 'fill'
+      assign fit_classes = 'object-fill'
+    else
+      assign fit_classes = 'object-cover'
+  endcase
+
+  assign classes = classes | append: ' ' | append: fit_classes
+-%}
+{%- if block.settings.link_url != blank -%}
+  <a href='{{ block.settings.link_url }}' class='block alignwide' {{ block.shopify_attributes }}>
+{%- else -%}
+  <div class='block alignwide' {{ block.shopify_attributes }}>
+{%- endif -%}
+
+{%- if block.settings.image != blank -%}
+  {{
+    block.settings.image
+    | image_url: width: 1200
+    | image_tag: class: classes, loading: 'lazy', width: block.settings.image.width, height: block.settings.image.height
+  }}
+{%- else -%}
+  {{ 'image' | placeholder_svg_tag: 'w-full h-auto placeholder-svg' }}
+{%- endif -%}
+
+{%- if block.settings.link_url != blank -%}
+  </a>
+{%- else -%}
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Image",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Alt text",
+      "info": "Describe the image for screen readers and SEO"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "natural",
+          "label": "Natural"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        }
+      ],
+      "default": "natural"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "info": "Leave blank to disable linking"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        }
+      ],
+      "default": "cover"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image"
+    }
+  ]
+}
+{% endschema %}

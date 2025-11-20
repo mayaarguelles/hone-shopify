@@ -83,10 +83,30 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "newsletter_section": {
+        "type": "simple-section",
+        "name": "Simple Section",
+        "blocks": {
+            "newsletter": {
+                "type": "newsletter"
+            }
+        },
+        "block_order": [
+            "newsletter"
+        ],
+        "settings": {
+            "title": "Stay Connected",
+            "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+            "color_scheme": "",
+            "sizing": "standard",
+            "section_type": "simple"
+        }
     }
   },
   "order": [
     "collections",
-    "product-grid"
+    "product-grid",
+    "newsletter_section"
   ]
 }

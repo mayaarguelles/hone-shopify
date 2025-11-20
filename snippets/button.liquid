@@ -77,7 +77,7 @@
   endcase
 
   # Build margin classes
-  if uses_margins
+  if uses_margins != 'no'
     assign margin_classes = 'my-4'
   else
     assign margin_classes = ''

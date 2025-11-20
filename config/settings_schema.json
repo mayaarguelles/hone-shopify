@@ -1457,5 +1457,44 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Newsletter Block",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Global Newsletter Block Settings"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_heading",
+        "label": "Newsletter Heading",
+        "default": "Subscribe to our Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_subheading",
+        "label": "Newsletter Subheading",
+        "default": "Get the latest updates and offers."
+      },
+      {
+        "type": "color_scheme",
+        "id": "newsletter_color_scheme",
+        "label": "Colors",
+        "default": "scheme-1"
+      },
+      {
+        "type": "image_picker",
+        "id": "newsletter_background_image",
+        "label": "Background Image",
+        "info": "Upload an image to use as the background for the newsletter block."
+      },
+      {
+        "type": "video",
+        "id": "newsletter_background_video",
+        "label": "Background Video",
+        "info": "Upload a video to use as the background for the newsletter block."
+      }
+    ]
   }
 ]

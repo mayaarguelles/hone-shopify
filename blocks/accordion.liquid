@@ -28,13 +28,13 @@
     <div
       aria-labelledby='{{ accordion_id }}-button'
       id='{{ accordion_id }}'
-      class='accordion-content [&>p]:text-current/80 [&>p]:mb-1 [&>p]:text-xs [&>p]:leading-relaxed contain-vertical-margins'
+      class='accordion-content [&_p]:text-current/80 [&_p]:mb-1 [&_p]:text-xs [&_p]:leading-relaxed contain-vertical-margins'
       {% unless is_open %}
         style='display:none;'
       {% endunless %}
       data-accordion-content
     >
-      {{ content }}
+      {% content_for 'blocks' %}
     </div>
   </div>
 </hone-accordion>

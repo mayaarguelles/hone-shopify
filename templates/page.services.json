@@ -132,7 +132,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "Is it necessary to make an appointment, or can I walk in for a piercing?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": true
                     },
                     "blocks": {
@@ -155,7 +154,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "How do I prepare for my piercing appointment?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -178,7 +176,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "Can I bring my own jewelry for the piercing?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -201,7 +198,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "How long does the piercing process take?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -224,7 +220,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "Does getting a piercing hurt?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -247,7 +242,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "What age restrictions do you have for piercings?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -270,7 +264,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "How long does it take for a piercing to heal?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -293,7 +286,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "Can I change the jewelry soon after getting a piercing?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -316,7 +308,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "What aftercare routine should I follow for my new piercing?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -339,7 +330,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "What if I experience any complications or have further questions after the piercing?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -362,7 +352,6 @@
                     "name": "Accordion",
                     "settings": {
                         "title": "Do you pierce babies?",
-                        "content": "<p>Add your accordion content here.</p>",
                         "is_open": false
                     },
                     "blocks": {
@@ -379,6 +368,35 @@
                     "block_order": [
                         "text_11"
                     ]
+                },
+                "text_12": {
+                    "type": "text",
+                    "settings": {
+                        "text": "<p>More questions?</p>",
+                        "text_style": "medium",
+                        "alignment": "left"
+                    },
+                },
+                "buttons_13": {
+                    "type": "buttons",
+                    "name": "Buttons",
+                    "settings": {},
+                    "blocks": {
+                        "button_14": {
+                            "type": "button",
+                            "settings": {
+                                "button_text": "Contact Us",
+                                "button_url": "shopify://pages/contact",
+                                "button_style": "fill",
+                                "button_target": false,
+                                "button_icon": "arrow-down-right"
+                            },
+                            "blocks": {}
+                        }
+                    },
+                    "block_order": [
+                        "button_14"
+                    ]
                 }
             },
             "block_order": [
@@ -392,7 +410,9 @@
                 "accordion_8",
                 "accordion_9",
                 "accordion_10",
-                "accordion_11"
+                "accordion_11",
+                "text_12",
+                "buttons_13"
             ],
             "name": "Simple Section",
             "settings": {
@@ -402,11 +422,31 @@
                 "sizing": "standard",
                 "section_type": "simple"
             }
+        },
+        "newsletter_section": {
+            "type": "simple-section",
+            "name": "Simple Section",
+            "blocks": {
+                "newsletter": {
+                    "type": "newsletter"
+                }
+            },
+            "block_order": [
+                "newsletter"
+            ],
+            "settings": {
+                "title": "Stay Connected",
+                "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+                "color_scheme": "",
+                "sizing": "standard",
+                "section_type": "simple"
+            }
         }
     },
     "order": [
         "main",
         "simple_section_VQmUL7",
-        "simple_section_NNHnWg"
+        "simple_section_NNHnWg",
+        "newsletter_section"
     ]
 }

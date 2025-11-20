@@ -12,13 +12,13 @@
 
   # Get locations from product pickup availability
   assign available_locations = ''
-  if reference_product != blank
+  if reference_product != blank and reference_product.variants.first.store_availabilities.size > 0
     assign available_locations = reference_product.variants.first.store_availabilities
   else
     # Fall back to first product with store availabilities
     for product in collections.all.products limit: 1
-      if product.store_availabilities.size > 0
-        assign available_locations = product.store_availabilities
+      if product.variants.first.store_availabilities.size > 0
+        assign available_locations = product.variants.first.store_availabilities
         break
       endif
     endfor

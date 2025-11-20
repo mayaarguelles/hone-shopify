@@ -1,15 +1,255 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "section_header": {
+      "type": "simple-section",
+      "blocks": {
+        "text_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>A contemporary piercing studio.</h1><h2>From consultation to aftercare, we make every step comfortable and clear. Whether it’s your first piercing or your next addition, our studio focuses on craftsmanship, safety, and a calm, elevated experience that lets you enjoy the experience as much as the result.</h2>",
+            "text_style": "large",
+            "alignment": "left"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_heading"
+      ],
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28,
-        "color_scheme": "scheme-3"
+        "title": "About",
+        "subheader": "",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "cover-video",
+        "cover_video": "shopify://files/videos/newsletter.mp4",
+        "padding_top": "medium",
+        "padding_bottom": "medium"
+      }
+    },
+    "about_intro": {
+      "type": "simple-section",
+      "blocks": {
+        "statement-1": {
+          "type": "image-and-text",
+          "blocks": {
+            "statement-text-1": {
+              "type": "text",
+              "settings": {
+                "text": "<h4>About Hone</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius faucibus massa sollicitudin amet augue. Nibh metus a semper purus mauris duis. Lorem eu neque, tristique quis duis. Nibh scelerisque ac adipiscing velit non nulla in amet pellentesque. Sit turpis pretium eget maecenas. Vestibulum dolor mattis consectetur eget commodo vitae.</p>",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "settings": {
+            "direction": "image-left",
+            "image": "shopify://shop_images/piercing-mockup.jpg",
+          },
+          "block_order": [
+            "statement-text-1"
+          ]
+        },
+        "statement-2": {
+          "type": "image-and-text",
+          "blocks": {
+            "statement-text-2": {
+              "type": "text",
+              "settings": {
+                "text": "<h4>About Hone</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius faucibus massa sollicitudin amet augue. Nibh metus a semper purus mauris duis. Lorem eu neque, tristique quis duis. Nibh scelerisque ac adipiscing velit non nulla in amet pellentesque. Sit turpis pretium eget maecenas. Vestibulum dolor mattis consectetur eget commodo vitae.</p>",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "settings": {
+            "image": "shopify://shop_images/jordan-gonzalez-Jvz2Civ-Abk-unsplash.jpg",
+            "direction": "image-right"
+          },
+          "block_order": [
+            "statement-text-2"
+          ]
+        }
+      },
+      "block_order": [
+        "statement-1",
+        "statement-2"
+      ],
+      "settings": {
+        "title": "Who We Are",
+        "subheader": "",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple",
+      }
+    },
+    "testimonials": {
+      "type": "simple-section",
+      "settings": {
+        "title": "Testimonials",
+        "subheader": "",
+        "color_scheme": "scheme-5",
+        "section_type": "simple",
+      },
+      "blocks": {
+        "carousel_d4ciVe": {
+          "type": "carousel",
+          "name": "Testimonial Carousel",
+          "settings": {},
+          "blocks": {
+            "testimonial_LAPgXh": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Whether you're a first-timer or experienced with piercings, Hone Piercing Studio offers a wonderful, professional, and personalized service that exceeds expectations. I highly recommend this studio to anyone looking for a high-quality, friendly, and clean piercing experience in San Jose.</p>",
+                "author_name": "Steven",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_9PnhTw": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>I’ve had my daith cartilage piercing manipulated several times and never has it been so gentle and painless. The jewelry selection was good and I was able to find exactly what I wanted.<br/>Definitely going back to get my next piercing.</p>",
+                "author_name": "Mar",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_T8Lcbf": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Had my friend Chloe bring a few of us graduate students in. Sondra greeted us and gave us a friendly welcome and a fresh bev, and after talking with her about my hesitations about level of pain, I knew this was the right place for my nose piercing. The place is immaculate, pristine, and well thought out.</p>",
+                "author_name": "Sunny",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_aRrzEp": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Lorem ipsum dolor sit amet</p>",
+                "author_name": "Jane Doe",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_L6chnD": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Lorem ipsum dolor sit amet</p>",
+                "author_name": "Jane Doe",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "testimonial_LAPgXh",
+            "testimonial_9PnhTw",
+            "testimonial_T8Lcbf",
+            "testimonial_aRrzEp",
+            "testimonial_L6chnD"
+          ]
+        }
+      },
+      "block_order": [
+        "carousel_d4ciVe"
+      ]
+    },
+    "studio": {
+      "type": "simple-section",
+      "settings": {
+        "title": "Our Studio",
+        "subheader": "Lorem ipsum studio subheader",
+      },
+      "blocks": {
+        "slideshow_Gj8e8z": {
+          "type": "slideshow",
+          "name": "Slideshow",
+          "settings": {},
+          "blocks": {
+            "image_UrBijL": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/san-jose-studio.jpg",
+                "alt_text": "",
+                "image_ratio": "landscape",
+                "link_url": "",
+                "image_fit": "cover"
+              },
+              "blocks": {}
+            },
+            "image_nMNTVh": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/INT1_1699557565_jpeg.webp",
+                "alt_text": "",
+                "image_ratio": "landscape",
+                "link_url": "",
+                "image_fit": "cover"
+              },
+              "blocks": {}
+            },
+            "image_wtU4hm": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "shopify://shop_images/PIERCINGROOM2_1699557753_jpeg.webp",
+                "alt_text": "",
+                "image_ratio": "landscape",
+                "link_url": "",
+                "image_fit": "cover"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_UrBijL",
+            "image_nMNTVh",
+            "image_wtU4hm"
+          ]
+        }
+      },
+      "block_order": [
+        "slideshow_Gj8e8z"
+      ]
+    },
+    "locations": {
+      "type": "simple-section",
+      "blocks": {
+        "locations_Uh7mjY": {
+          "type": "locations",
+          "name": "Locations",
+          "settings": {
+            "reference_product": "sapphire-neo-trinity-cluster-stud",
+            "show_map": true,
+            "google_maps_api_key": "AIzaSyB6ab5h4LSDSbxX3G1zlcH_ubqYlUEkHYw",
+            "map_zoom": 12,
+            "contact_email": "hello@honepiercing.com"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "locations_Uh7mjY"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Visit Hone",
+        "subheader": "Get pierced or shop in person at our studio in Downtown Willow Glen.",
+        "color_scheme": "scheme-5",
+        "sizing": "standard",
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium"
       }
     }
   },
   "order": [
-    "main"
+    "section_header",
+    "about_intro",
+    "testimonials",
+    "studio",
+    "locations"
   ]
 }
