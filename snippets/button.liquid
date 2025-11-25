@@ -29,6 +29,7 @@
   assign class_name = class_name | default: ''
   assign uses_margins = uses_margins | default: true
   assign align = align | default: 'left'
+  assign id = id | default: ''
 
   if tag == blank
     assign tag = 'a'
@@ -109,6 +110,9 @@
     {% endif %}
     {% if type != blank %}
       type='{{ type }}'
+    {% endif %}
+    {% if id != blank %}
+      id='{{ id }}'
     {% endif %}
   >
     <span class='hone-button__link-inner inline-flex items-center'>

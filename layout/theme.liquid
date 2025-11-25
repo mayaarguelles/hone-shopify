@@ -291,6 +291,8 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
+    {% render 'booking-drawer' %}
+
     <div class='fixed w-full z-100' data-navigation-area>
       {% sections 'header-group' %}
     </div>
@@ -362,5 +364,6 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src='{{ 'cart-drawer.js' | asset_url }}' defer='defer'></script>
     {%- endif -%}
+    <script src='{{ 'booking-drawer.js' | asset_url }}' defer='defer'></script>
   </body>
 </html>

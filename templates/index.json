@@ -75,7 +75,21 @@
           "settings": {
             "text": "<p>From consultation to aftercare, we make every step comfortable and clear. Whether it’s your first piercing or your next addition, our studio focuses on craftsmanship, safety, and a calm, elevated experience that lets you enjoy the experience as much as the result.<\/p>",
           }
-        },
+        }
+      },
+      "block_order": [
+        "text",
+        "text-1"
+      ]
+    },
+    "testimonials": {
+      "type": "simple-section",
+      "settings": {
+        "title": "Testimonials",
+        "subheader": "Hear from our satisfied clients about their piercing experiences at Hone.",
+        "color_scheme": "scheme-5",
+      },
+      "blocks": {
         "carousel_d4ciVe": {
           "type": "carousel",
           "name": "Testimonial Carousel",
@@ -137,8 +151,6 @@
         }
       },
       "block_order": [
-        "text",
-        "text-1",
         "carousel_d4ciVe"
       ]
     },
@@ -461,6 +473,7 @@
     "intro-section",
     "services",
     "about-section",
+    "testimonials",
     "featured_collection",
     "blog_posts",
     "instagram",

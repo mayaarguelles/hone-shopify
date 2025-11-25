@@ -1,0 +1,17 @@
+<booking-drawer class='drawer'>
+  <div id='BookingDrawer' class='cart-drawer'>
+    <div id='BookingDrawer-Overlay' class='cart-drawer__overlay'></div>
+    <div class='drawer__inner color-{{ settings.cart_color_scheme }}'>
+      <button
+        class='drawer__close'
+        type='button'
+        onclick="this.closest('booking-drawer').close()"
+        aria-label='{{ 'accessibility.close' | t }}'
+      >
+        <span class='svg-wrapper'>
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </button>
+    </div>
+  </div>
+</booking-drawer>

@@ -1683,8 +1683,8 @@
     background-repeat: no-repeat;
     background-size: 0 1px;
     background-position: left bottom;
-    transition: background-size 500ms var(--tw-ease),
-      box-shadow 500ms var(--tw-ease);
+    transition: background-size 500ms var(--default-transition-timing-function),
+      box-shadow 500ms var(--default-transition-timing-function);
   }
 
   .field__input:focus-visible,
