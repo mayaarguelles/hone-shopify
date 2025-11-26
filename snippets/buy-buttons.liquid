@@ -88,6 +88,7 @@
           {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
             {% assign button_is_disabled = true %}
           {%- endif -%}
+          {% assign submit_button_id = 'ProductSubmitButton-' | append: section.id %}
           {% render 'button',
             content: button_content,
             tag: 'button',
@@ -96,7 +97,8 @@
             class_name: 'product-form__submit',
             size: 'large',
             type: 'submit',
-            disabled: button_is_disabled
+            disabled: button_is_disabled,
+            id: submit_button_id
           %}
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}

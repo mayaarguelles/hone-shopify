@@ -83,7 +83,7 @@
 
   {% endcase %}
   <div class='flex flex-col md:flex-row gap-4 relative z-2'>
-    {% assign left_classes = 'md:flex-[1_0_0] md:px-4 pt-2 [&>p]:text-current/80 self-start' %}
+    {% assign left_classes = 'md:flex-[1_0_0] md:px-1 lg:px-4 pt-2 [&>p]:text-current/80 self-start' %}
     {% if section.settings.sizing != 'browser-height' %}
       {% assign left_classes = left_classes | append: ' md:sticky md:top-(--navigation-height)' %}
     {% endif %}

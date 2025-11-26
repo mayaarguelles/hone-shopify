@@ -1,6 +1,6 @@
 gsap.registerPlugin(Flip);
 
-class HoverIndicator extends HTMLElement {
+class HoneHoverIndicator extends HTMLElement {
   connectedCallback() {
     const container = this;
     const indicator = this.querySelector('.hover-indicator');
@@ -46,4 +46,4 @@ class HoverIndicator extends HTMLElement {
     });
   }
 }
-customElements.define('hone-indicator-hover', HoverIndicator);
+customElements.define('hone-indicator-hover', HoneHoverIndicator);
