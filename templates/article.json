@@ -1,21 +1,13 @@
 {
   "sections": {
+    "header": {
+      "type": "header-article",
+      "settings": {
+      }
+    },
     "main": {
       "type": "main-article",
       "blocks": {
-        "featured_image": {
-          "type": "featured_image",
-          "settings": {
-            "image_height": "adapt"
-          }
-        },
-        "title": {
-          "type": "title",
-          "settings": {
-            "blog_show_date": true,
-            "blog_show_author": false
-          }
-        },
         "share": {
           "type": "share",
           "settings": {
@@ -32,9 +24,30 @@
         "share",
         "content"
       ]
+    },
+    "newsletter_section": {
+        "type": "simple-section",
+        "name": "Simple Section",
+        "blocks": {
+            "newsletter": {
+                "type": "newsletter"
+            }
+        },
+        "block_order": [
+            "newsletter"
+        ],
+        "settings": {
+            "title": "Stay Connected",
+            "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+            "color_scheme": "",
+            "sizing": "standard",
+            "section_type": "simple"
+        }
     }
   },
   "order": [
-    "main"
+    "header",
+    "main",
+    "newsletter_section"
   ]
 }

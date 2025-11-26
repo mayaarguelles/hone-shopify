@@ -3747,4 +3747,8 @@
       transform: translateX(100%) scaleX(0);
     }
   }
+
+  .metafield-rich_text_field {
+    display: inline;
+  }
 }

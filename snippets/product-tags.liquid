@@ -3,7 +3,7 @@
   <ul class='absolute top-4 left-4 flex flex-wrap gap-2 z-10'>
     {% for tag in card_tags %}
       {% assign tag = tag %}
-      {% assign tag_classes = 'block text-xs px-2 py-1 font-medium text-black/70 bg-(--tag-color)' %}
+      {% assign tag_classes = 'block text-xs px-2 py-1 text-black/70 bg-(--tag-color)' %}
       <li class='bg-cloud'>
         <span class='{{ tag_classes }}' style='--tag-color: {{ tag.color }};'>
           {% if tag.icon %}

@@ -18,138 +18,96 @@
 
 {%- if article and article != empty -%}
   {%- liquid
+    assign style = style | default: 'default'
+
+    assign interior_class = 'block'
+    assign title_classes = 'text-hfive md:text-hfour'
+    assign subtitle_classes = 'md:text-hfive text-current/80'
+    assign image_container_class = 'aspect-video w-full overflow-hidden bg-cloud'
+    assign excerpt_classes = 'text-current/80 leading-relaxed'
+
+    case style
+      when 'horizontal'
+        assign interior_class = 'block md:grid md:grid-cols-2 md:gap-8 items-center'
+      when 'smaller'
+        assign title_classes = 'text-hfive'
+        assign subtitle_classes = 'text-current/80'
+        assign image_container_class = image_container_class | append: ' mb-4'
+        assign excerpt_classes = excerpt_classes | append: ' text-sm'
+      else
+        assign interior_class = 'block'
+        assign image_container_class = image_container_class | append: ' mb-6'
+    endcase
+
     assign ratio = 1
     if media_aspect_ratio != null
       assign ratio = media_aspect_ratio
     endif
   -%}
-  <div class="article-card-wrapper card-wrapper underline-links-hover">
-    {% comment %} <article aria-labelledby="Article-{{ article.id }}"> {% endcomment %}
-    <div
-      class="
-        card article-card
-        card--{{ settings.blog_card_style }}
-        {% if media_height and media_height != 'adapt' %} article-card__image--{{ media_height }}{% endif %}
-        {% if article.image and show_image %} card--media{% else %} card--text{% endif %}
-        {% if settings.blog_card_style == 'card' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}
-        {% if settings.blog_card_style == 'card' and media_height == nil and article.image == empty or show_image == false %} ratio{% endif %}
-      "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-    >
-      <div
-        class="card__inner {% if settings.blog_card_style == 'standard' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}{% if article.image and show_image or settings.blog_card_style == 'standard' %} ratio{% endif %}"
-        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-      >
-        {%- if show_image == true and article.image -%}
-          <div class="article-card__image-wrapper card__media">
-            <div
-              class="article-card__image media media--hover-effect"
-              {% if section.settings.media_height == 'adapt' %}
-                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
-              {% endif %}
-            >
-              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-              <img
-                srcset="
-                  {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
-                  {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
-                  {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
-                  {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
-                  {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
-                  {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
-                  {{ article.image.src | image_url }} {{ article.image.src.width }}w
-                "
-                src="{{ article.image.src | image_url: width: 533 }}"
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                alt="{{ article.image.src.alt | escape }}"
-                class="motion-reduce"
-                {% unless lazy_load == false %}
-                  loading="lazy"
-                {% endunless %}
-                width="{{ article.image.width }}"
-                height="{{ article.image.height }}"
-              >
-              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
-            </div>
+  <article class='group cursor-pointer'>
+    <a href='{{ article.url }}' class='{{interior_class}}'>
+      <div class='{{ image_container_class }}'>
+        {%- if show_image and article.image != blank -%}
+          {{
+            article.image
+            | image_url: width: 800
+            | image_tag:
+              class: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[var(--tw-ease)]',
+              alt: article.image.alt
+            | default: article.title, loading: 'lazy'
+          }}
+        {%- else -%}
+          <div class='w-full h-full bg-cloud flex items-center justify-center'>
+            <svg class='w-16 h-16 text-shadow' fill='currentColor' viewBox='0 0 20 20'>
+              <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+            </svg>
           </div>
         {%- endif -%}
-        <div class="card__content">
-          <div class="card__information">
-            <h3 class="card__heading{% if show_excerpt %} h2{% endif %}">
-              <a href="{{ article.url }}" class="full-unstyled-link">
-                {{ article.title | truncate: 50 | escape }}
-              </a>
+      </div>
+
+      <div class='space-y-2'>
+        <div class='flex items-center space-x-4 not-prose'>
+          {% if tag_text %}
+            <span class='bg-cloud block'>
+              <span class='block text-xs px-2 py-1 bg-brown/80 text-white/80'>
+                {% render 'icon', name: 'sale', class: 'inline-icon' %}
+                {{ tag_text }}
+              </span>
+            </span>
+          {% endif %}
+          {% render 'article-meta',
+            additional_classes: 'text-sm text-shadow gap-2 [--gap:calc(var(--spacing)*2)]',
+            article: article,
+            show_date: show_date,
+            show_read_time: show_read_time
+          %}
+        </div>
+
+        <div class='flex flex-col space-y-1'>
+          {% assign title = article.title %}
+          {% if article.metafields.custom.title_override %}
+            {% assign title = article.metafields.custom.title_override
+              | metafield_tag
+              | replace: '<p>', ''
+              | replace: '</p>', ''
+            %}
+          {% endif %}
+          <h2 class='{{ title_classes }}'>
+            {% render 'inline-hover-underline', multiline: true, content: title %}
+          </h2>
+          {%- if article.metafields.custom.subtitle != blank -%}
+            <h3 class='{{ subtitle_classes }}'>
+              {{ article.metafields.custom.subtitle }}
             </h3>
-            <div class="article-card__info caption-with-letter-spacing h5">
-              {%- if show_date -%}
-                <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
-              {%- endif -%}
-              {%- if show_author -%}
-                <span>{{ article.author }}</span>
-              {%- endif -%}
-            </div>
-            {%- if show_excerpt -%}
-              {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-                <p class="article-card__excerpt rte-width">
-                  {%- if article.excerpt.size > 0 -%}
-                    {{ article.excerpt | strip_html | truncatewords: 30 }}
-                  {%- else -%}
-                    {{ article.content | strip_html | truncatewords: 30 }}
-                  {%- endif -%}
-                </p>
-              {%- endif -%}
-              <div class="article-card__footer">
-                {%- if article.comments_count > 0 and blog.comments_enabled? -%}
-                  <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-          </div>
-          {%- if show_badge -%}
-            <div class="card__badge {{ settings.badge_position }}">
-              <span class="badge color-{{ settings.color_schemes | first }}">{{ 'blogs.article.blog' | t }}</span>
-            </div>
           {%- endif -%}
         </div>
-      </div>
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading{% if show_excerpt %} h2{% endif %}">
-            <a href="{{ article.url }}" class="full-unstyled-link">
-              {{ article.title | truncate: 50 | escape }}
-            </a>
-          </h3>
-          <div class="article-card__info caption-with-letter-spacing h5">
-            {%- if show_date -%}
-              <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
-            {%- endif -%}
-            {%- if show_author -%}
-              <span>{{ article.author }}</span>
-            {%- endif -%}
-          </div>
-          {%- if show_excerpt -%}
-            {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-              <p class="article-card__excerpt rte-width">
-                {%- if article.excerpt.size > 0 -%}
-                  {{ article.excerpt | strip_html | truncatewords: 30 }}
-                {%- else -%}
-                  {{ article.content | strip_html | truncatewords: 30 }}
-                {%- endif -%}
-              </p>
-            {%- endif -%}
-            <div class="article-card__footer">
-              {%- if article.comments_count > 0 and blog.comments_enabled? -%}
-                <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
-        </div>
-        {%- if show_badge -%}
-          <div class="card__badge {{ settings.badge_position }}">
-            <span class="badge color-{{ settings.color_schemes | first }}">{{ 'blogs.article.blog' | t }}</span>
-          </div>
+
+        {%- if show_excerpt and article.excerpt != blank -%}
+          <p class='{{ excerpt_classes }}'>
+            {{ article.excerpt | replace: '<p>', '' | replace: '</p>', '' }}
+          </p>
         {%- endif -%}
       </div>
-    </div>
-  </div>
+    </a>
+  </article>
 {%- endif -%}

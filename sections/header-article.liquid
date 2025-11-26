@@ -1,0 +1,132 @@
+{%- liquid
+  assign classes = 'w-full px-4 contain-vertical-margins relative flex items-center'
+
+  if section.settings.show_image and article.image != blank
+    assign classes = classes | append: ' min-h-[45vw] text-white before:absolute before:inset-0 before:bg-linear-to-r before:from-black before:to-red before:z-1 before:pointer-events-none'
+  endif
+
+  assign title = article.title | escape
+  if article.metafields.custom.title_override != blank
+    assign title = article.metafields.custom.title_override | metafield_tag | replace: '<p>', '' | replace: '</p>', ''
+  endif
+-%}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<header
+  class='{{ classes }} section-{{ section.id }}-padding'
+  {{ section.shopify_attributes }}
+>
+  {% if section.settings.show_image and article.image %}
+    {{
+      article.image
+      | image_url: width: 2000
+      | image_tag: class: 'absolute inset-0 w-full h-full object-cover z-0', loading: 'eager', alt: article.image.alt
+      | default: article.title
+    }}
+  {% endif %}
+  <div class='relative z-2'>
+    <div class='prose contain-vertical-margins'>
+      <h1
+        class='article-template__title text-htwo mb-0'
+      >
+        {{ title }}
+      </h1>
+      {% if article.metafields.custom.subtitle %}
+        <p class='text-hfour mt-0'>
+          {{ article.metafields.custom.subtitle | metafield_tag }}
+        </p>
+      {% endif %}
+    </div>
+
+    {%- if section.settings.blog_show_author -%}
+      <span class='caption-with-letter-spacing'>
+        <span>{{ article.author }}</span>
+      </span>
+    {%- endif -%}
+    {%- if section.settings.blog_show_excerpt and article.excerpt != blank -%}
+      <div class='mt-8 prose max-w-[75ch] border-t border-current/30 border-solid pt-4'>
+        {{ article.excerpt }}
+      </div>
+    {%- endif -%}
+
+    {% render 'article-meta',
+      article: article,
+      additional_classes: 'mt-8 text-xs uppercase tracking-wider text-current/70',
+      show_date: section.settings.blog_show_date,
+      show_read_time: section.settings.blog_show_read_time
+    %}
+  </div>
+</header>
+{% schema %}
+{
+  "name": "Article Header",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "default": true,
+      "label": "t:sections.main-article.sections.title.settings.blog_show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_read_time",
+      "default": true,
+      "label": "Show read time"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "default": false,
+      "label": "t:sections.main-article.sections.title.settings.blog_show_author.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_excerpt",
+      "default": true,
+      "label": "Show excerpt"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show article image"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

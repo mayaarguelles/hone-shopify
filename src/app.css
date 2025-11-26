@@ -140,7 +140,15 @@
 
 @utility prose {
   --tw-prose-body: color-mix(in oklab, currentcolor 80%, transparent 20%);
-  --tw-prose-headings: currentcolor;
+  --tw-prose-headings: rgba(from currentcolor r g b / 1);
+}
+
+@layer base {
+  b,
+  strong {
+    font-weight: 500;
+    color: rgba(from currentcolor r g b / 1);
+  }
 }
 
 @layer utilities {

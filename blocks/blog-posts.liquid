@@ -28,59 +28,14 @@
       <!-- Featured Article (Left Side) -->
       {%- if featured_post != blank -%}
         <div class='lg:col-span-3'>
-          <article class='group cursor-pointer'>
-            <a href='{{ featured_post.url }}' class='block'>
-              <div class='aspect-video w-full overflow-hidden mb-6 bg-cloud'>
-                {%- if featured_post.image != blank -%}
-                  {{
-                    featured_post.image
-                    | image_url: width: 800
-                    | image_tag:
-                      class: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[var(--tw-ease)]',
-                      alt: featured_post.image.alt
-                    | default: featured_post.title, loading: 'lazy'
-                  }}
-                {%- else -%}
-                  <div class='w-full h-full bg-cloud flex items-center justify-center'>
-                    <svg class='w-16 h-16 text-shadow' fill='currentColor' viewBox='0 0 20 20'>
-                      <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
-                    </svg>
-                  </div>
-                {%- endif -%}
-              </div>
-
-              <div class='space-y-4'>
-                <div class='flex items-center space-x-4'>
-                  <span class='bg-cloud block'>
-                    <span class='block text-xs px-2 py-1 font-medium bg-brown/80 text-white/80'>
-                      {% render 'icon', name: 'sale', class: 'inline-icon' %}
-                      Featured
-                    </span>
-                  </span>
-                  <time class='text-sm text-shadow' datetime='{{ featured_post.published_at | date: '%Y-%m-%d' }}'>
-                    {{ featured_post.published_at | date: '%B %d, %Y' }}
-                  </time>
-                </div>
-
-                <div class='flex flex-col space-y-1'>
-                  <h2 class='text-hfive md:text-hfour'>
-                    {% render 'inline-hover-underline', multiline: true, content: featured_post.title %}
-                  </h2>
-                  {%- if featured_post.metafields.custom.subtitle != blank -%}
-                    <h3 class='md:text-hfive text-current/80'>
-                      {{ featured_post.metafields.custom.subtitle }}
-                    </h3>
-                  {%- endif -%}
-                </div>
-
-                {%- if featured_post.excerpt != blank -%}
-                  <p class='text-current/80 leading-relaxed'>
-                    {{ featured_post.excerpt }}
-                  </p>
-                {%- endif -%}
-              </div>
-            </a>
-          </article>
+          {% assign article = featured_post %}
+          {% render 'article-card',
+            article: article,
+            show_image: true,
+            show_date: true,
+            show_excerpt: true,
+            tag_text: 'Featured'
+          %}
         </div>
       {%- endif -%}
 

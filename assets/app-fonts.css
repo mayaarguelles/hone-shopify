@@ -24,8 +24,8 @@
 
 @font-face {
   font-family: 'pp-neue-montreal';
-  src: url('PPNeueMontreal-Bold.otf') format('opentype');
-  font-weight: bold;
+  src: url('PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
