@@ -61,7 +61,7 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class='w-full'>
     <div class='product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid-cols-1 md:grid-cols-2 min-h-screen items-start'>
-      <div class='product__media-wrapper min-h-[calc(100vh-(56px))] w-full overflow-hidden bg-shadow/5'>
+      <div class='product__media-wrapper md:min-h-[calc(100vh-(56px))] w-full overflow-hidden bg-shadow/5'>
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
       <div class='product__info-wrapper max-w-3xl mx-auto px-4 md:px-16 py-6 md:py-16 md:sticky md:min-h-screen md:top-[56px]'>
@@ -84,7 +84,7 @@
                 </p>
               {%- when 'title' -%}
                 <div class='product__title' {{ block.shopify_attributes }}>
-                  <h1 class='text-hfive md:text-hthree'>{{ product.title | escape }}</h1>
+                  <h1 class='text-hfour md:text-hthree'>{{ product.title | escape }}</h1>
                   <a href='{{ product.url }}' class='product__title'>
                     <h2 class='h1'>
                       {{ product.title | escape }}

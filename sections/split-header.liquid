@@ -23,7 +23,7 @@
        style: 'outline' %}
 {%- endcapture -%}
 
-<div class='min-h-[calc(100vh-(var(--navigation-height))-(var(--spacing)*4))] md:min-h-auto px-4 pb-4 flex flex-col md:flex-row justify-end items-end text-black'>
+<div class='min-h-[calc(100vh-(var(--navigation-height))-(var(--spacing)*4-80px))] md:min-h-auto px-4 pb-4 flex flex-col md:flex-row justify-end items-end text-black'>
   <div
     class='flex-1 w-full color-dynamic bg-dynamic-100 flex flex-col md:flex-row md:h-[calc(100vh-(var(--navigation-height))-(var(--spacing)*4)-80px)]'
     style='--color-dynamic:var(--color-cloud);'
@@ -61,7 +61,7 @@
       <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
       <line x1="0" y1="100" x2="100" y2="50" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
     </svg>
-    <h1 class='text-xl text-center self-center uppercase flex-[0_0_auto]'>
+    <h1 class='text-md md:text-xl text-center self-center uppercase flex-[0_0_50%] md:flex-[0_0_auto]'>
       {{ section.settings.tagline | default: 'A contemporary piercing studio' }}
     </h1>
     <svg
