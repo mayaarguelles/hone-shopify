@@ -9,12 +9,22 @@
  */
 {
     "sections": {
-        "main": {
-            "type": "main-page",
+        "services": {
+            "type": "simple-section",
+            "blocks": {
+                "service-tabs": {
+                    "type": "service-tabs",
+                    "name": "Service Tabs",
+                    "settings": {},
+                    "blocks": {}
+                },
+            },
+            "block_order": [
+                "service-tabs"
+            ],
             "settings": {
-                "padding_top": 28,
-                "padding_bottom": 28,
-                "color_scheme": "scheme-3"
+                "title": "Piercing",
+                "subheader": "Explore our full range of piercing services.",
             }
         },
         "simple_section_VQmUL7": {
@@ -29,6 +39,15 @@
                         "direction": "image-left"
                     },
                     "blocks": {
+                        "text_heading_FQjA6b": {
+                            "type": "text",
+                            "settings": {
+                                "text": "<h2>{{ metaobjects.studio_services[\"jewelry-exchange\"].name | metafield_text }}</h2>",
+                                "text_style": "base",
+                                "alignment": "left"
+                            },
+                            "blocks": {}
+                        },
                         "text_FQjA6b": {
                             "type": "text",
                             "settings": {
@@ -61,6 +80,7 @@
                         }
                     },
                     "block_order": [
+                        "text_heading_FQjA6b",
                         "text_FQjA6b",
                         "buttons_MXYFQy"
                     ]
@@ -74,6 +94,15 @@
                         "direction": "image-right"
                     },
                     "blocks": {
+                        "text_heading_wbNxQN": {
+                            "type": "text",
+                            "settings": {
+                                "text": "<h2>{{ metaobjects.studio_services[\"curated-styling-sessions\"].name | metafield_text }}</h2>",
+                                "text_style": "base",
+                                "alignment": "left"
+                            },
+                            "blocks": {}
+                        },
                         "text_wbNxQN": {
                             "type": "text",
                             "settings": {
@@ -106,6 +135,7 @@
                         }
                     },
                     "block_order": [
+                        "text_heading_wbNxQN",
                         "text_wbNxQN",
                         "buttons_yrf4xF"
                     ]
@@ -444,7 +474,7 @@
         }
     },
     "order": [
-        "main",
+        "services",
         "simple_section_VQmUL7",
         "simple_section_NNHnWg",
         "newsletter_section"

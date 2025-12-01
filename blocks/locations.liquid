@@ -2,28 +2,37 @@
   Locations Block
   Displays store locations with map integration using Shopify location data
 {% endcomment %}
+<div class='hidden'>
+  {%- liquid
+    assign reference_product = block.settings.reference_product
+    assign google_maps_api_key = block.settings.google_maps_api_key
+    assign show_map = block.settings.show_map
+    assign map_zoom = block.settings.map_zoom | default: 12
+    assign contact_email = block.settings.contact_email
 
-{%- liquid
-  assign reference_product = block.settings.reference_product
-  assign google_maps_api_key = block.settings.google_maps_api_key
-  assign show_map = block.settings.show_map
-  assign map_zoom = block.settings.map_zoom | default: 12
-  assign contact_email = block.settings.contact_email
-
-  # Get locations from product pickup availability
-  assign available_locations = ''
-  if reference_product != blank and reference_product.variants.first.store_availabilities.size > 0
-    assign available_locations = reference_product.variants.first.store_availabilities
-  else
-    # Fall back to first product with store availabilities
-    for product in collections.all.products limit: 1
-      if product.variants.first.store_availabilities.size > 0
-        assign available_locations = product.variants.first.store_availabilities
-        break
+    if google_maps_api_key == blank
+      assign api_key_metaobject = shop.metaobjects.api_keys.google_maps
+      if api_key_metaobject != blank and api_key_metaobject.key != blank
+        assign google_maps_api_key = api_key_metaobject.key
       endif
-    endfor
-  endif
--%}
+    endif
+
+    # Get locations from product pickup availability
+    assign available_locations = ''
+    if reference_product != blank and reference_product.variants.first.store_availabilities.size > 0
+      assign available_locations = reference_product.variants.first.store_availabilities
+    else
+      # Fall back to first product with store availabilities
+      for product in collections.all.products
+        echo product | json
+        if product.variants.first.store_availabilities.size > 0
+          assign available_locations = product.variants.first.store_availabilities
+          break
+        endif
+      endfor
+    endif
+  -%}
+</div>
 <div class='alignwide' {{ block.shopify_attributes }}>
   <div class='max-w-7xl w-full mx-auto grid {% if show_map %}md:grid-cols-2{% else %}grid-cols-1{% endif %} gap-6 md:gap-16'>
     {%- if show_map and google_maps_api_key != blank -%}

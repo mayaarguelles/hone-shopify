@@ -5,7 +5,7 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
-<nav class='header__inline-menu flex-1 hidden md:flex items-stretch self-stretch pt-px gap-6'>
+<nav class='header__inline-menu flex-1 grow shrink-0 hidden md:flex items-stretch self-stretch pt-px gap-6'>
   <ul class='flex-1 flex items-stretch justify-start self-stretch pt-px gap-6' role='list'>
     {% assign navindex = 0 %}
     {%- for link in section.settings.menu.links -%}

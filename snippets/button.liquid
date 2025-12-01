@@ -151,7 +151,8 @@
         );
         this.linkElement.appendChild(hoverSpan);
 
-        this.style.setProperty('--hone-button-height', `${this.offsetHeight}px`);
+        let buttonHeight = Math.max(this.offsetHeight, 32);
+        this.style.setProperty('--hone-button-height', `${buttonHeight}px`);
         canonSpan.classList.add('relative', 'z-10', 'transition-transform', 'transform', 'duration-500');
         if (this.linkElement.classList.contains('uses-group-hover')) {
           hoverSpan.classList.add('group-hover:translate-y-0');

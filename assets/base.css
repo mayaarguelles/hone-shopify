@@ -2515,7 +2515,6 @@
 
   .header__heading-link {
     display: inline-block;
-    padding: 0.75rem;
     text-decoration: none;
     word-break: break-word;
   }
@@ -2842,7 +2841,6 @@
 
   /* Header menu */
   .header__inline-menu {
-    margin-left: -1.2rem;
     grid-area: navigation;
     display: none;
   }

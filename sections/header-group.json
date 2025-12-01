@@ -28,6 +28,7 @@
     "header": {
       "type": "header",
       "settings": {
+        "uses_custom_logo": false,
         "color_scheme": "scheme-1",
         "logo_position": "middle-left",
         "menu": "navigation",
@@ -41,6 +42,15 @@
         "padding_bottom": 20
       },
       "blocks": {
+        "service-megamenu": {
+          "type": "megamenu",
+          "settings": {
+            "title": "Services",
+            "menu": "services-megamenu",
+            "index": 1,
+            "columns": 2
+          }
+        },
         "shop-megamenu": {
           "type": "megamenu",
           "settings": {
@@ -61,6 +71,7 @@
         }
       },
       "block_order": [
+        "service-megamenu",
         "shop-megamenu",
         "about-megamenu"
       ]

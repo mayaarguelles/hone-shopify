@@ -1,0 +1,364 @@
+{% comment %}
+  Service Tabs Block
+  Displays piercing services organized by category with tabbed interface
+{% endcomment %}
+
+{%- liquid
+  assign booking_url = block.settings.booking_url | default: '/pages/book-appointment'
+  assign shop_jewelry_url = block.settings.shop_jewelry_url | default: '/collections/all'
+  assign default_description = block.settings.default_description | default: 'Professional piercing service with high-quality jewelry and expert care.'
+
+  # Get all Studio Services metaobjects
+  assign all_services = shop.metaobjects.studio_services.values
+
+  # Group services by category
+  assign ear_services = all_services | where: 'service_category', 'Ear Piercing'
+  assign facial_services = all_services | where: 'service_category', 'Facial Piercing'
+  assign body_services = all_services | where: 'service_category', 'Body Piercing'
+
+  # Create service categories array
+  assign service_categories = ''
+  if ear_services.size > 0
+    assign service_categories = service_categories | append: 'ear,'
+  endif
+  if facial_services.size > 0
+    assign service_categories = service_categories | append: 'facial,'
+  endif
+  if body_services.size > 0
+    assign service_categories = service_categories | append: 'body,'
+  endif
+  assign service_categories = service_categories | remove_last: ','
+  assign categories_array = service_categories | split: ','
+-%}
+
+<div id='service-tabs' class='alignwide service-tabs-block' {{ block.shopify_attributes }}>
+  <hone-indicator-hover class='flex mb-4'>
+    <ul class='flex p-1 border-current/30 border'>
+      {%- for category in categories_array -%}
+        {%- assign is_first = forloop.first -%}
+        {%- case category -%}
+          {%- when 'ear' -%}
+            {%- assign category_label = 'Ear Piercings' -%}
+          {%- when 'facial' -%}
+            {%- assign category_label = 'Facial Piercings' -%}
+          {%- when 'body' -%}
+            {%- assign category_label = 'Body Piercings' -%}
+        {%- endcase -%}
+
+        <li class='relative'>
+          <input
+            type='radio'
+            name='service'
+            id='select-{{ category }}'
+            value='{{ category }}'
+            class='hidden peer sr-only'
+            {% if is_first %}
+              checked
+            {% endif %}
+          >
+          <label
+            for='select-{{ category }}'
+            class='px-4 py-2 block cursor-pointer hover-area group-hover/indicator:text-current/30! hover:text-current! text-current/50 peer-checked:text-current relative transition-colors z-10'
+          >
+            {{ category_label }}
+            {%- if is_first -%}
+              <span class='hover-indicator absolute h-full w-full bg-shadow/30 left-0 bottom-0 z-0'></span>
+            {%- endif -%}
+          </label>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </hone-indicator-hover>
+
+  {%- for category in categories_array -%}
+    {%- assign is_first_category = forloop.first -%}
+    {%- case category -%}
+      {%- when 'ear' -%}
+        {%- assign current_services = ear_services -%}
+        {%- assign category_image = '/img/service-ear-2.jpg' -%}
+      {%- when 'facial' -%}
+        {%- assign current_services = facial_services -%}
+        {%- assign category_image = '/img/service-face.jpg' -%}
+      {%- when 'body' -%}
+        {%- assign current_services = body_services -%}
+        {%- assign category_image = '/img/service-body.jpg' -%}
+      {%- when 'other' -%}
+        {%- assign current_services = other_services -%}
+        {%- assign category_image = '' -%}
+    {%- endcase -%}
+
+    <div
+      id='{{ category }}'
+      class='service-tab mb-12 flex flex-col gap-4{% unless is_first_category %} hidden{% endunless %}'
+    >
+      {%- if current_services.size > 1 -%}
+        <hone-indicator-hover class='flex'>
+          <ul class='flex gap-4 wrap group/indicator flex-none'>
+            {%- for service in current_services -%}
+              {%- assign is_first_service = forloop.first -%}
+              {% assign handle = service.name | handleize %}
+              {%- assign service_variant = null
+                | default: id: handle, label: service.name, checked: is_first_service
+              -%}
+              {% render 'select-slider-item', variant: service_variant, input_name: category %}
+            {%- endfor -%}
+          </ul>
+        </hone-indicator-hover>
+      {%- endif -%}
+
+      {%- for service in current_services -%}
+        {%- assign is_first_service = forloop.first -%}
+        <div
+          class='service-variant relative pt-32 -mt-32 {% unless is_first_service %} hidden{% endunless %}'
+          id='{{ service.name | handleize }}'
+        >
+          {%- liquid
+            assign service_image = service.main_image | default: category_image
+            assign service_description = service.service_description | default: default_description
+            assign service_name = service.name
+          -%}
+
+          <div class='grid md:grid-cols-2 gap-8 items-center mt-8'>
+            {%- if service_image != blank -%}
+              <div class='aspect-4/3 w-full overflow-hidden'>
+                {%- if service_image contains '.jpg'
+                  or service_image contains '.png'
+                  or service_image contains '.webp'
+                -%}
+                  {%- comment -%}Static image path - convert to asset_url{%- endcomment -%}
+                  <img
+                    src='{{ service_image | asset_url }}'
+                    alt='{{ service_name }}'
+                    class='w-full h-full object-cover'
+                    width='600'
+                    height='450'
+                    loading='lazy'
+                  >
+                {%- else -%}
+                  {%- comment -%}Shopify image object{%- endcomment -%}
+                  {{
+                    service_image
+                    | image_url: width: 600
+                    | image_tag: class: 'w-full h-full object-cover', alt: service_name, loading: 'lazy'
+                  }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div>
+              <h3 class='text-2xl mb-4'>{{ service_name }}</h3>
+              <div class='rte'>
+                {{ service_description | metafield_tag }}
+              </div>
+              {%- liquid
+                assign shop_link = shop_jewelry_url
+                assign shop_link = shop_link | append: '?filter.p.m.custom.piercing_type=gid%3A%2F%2Fshopify%2FMetaobject%2F'
+                assign shop_link = shop_link | append: service.gid
+              -%}
+
+              <div class='flex flex-col sm:flex-row items-center gap-4 mt-6'>
+                {% render 'button',
+                  icon: 'arrow-up-right',
+                  color_classes: 'bg-brown text-white',
+                  href: booking_url,
+                  content: 'Book Now'
+                %}
+                {% assign shop_cta = 'Shop ' | append: service_name | append: ' Jewelry' %}
+                {% render 'cta', classes: 'text-sm my-6', href: shop_link, content: shop_cta %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endfor -%}
+</div>
+
+{%- comment -%}
+  Service Tabs JavaScript
+{%- endcomment -%}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const serviceInputs = document.querySelectorAll('input[name="service"]');
+    const serviceVariantInputs = document.querySelectorAll(
+      'input[name="ear"], input[name="facial"], input[name="body"], input[name="other"]',
+    );
+
+    // Function to activate a tab by category
+    function activateTab(categoryId) {
+      const tabInput = document.getElementById(`select-${categoryId}`);
+      if (tabInput) {
+        tabInput.checked = true;
+        tabInput.dispatchEvent(new Event('change'));
+        return true;
+      }
+      return false;
+    }
+
+    // Function to activate a service variant
+    function activateServiceVariant(serviceId) {
+      const serviceVariant = document.getElementById(serviceId);
+      if (serviceVariant) {
+        // Find the parent tab to determine which category this service belongs to
+        const parentTab = serviceVariant.closest('.service-tab');
+        if (parentTab) {
+          const categoryId = parentTab.id;
+
+          // First activate the correct tab
+          activateTab(categoryId);
+
+          // Then find and activate the service input
+          const serviceInput = document.querySelector(`input[name="${categoryId}"][value="${serviceId}"]`);
+          if (serviceInput) {
+            serviceInput.checked = true;
+            serviceInput.dispatchEvent(new Event('change'));
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Function to handle URL anchor navigation
+    function handleAnchorNavigation() {
+      const hash = window.location.hash.substring(1); // Remove the # symbol
+      if (hash) {
+        // First try to activate as a service variant
+        if (!activateServiceVariant(hash)) {
+          // If that fails, try to activate as a tab category
+          activateTab(hash);
+        }
+
+        // Scroll to the element after a short delay to ensure it's visible
+        setTimeout(() => {
+          const targetElement = document.getElementById(hash);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      }
+    }
+
+    // Handle main service tab switching
+    serviceInputs.forEach((input) => {
+      input.addEventListener('change', function () {
+        const selectedCategory = this.value;
+        console.log('Selected category:', selectedCategory);
+
+        // Hide all service tabs
+        document.querySelectorAll('.service-tab').forEach((tab) => {
+          tab.classList.add('hidden');
+        });
+
+        // Show selected service tab
+        const selectedTab = document.getElementById(selectedCategory);
+        if (selectedTab) {
+          selectedTab.classList.remove('hidden');
+        }
+
+        // Update hover indicator
+        document.querySelectorAll('.hover-indicator').forEach((indicator) => {
+          indicator.remove();
+        });
+
+        const indicator = document.createElement('span');
+        indicator.className = 'hover-indicator absolute h-full w-full bg-shadow/30 left-0 bottom-0 z-0';
+        this.nextElementSibling.appendChild(indicator);
+      });
+    });
+
+    // Handle service variant switching
+    serviceVariantInputs.forEach((input) => {
+      input.addEventListener('change', function () {
+        const selectedService = this.value;
+        console.log('Selected service:', selectedService);
+        const parentTab = this.closest('.service-tab');
+        console.log('Parent tab:', parentTab);
+
+        if (parentTab) {
+          // Hide all service variants in this tab
+          parentTab.querySelectorAll('.service-variant').forEach((variant) => {
+            variant.classList.add('hidden');
+          });
+
+          // Show selected service variant
+          const selectedVariant = document.getElementById(selectedService);
+          if (selectedVariant) {
+            selectedVariant.classList.remove('hidden');
+          }
+        }
+      });
+    });
+
+    // Handle initial page load with anchor
+    handleAnchorNavigation();
+
+    // Handle anchor link clicks on the page
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('a[href*="#"]');
+      if (link) {
+        const href = link.getAttribute('href');
+        const hash = href.substring(href.indexOf('#') + 1);
+
+        // Only handle internal anchor links (not external URLs)
+        if (href.startsWith('#') || link.hostname === window.location.hostname) {
+          // Check if the anchor corresponds to a tab or service
+          const targetElement = document.getElementById(hash);
+          if (targetElement && targetElement.closest('.service-tabs-block')) {
+            setTimeout(() => {
+              handleAnchorNavigation();
+            }, 10);
+          }
+        }
+      }
+    });
+
+    // Handle browser back/forward navigation
+    window.addEventListener('hashchange', function () {
+      handleAnchorNavigation();
+    });
+  });
+</script>
+
+<script src='{{ 'Flip.min.js' | asset_url }}' defer></script>
+<script src='{{ "component-hoverIndicator.js" | asset_url }}' defer></script>
+
+{% schema %}
+{
+  "name": "Service Tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Service Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "Services are pulled from Studio Services metaobjects. Create metaobjects with service_category field set to 'Ear Piercing', 'Facial Piercing', 'Body Piercing', or 'Other'."
+    },
+    {
+      "type": "url",
+      "id": "booking_url",
+      "label": "Booking URL",
+      "info": "URL for the 'Book Now' button"
+    },
+    {
+      "type": "url",
+      "id": "shop_jewelry_url",
+      "label": "Shop Jewelry URL",
+      "info": "Base URL for jewelry shopping links"
+    },
+    {
+      "type": "textarea",
+      "id": "default_description",
+      "label": "Default service description",
+      "default": "Professional piercing service with high-quality jewelry and expert care.",
+      "info": "Used when a service doesn't have its own description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service Tabs"
+    }
+  ]
+}
+{% endschema %}

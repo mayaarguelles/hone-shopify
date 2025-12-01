@@ -19,7 +19,7 @@
                 {% assign detail = detail %}
                 <li class='snap-start'>
                   <img
-                    class='block w-full mb-4'
+                    class='block w-full aspect-4/3 md:aspect-none mb-4'
                     src='{{ detail.image | image_url: width: 800 }}'
                     alt='{{ detail.title }}'
                     width='{{ detail.image.width }}'

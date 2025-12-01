@@ -40,48 +40,48 @@
 
   /* Custom font sizes - 1rem = 10px base */
   --text-hone: 9.6rem;
-  --text-hone--line-height: 10rem;
+  --text-hone--line-height: 1.04em;
   --text-hone--letter-spacing: -0.01em;
 
   --text-htwo: 6.4rem;
-  --text-htwo--line-height: 7.2rem;
+  --text-htwo--line-height: 1.125em;
 
   --text-hthree: 4.8rem;
-  --text-hthree--line-height: 5.6rem;
+  --text-hthree--line-height: 1.167em;
 
   --text-hfour: 3.2rem;
-  --text-hfour--line-height: 3.6rem;
+  --text-hfour--line-height: 1.125em;
 
   --text-hfive: 2.4rem;
-  --text-hfive--line-height: 3.2rem;
+  --text-hfive--line-height: 1.333em;
 
   --text-hsix: 1.8rem;
-  --text-hsix--line-height: 1.8rem;
+  --text-hsix--line-height: 1em;
 
   /* Override Tailwind default text sizes - 1rem = 10px base */
   --text-xs: 1.2rem;
-  --text-xs--line-height: 1.6rem;
+  --text-xs--line-height: 1.333em;
 
   --text-sm: 1.4rem;
-  --text-sm--line-height: 2rem;
+  --text-sm--line-height: 1.429em;
 
   --text-base: 1.6rem;
-  --text-base--line-height: 2.4rem;
+  --text-base--line-height: 1.5em;
 
   --text-lg: 1.8rem;
-  --text-lg--line-height: 2.8rem;
+  --text-lg--line-height: 1.556em;
 
   --text-xl: 2rem;
-  --text-xl--line-height: 2.8rem;
+  --text-xl--line-height: 1.4em;
 
   --text-2xl: 2.4rem;
-  --text-2xl--line-height: 3.2rem;
+  --text-2xl--line-height: 1.333em;
 
   --text-3xl: 3rem;
-  --text-3xl--line-height: 3.6rem;
+  --text-3xl--line-height: 1.2em;
 
   --text-4xl: 3.6rem;
-  --text-4xl--line-height: 4rem;
+  --text-4xl--line-height: 1.111em;
 
   --text-5xl: 4.8rem;
   --text-5xl--line-height: 1;
@@ -239,6 +239,18 @@
 
   .hone-dropdown__input__label:hover {
     @apply bg-current/10;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --text-hone: 4.25rem;
+      --text-htwo: 3rem;
+      --text-hthree: 2.4rem;
+      --text-hfour: 2rem;
+      --text-hfive: 1.5rem;
+      --text-hsix: 1.125rem;
+      --text-base: 0.875rem;
+    }
   }
 }
 
