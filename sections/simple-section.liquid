@@ -41,7 +41,12 @@
     {% assign color_class = ' color-' | append: section.settings.color_scheme %}
     {%- assign section_classes = section_classes | append: color_class -%}
 {% endcase %}
-<div class='{{ section_classes }} '>
+<div
+  class='{{ section_classes }} '
+  {% if section.settings.anchor != blank %}
+    id='{{ section.settings.anchor }}'
+  {% endif %}
+>
   {% case section.settings.section_type %}
     {% when 'cover-image' %}
       {% if section.settings.cover_image != blank %}
@@ -193,6 +198,12 @@
         { "value": "large", "label": "Large" }
       ],
       "default": "medium"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Section Anchor",
+      "info": "Optional. Add an ID to this section for anchor links."
     }
   ],
   "presets": [

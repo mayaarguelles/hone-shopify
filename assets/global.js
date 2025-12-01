@@ -1517,7 +1517,8 @@ document.addEventListener('instafeedAppLoaded', function () {
       wrapper.classList.add(
         'flex',
         'gap-4',
-        '*:w-[calc((var(--container-7xl)-((var(--spacing)*4)*3))/4)]',
+        '*:w-[calc(100vw-(var(--spacing)*16))]',
+        'md:*:w-[calc((var(--container-7xl)-((var(--spacing)*4)*3))/4)]',
         'w-max',
         '[&:last-child]:mr-4',
       );

@@ -77,7 +77,7 @@
         data-id='{{ section.id }}'
       >
         <div class='overflow-x-auto snap-x snap-mandatory no-scrollbar w-[calc(100%+var(--spacing)*4)]'>
-          <ul class='flex gap-4 *:w-[calc((var(--container-7xl)-((var(--spacing)*4)*3))/4)] w-max [&:last-child]:mr-4'>
+          <ul class='flex gap-4 *:w-[calc(100vw-(var(--spacing)*16))] md:*:w-[calc((var(--container-7xl)-((var(--spacing)*4)*3))/4)] w-max [&:last-child]:mr-4'>
             {% assign skip_card_product_styles = false %}
             {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
               <li

@@ -39,7 +39,31 @@
         "margin_bottom": 0,
         "padding_top": 20,
         "padding_bottom": 20
-      }
+      },
+      "blocks": {
+        "shop-megamenu": {
+          "type": "megamenu",
+          "settings": {
+            "title": "Shop by",
+            "menu": "shop-megamenu",
+            "index": 2,
+            "columns": 2
+          }
+        },
+        "about-megamenu": {
+          "type": "megamenu",
+          "settings": {
+            "title": "About",
+            "menu": "about-megamenu",
+            "index": 3,
+            "columns": 1
+          }
+        }
+      },
+      "block_order": [
+        "shop-megamenu",
+        "about-megamenu"
+      ]
     }
   },
   "order": [

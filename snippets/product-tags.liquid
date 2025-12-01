@@ -1,10 +1,10 @@
 {%- assign card_tags = card_product.metafields.custom.card_tags.value -%}
 {% if card_tags %}
-  <ul class='absolute top-4 left-4 flex flex-wrap gap-2 z-10'>
+  <ul class='absolute top-2 left-2 md:top-4 md:left-4 flex flex-wrap gap-2 z-10'>
     {% for tag in card_tags %}
       {% assign tag = tag %}
-      {% assign tag_classes = 'block text-xs px-2 py-1 text-black/70 bg-(--tag-color)' %}
-      <li class='bg-cloud'>
+      {% assign tag_classes = 'block text-[1rem] md:text-xs p-px px-1 md:px-2 md:py-1 text-black/70 bg-(--tag-color)' %}
+      <li class='bg-cloud not-first:hidden md:not-first:block'>
         <span class='{{ tag_classes }}' style='--tag-color: {{ tag.color }};'>
           {% if tag.icon %}
             {{ tag.icon | image_url: width: 72 | image_tag: class: 'inline-icon inline-block' }}

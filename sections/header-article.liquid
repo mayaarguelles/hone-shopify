@@ -36,7 +36,7 @@
     }}
   {% endif %}
   <div class='relative z-2'>
-    <div class='prose contain-vertical-margins'>
+    <div class='rte contain-vertical-margins'>
       <h1
         class='article-template__title text-htwo mb-0'
       >
@@ -55,7 +55,7 @@
       </span>
     {%- endif -%}
     {%- if section.settings.blog_show_excerpt and article.excerpt != blank -%}
-      <div class='mt-8 prose max-w-[75ch] border-t border-current/30 border-solid pt-4'>
+      <div class='mt-8 rte max-w-[75ch] border-t border-current/30 border-solid pt-4'>
         {{ article.excerpt }}
       </div>
     {%- endif -%}

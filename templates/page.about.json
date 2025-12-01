@@ -90,6 +90,7 @@
         "subheader": "",
         "color_scheme": "scheme-5",
         "section_type": "simple",
+        "anchor": "testimonials",
       },
       "blocks": {
         "carousel_d4ciVe": {
@@ -161,6 +162,7 @@
       "settings": {
         "title": "Our Studio",
         "subheader": "Lorem ipsum studio subheader",
+        "anchor": "gallery"
       },
       "blocks": {
         "slideshow_Gj8e8z": {
@@ -241,7 +243,8 @@
         "sizing": "standard",
         "section_type": "simple",
         "padding_top": "medium",
-        "padding_bottom": "medium"
+        "padding_bottom": "medium",
+        "anchor": "locations"
       }
     }
   },

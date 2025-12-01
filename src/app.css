@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 @import '@zyphox/tailwind-dynamic-colors';
-@plugin "@tailwindcss/typography";
+
+@plugin "@tailwindcss/typography" {
+  classname: rte;
+}
+
 @source not "../assets";
 @config "../tailwind.config.js";
 
@@ -138,7 +142,7 @@
   --tw-ease: cubic-bezier(0.64, 0.04, 0.35, 1);
 }
 
-@utility prose {
+@utility rte {
   --tw-prose-body: color-mix(in oklab, currentcolor 80%, transparent 20%);
   --tw-prose-headings: rgba(from currentcolor r g b / 1);
 }

@@ -5,15 +5,15 @@
   {% content_for 'block', type: 'text', id: 'text' %}
 {% enddoc %}
 {%- liquid
-  assign prose_classes = 'prose'
+  assign rte_classes = 'rte'
   if block.settings.text_style == 'large'
-    assign prose_classes = 'prose-lg'
+    assign rte_classes = 'rte-lg'
   elsif block.settings.text_style == 'medium'
-    assign prose_classes = 'prose-md'
+    assign rte_classes = 'rte-md'
   endif
 -%}
 <div
-  class='{{ prose_classes }} alignfull *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins my-4'
+  class='{{ rte_classes }} alignfull *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins my-4'
   style='--text-align: {{ block.settings.alignment }}'
   {{ block.shopify_attributes }}
 >

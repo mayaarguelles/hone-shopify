@@ -7,69 +7,88 @@
 
 <nav class='header__inline-menu flex-1 hidden md:flex items-stretch self-stretch pt-px gap-6'>
   <ul class='flex-1 flex items-stretch justify-start self-stretch pt-px gap-6' role='list'>
+    {% assign navindex = 0 %}
     {%- for link in section.settings.menu.links -%}
+      {% assign navindex = navindex | plus: 1 %}
       <li class='text-xs group/navitem flex items-center'>
-        {%- if link.links != blank -%}
-          <header-menu>
-            <details id='Details-HeaderMenu-{{ forloop.index }}' class='mega-menu'>
-              <summary
-                id='HeaderMenu-{{ link.handle }}'
-                class='header__menu-item list-menu__item link focus-inset'
-              >
-                <span
-                  {%- if link.child_active %}
-                    class='header__active-menu-item'
-                  {% endif %}
-                >
-                  {{- link.title | escape -}}
-                </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <div
-                id='MegaMenu-Content-{{ forloop.index }}'
-                class='mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup'
-                tabindex='-1'
-              >
-                <ul
-                  class='mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}'
-                  role='list'
-                >
-                  {%- for childlink in link.links -%}
-                    <li>
-                      <a
-                        id='HeaderMenu-{{ link.handle }}-{{ childlink.handle }}'
-                        href='{{ childlink.url }}'
-                        class='mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}'
-                        {% if childlink.current %}
-                          aria-current='page'
-                        {% endif %}
-                      >
-                        {{ childlink.title | escape }}
-                      </a>
-                      {%- if childlink.links != blank -%}
-                        <ul class='list-unstyled' role='list'>
-                          {%- for grandchildlink in childlink.links -%}
-                            <li>
-                              <a
-                                id='HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}'
-                                href='{{ grandchildlink.url }}'
-                                class='mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}'
-                                {% if grandchildlink.current %}
-                                  aria-current='page'
-                                {% endif %}
-                              >
-                                {{ grandchildlink.title | escape }}
-                              </a>
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      {%- endif -%}
-                    </li>
-                  {%- endfor -%}
-                </ul>
+        {%- liquid
+          assign megamenu = false
+          assign blocks = section.blocks
+          if blocks != blank
+            for block in blocks
+              if block.type == 'megamenu' and block.settings.index == navindex
+                assign megamenu = block
+              endif
+            endfor
+          endif
+        -%}
+        {%- if megamenu != false -%}
+          <a
+            href='{{ link.url }}'
+            class='group'
+            id='HeaderMenu-{{ link.handle }}'
+            aria-expanded='false'
+            aria-controls='HeaderMegaMenu-{{ link.handle }}'
+          >
+            {% render 'inline-hover-underline', content: link.title %}
+            {% render 'icon', name: 'arrow-down', class: 'inline h-3 w-3 ml-1 relative -top-[0.2em]' %}
+          </a>
+          <div class='absolute pointer-events-none left-0 top-full w-full h-[calc(100vh-var(--navigation-height-current))] overflow-hidden'>
+            <div
+              class='pointer-events-none absolute left-0 top-0 w-full px-12 py-8 justify-between color-dynamic bg-dynamic-100 text-black flex invisible transition-all duration-500 opacity-0 -translate-y-full group-hover/navitem:visible group-hover/navitem:pointer-events-auto group-hover/navitem:opacity-100 group-hover/navitem:translate-y-0 flex-wrap before:absolute before:bottom-full before:left-0 before:w-full before:h-4 z-20'
+              style='--color-dynamic:var(--color-cloud);'
+            >
+              <div>
+                {% if megamenu.title %}
+                  <h2 class='mb-4 text-xl'>{{ megamenu.title }}</h2>
+                {% endif %}
+                {% if megamenu.settings.menu != blank %}
+                  {%- assign megamenu_menu = linklists[megamenu.settings.menu] -%}
+                  <ul class='flex flex-col md:flex-row gap-16'>
+                    {%- for link in megamenu_menu.links -%}
+                      <li class='mb-2 last:mb-0'>
+                        {%- if link.url != '#' and link.url != blank -%}
+                          <a href='{{ link.url }}' class='hover:underline'>
+                            {{ link.title }}
+                          </a>
+                        {%- else -%}
+                          <span class=''>{{ link.title }}</span>
+                        {%- endif -%}
+
+                        {%- if link.links.size > 0 -%}
+                          {%- assign grid_class = '' -%}
+                          {%- if link.links.size > 2 -%}
+                            {%- case megamenu.settings.columns -%}
+                              {%- when 3 -%}
+                                {%- assign grid_class = 'grid-cols-3' -%}
+                              {%- when 2 -%}
+                                {%- assign grid_class = 'grid-cols-2' -%}
+                              {%- when 1 -%}
+                                {%- assign grid_class = 'grid-cols-1' -%}
+                            {%- endcase -%}
+                          {%- endif -%}
+
+                          <ul class='grid gap-6 gap-y-1 mt-2{% if grid_class != blank %} {{ grid_class }}{% endif %}'>
+                            {%- for sublink in link.links -%}
+                              <li class='mt-2 text-current/70'>
+                                {%- if sublink.url != blank -%}
+                                  <a href='{{ sublink.url }}' class='group'>
+                                    {% render 'inline-hover-underline', content: sublink.title %}
+                                  </a>
+                                {%- else -%}
+                                  <span>{{ sublink.title }}</span>
+                                {%- endif -%}
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {% endif %}
               </div>
-            </details>
-          </header-menu>
+            </div>
+          </div>
         {%- else -%}
           <a
             id='HeaderMenu-{{ link.handle }}'
