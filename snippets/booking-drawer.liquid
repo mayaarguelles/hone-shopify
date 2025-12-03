@@ -1,18 +1,24 @@
 <booking-drawer class='drawer'>
   <div id='BookingDrawer' class='cart-drawer'>
     <div id='BookingDrawer-Overlay' class='cart-drawer__overlay'></div>
-    <div class='drawer__inner color-{{ settings.cart_color_scheme }}'>
-      <button
-        class='drawer__close'
-        type='button'
-        onclick="this.closest('booking-drawer').close()"
-        aria-label='{{ 'accessibility.close' | t }}'
-      >
-        <span class='svg-wrapper'>
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </span>
-      </button>
-      <div class='booking-drawer__content'></div>
+    <div class='drawer__inner pb-4! color-{{ settings.booking_color_scheme }}'>
+      <div class='drawer__header'>
+        <h2 class='drawer__title h4'>{{ settings.booking_heading }}</h2>
+        <button
+          class='drawer__close'
+          type='button'
+          onclick="this.closest('booking-drawer').close()"
+          aria-label='{{ 'accessibility.close' | t }}'
+        >
+          <span class='svg-wrapper'>
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
+      </div>
+
+      <div class='flex-auto grow shrink-0 booking-drawer__content relative border-shadow/30 [&>iframe]:absolute [&>iframe]:top-0 [&>iframe]:left-0 [&>iframe]:w-full [&>iframe]:h-full'>
+        {{ settings.booking_code }}
+      </div>
     </div>
   </div>
 </booking-drawer>

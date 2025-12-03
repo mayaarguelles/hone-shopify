@@ -1406,6 +1406,29 @@
     ]
   },
   {
+    "name": "Booking",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "booking_code",
+        "label": "Booking Embed",
+        "default": "<!-- Paste your booking widget code here -->"
+      },
+      {
+        "type": "text",
+        "id": "booking_heading",
+        "label": "Booking Heading",
+        "default": "Book an Appointment",
+      },
+      {
+        "type": "color_scheme",
+        "id": "booking_color_scheme",
+        "label": "Colors",
+        "default": "scheme-1"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.cart.name",
     "settings": [
       {
