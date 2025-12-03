@@ -41,6 +41,7 @@
   },
   "prettier": "@trelliscommerce/prettier-config",
   "lint-staged": {
-    "*.{js,css}": "prettier --write"
+    "*.js": "prettier --write",
+    "*.css": "prettier --write --ignore-path .prettierignore"
   }
 }

@@ -2,7 +2,7 @@
 @import '@zyphox/tailwind-dynamic-colors';
 
 @plugin "@tailwindcss/typography" {
-  classname: rte;
+  className: rte;
 }
 
 @source not "../assets";
@@ -148,6 +148,7 @@
 }
 
 @layer base {
+
   b,
   strong {
     font-weight: 500;
@@ -161,11 +162,11 @@
   }
 
   .contain-vertical-margins {
-    & > *:first-child {
+    &>*:first-child {
       margin-top: 0 !important;
     }
 
-    & > *:last-child {
+    &>*:last-child {
       margin-bottom: 0 !important;
     }
   }
@@ -175,7 +176,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
 
-    > * {
+    >* {
       grid-column: 1 / -1;
       grid-row: 1 / -1;
     }
