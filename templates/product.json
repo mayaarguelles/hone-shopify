@@ -96,6 +96,20 @@
         "color_scheme": "scheme-1"
       }
     },
+    "product-related-services": {
+      "type": "product-related-service",
+      "settings": {
+        "title": "Shop In Studio",
+        "title_piercing": "Get Pierced",
+        "subheader": "Like what you see? Choose \"pick up in store\" at checkout to reserve this piece for your next jewelry exchange or curated styling session.",
+        "subheader_piercing": "Ready for your next piercing? Book an appointment with our expert piercers today.",
+        "text_content": "<p>Refresh your collection with personalized guidance. Whether you’re looking to refine your current stack, reimagine old favorites, or swap in new pieces, our team can help you build a look that feels intentional and uniquely yours. Book a curated styling session or visit for a seamless jewelry exchange.</p>",
+        "text_content_piercing": "<p>This piece is eligible for your next piercing and pairs perfectly with a range of placements. Explore how it can elevate your personal style and book the piercing service that matches your vision. Our piercers can help you select the ideal placement to complement your anatomy and bring your jewelry choice to life.</p><p>This piece is suitable as initial jewelry for the following piercing services:</p>",
+        "section_image": "shopify://shop_images/blog-2.jpg",
+        "section_image_piercing": "shopify://shop_images/blog-2.jpg",
+        "color_scheme": "scheme-5"
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -132,6 +146,7 @@
   "order": [
     "main",
     "product-notes",
+    "product-related-services",
     "related-products",
     "newsletter_section"
   ]

@@ -1,6 +1,11 @@
 {%- assign section_classes = 'relative w-full px-4 pt-6 pb-6' -%}
 {%- liquid
   assign header_level = section.settings.header_level | default: 'h2'
+  assign is_piercing_eligible = false
+
+  if product.metafields.custom.eligible_for_initial_piercing != 'true'
+    assign is_piercing_eligible = true
+  endif
 
   case section.settings.padding_top
     when 'none'
@@ -23,6 +28,35 @@
     when 'large'
       assign section_classes = section_classes | append: ' md:pb-24'
   endcase
+
+  assign title = section.settings.title
+  assign subheader = section.settings.subheader
+
+  assign section_title = section.settings.text_header
+
+  assign image = section.settings.section_image
+  assign text_content = section.settings.text_content
+
+  if is_piercing_eligible
+    if section.settings.title_piercing != blank
+      assign title = section.settings.title_piercing
+    endif
+
+    if section.settings.subheader_piercing != blank
+      assign subheader = section.settings.subheader_piercing
+    endif
+
+    if section.settings.text_header_piercing != blank
+      assign section_title = section.settings.text_header_piercing
+    endif
+
+    if section.settings.section_image_piercing != blank
+      assign image = section.settings.section_image_piercing
+    endif
+    if section.settings.text_content_piercing != blank
+      assign text_content = section.settings.text_content_piercing
+    endif
+  endif
 -%}
 {% case section.settings.sizing %}
   {% when 'browser-height' %}
@@ -88,29 +122,82 @@
       {% assign left_classes = left_classes | append: ' md:sticky md:top-(--navigation-height)' %}
     {% endif %}
     <div class='{{ left_classes }}'>
-      {% if section.settings.title != blank %}
-        <{{ header_level }} class='text-hsix mb-4'>{{ section.settings.title }}</{{ header_level }}>
+      {% if title != blank %}
+        <{{ header_level }} class='text-hsix mb-4'>{{ title }}</{{ header_level }}>
       {% endif %}
-      {% if section.settings.subheader != blank %}
-        <p class='leading-tight'>{{ section.settings.subheader }}</p>
+      {% if subheader != blank %}
+        <p class='leading-tight'>{{ subheader }}</p>
       {% endif %}
     </div>
     <div class='md:w-10/12 *:not-[.alignwide]:not-[.alignfull]:max-w-4xl [&>.alignwide]:max-w-7xl [&>.alignfull]:max-w-full contain-vertical-margins'>
-      {% content_for 'blocks' %}
+      <div
+        class='flex gap-6 md:gap-0 flex-col items-center alignwide my-4 md:my-12 md:flex-row'
+      >
+        <div class='md:w-1/2 box-border'>
+          {%- if image != blank -%}
+            {{
+              image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'w-full h-auto',
+                alt: image_alt,
+                loading: 'lazy',
+                width: image.width,
+                height: image.height
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'w-full h-auto placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        <div
+          class='w-full md:w-auto md:flex-[1_0_0] box-border *:mb-6 [&>p]:text-current/80 [&>p]:mb-4 md:pl-16 md:pr-0 rte'
+        >
+          <p class='text-hsix mb-0! text-current/50'>Our Services</p>
+          {% if section_title != blank %}
+            <h3 class='text-hfour mt-4!'>
+              {{ section_title }}
+            </h3>
+          {% endif %}
+          {{ text_content }}
+          {% if is_piercing_eligible %}
+            {% assign piercing_types = product.metafields.custom.piercing_type.value %}
+            <div class='hone-buttons flex flex-wrap gap-4 items-center my-6 [&_hone-button]:my-0 not-rte'>
+              {% for service in piercing_types %}
+                {% assign booking_url = service.booking_link %}
+                {% assign booking_cta = service.name %}
+                {% render 'cta',
+                  icon: 'arrow-up-right',
+                  href: booking_url,
+                  target: '_blank',
+                  content: booking_cta,
+                  uses_margins: 'no'
+                %}
+              {% endfor %}
+            </div>
+          {% elsif section.settings.services_metaobject != blank %}
+
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
 {% schema %}
 {
-  "name": "Simple Section",
+  "name": "Product Related Services",
   "tag": "section",
   "class": "simple-section",
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Header",
+      "default": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "title_piercing",
+      "label": "Header (Piercing Eligible)",
       "default": "Section Header"
     },
     {
@@ -132,6 +219,54 @@
       "id": "subheader",
       "label": "Subheader",
       "default": "This is a simple section subheader to provide additional context."
+    },
+    {
+      "type": "textarea",
+      "id": "subheader_piercing",
+      "label": "Subheader (Piercing Eligible)",
+      "default": "This is a simple section subheader to provide additional context."
+    },
+    {
+      "type": "metaobject_list",
+      "id": "services_metaobject",
+      "label": "Non-piercing Services",
+      "metaobject_type": "service"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Section Image",
+      "info": "Image to display accompanying copy"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image_piercing",
+      "label": "Section Image (Piercing Eligible)",
+      "info": "Image to display accompanying copy"
+    },
+    {
+      "type": "text",
+      "id": "text_header",
+      "label": "Text Header",
+      "default": "Find this style in-studio"
+    },
+    {
+      "type": "text",
+      "id": "text_header_piercing",
+      "label": "Text Header (Piercing Eligible)",
+      "default": "Make it your next piercing"
+    },
+    {
+      "type": "richtext",
+      "id": "text_content",
+      "label": "Additional Text Content",
+      "default": "<p>Add additional information about your services here.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text_content_piercing",
+      "label": "Additional Text Content (Piercing Eligible)",
+      "default": "<p>Add additional information about your services here.</p>"
     },
     {
       "type": "color_scheme",
@@ -193,13 +328,6 @@
         { "value": "large", "label": "Large" }
       ],
       "default": "medium"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Simple Section",
-      "category": "Sections",
-      "blocks": [{ "type": "text" }]
     }
   ]
 }
