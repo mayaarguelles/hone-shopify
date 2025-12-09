@@ -1,9 +1,17 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
       "type": "header-article",
-      "settings": {
-      }
+      "settings": {}
     },
     "main": {
       "type": "main-article",
@@ -15,34 +23,35 @@
           }
         },
         "content": {
-          "type": "content"
+          "type": "content",
+          "settings": {}
         }
       },
       "block_order": [
-        "featured_image",
-        "title",
         "share",
         "content"
-      ]
+      ],
+      "settings": {}
     },
     "newsletter_section": {
-        "type": "simple-section",
-        "name": "Simple Section",
-        "blocks": {
-            "newsletter": {
-                "type": "newsletter"
-            }
-        },
-        "block_order": [
-            "newsletter"
-        ],
-        "settings": {
-            "title": "Stay Connected",
-            "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
-            "color_scheme": "",
-            "sizing": "standard",
-            "section_type": "simple"
+      "type": "simple-section",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
         }
+      },
+      "block_order": [
+        "newsletter"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Stay Connected",
+        "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
     }
   },
   "order": [

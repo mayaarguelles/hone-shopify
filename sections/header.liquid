@@ -97,7 +97,7 @@
     -%}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
-      <div class='self-center flex-auto grow shrink-0 md:grow-0 -ml-4 md:ml-0'>
+      <div class='self-center flex-auto grow shrink-0 md:grow-0 -ml-4 md:ml-0 md:mr-4'>
         {%- if request.page_type == 'index' -%}
           <h1 class='header__heading'>
         {%- endif -%}
@@ -147,15 +147,74 @@
       </div>
     {%- endif -%}
 
-    {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
-        endif
-      endif
-    %}
+    {%- if section.settings.menu != blank -%}
+      {%- if section.settings.menu_type_desktop == 'dropdown' -%}
+        {%- render 'header-dropdown-menu' -%}
+      {%- elsif section.settings.menu_type_desktop != 'drawer' -%}
+        {% comment %}
+          Renders a megamenu for the header.
+
+          Usage:
+          {% render 'header-mega-menu' %}
+        {% endcomment %}
+
+        <nav class='header__inline-menu flex-1 grow shrink-0 hidden md:flex items-stretch self-stretch pt-px gap-6'>
+          <ul class='flex-1 flex items-stretch justify-start self-stretch pt-px gap-6' role='list'>
+            {% assign navindex = 0 %}
+            {%- for link in section.settings.menu.links -%}
+              {% assign navindex = navindex | plus: 1 %}
+              <li class='text-xs group/navitem flex items-center'>
+                {%- capture blocks -%}
+                  {%- content_for 'blocks' -%}
+                {%- endcapture -%}
+
+                {%- assign blocks_array = blocks | split: '<!-- @split -->' -%}
+                {%- assign megamenu = false -%}
+                {%- for item in blocks_array -%}
+                  {% assign match_id = 'HeaderMegaMenu-' | append: navindex %}
+                  {% if item contains match_id %}
+                    {% assign megamenu = item %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if megamenu != blank %}
+                  <a
+                    href='{{ link.url }}'
+                    class='group'
+                    id='HeaderMenu-{{ link.handle }}'
+                    aria-expanded='false'
+                    aria-controls='HeaderMegaMenu-{{ link.handle }}'
+                  >
+                    {% render 'inline-hover-underline', content: link.title %}
+                    {% render 'icon', name: 'arrow-down', class: 'inline h-3 w-3 ml-1 relative -top-[0.2em]' %}
+                  </a>
+                {% else %}
+                  <a
+                    id='HeaderMenu-{{ link.handle }}'
+                    href='{{ link.url }}'
+                    class='group'
+                    {% if link.current %}
+                      aria-current='page'
+                    {% endif %}
+                  >
+                    <span
+                      {%- if link.current %}
+                        class='header__active-menu-item'
+                      {% endif %}
+                    >
+                      {% render 'inline-hover-underline', content: link.title %}
+                    </span>
+                  </a>
+                {% endif %}
+                {% if megamenu != blank %}
+                  {{ megamenu }}
+                {% endif %}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+    {%- endif -%}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -469,43 +528,7 @@
       "type": "@app"
     },
     {
-      "type": "megamenu",
-      "name": "Menu Dropdown",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Menu",
-          "default": "main-menu"
-        },
-        {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "Color scheme",
-          "default": "scheme-1"
-        },
-        {
-          "type": "number",
-          "id": "index",
-          "label": "Index",
-          "default": 1,
-          "info": "Enter the index of the item in the main menu where this dropdown should appear (e.g., 1 for the first item)."
-        },
-        {
-          "type": "range",
-          "id": "columns",
-          "label": "Columns",
-          "default": 1,
-          "min": 1,
-          "max": 3,
-          "info": "Number of columns to display in the submenu items."
-        }
-      ]
+      "type": "_megamenu"
     }
   ]
 }

@@ -1,0 +1,140 @@
+{%- liquid
+  assign index = index | default: 'show'
+  if block != blank
+    assign megamenu = block
+  endif
+-%}
+{% if index == 'show' or index == block.settings.index %}
+  <div
+    id='HeaderMegaMenu-{{ block.settings.index }}'
+    class='absolute pointer-events-none left-0 top-full w-full h-[calc(100vh-var(--navigation-height-current))] overflow-hidden'
+  >
+    <div
+      class='pointer-events-none absolute left-0 top-0 w-full px-12 py-8 justify-between color-dynamic bg-dynamic-100 text-black flex invisible transition-all duration-500 opacity-0 -translate-y-full group-hover/navitem:visible group-hover/navitem:pointer-events-auto group-hover/navitem:opacity-100 group-hover/navitem:translate-y-0 flex-wrap before:absolute before:bottom-full before:left-0 before:w-full before:h-4 z-20'
+      style='--color-dynamic:var(--color-cloud);'
+    >
+      <div>
+        {% if megamenu.settings.title %}
+          <h2 class='mb-4 text-xl'>{{ megamenu.settings.title }}</h2>
+        {% endif %}
+        {% if megamenu.settings.menu != blank %}
+          {%- assign megamenu_menu = linklists[megamenu.settings.menu] -%}
+          <ul class='flex flex-col md:flex-row gap-16'>
+            {%- for link in megamenu_menu.links -%}
+              <li class='mb-2 last:mb-0'>
+                {%- if link.url != '#' and link.url != blank -%}
+                  <a href='{{ link.url }}' class='hover:underline'>
+                    {{ link.title }}
+                  </a>
+                {%- else -%}
+                  <span class=''>{{ link.title }}</span>
+                {%- endif -%}
+
+                {%- if link.links.size > 0 -%}
+                  {%- assign grid_class = '' -%}
+                  {%- if link.links.size > 2 -%}
+                    {%- case megamenu.settings.columns -%}
+                      {%- when 3 -%}
+                        {%- assign grid_class = 'grid-cols-3' -%}
+                      {%- when 2 -%}
+                        {%- assign grid_class = 'grid-cols-2' -%}
+                      {%- when 1 -%}
+                        {%- assign grid_class = 'grid-cols-1' -%}
+                    {%- endcase -%}
+                  {%- endif -%}
+
+                  <ul class='grid gap-6 gap-y-1 mt-2{% if grid_class != blank %} {{ grid_class }}{% endif %}'>
+                    {%- for sublink in link.links -%}
+                      <li class='mt-2 text-current/70'>
+                        {%- if sublink.url != blank -%}
+                          <a href='{{ sublink.url }}' class='group'>
+                            {% render 'inline-hover-underline', content: sublink.title %}
+                          </a>
+                        {%- else -%}
+                          <span>{{ sublink.title }}</span>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {% endif %}
+      </div>
+      {% if block.blocks.size > 0 %}
+        <ul class='flex gap-4 max-w-1/2 flex-1 justify-end'>
+          {% for block in block.blocks %}
+            <li class='max-w-1/3 flex-1'>
+              {% render block %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+<!-- @split -->
+{% schema %}
+{
+  "name": "Menu Dropdown",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "number",
+      "id": "index",
+      "label": "Index",
+      "default": 1,
+      "info": "Enter the index of the item in the main menu where this dropdown should appear (e.g., 1 for the first item)."
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "default": 1,
+      "min": 1,
+      "max": 3,
+      "info": "Number of columns to display in the submenu items."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "image-card"
+    },
+    {
+      "type": "collection-card"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menu Dropdown",
+      "category": "Header",
+      "blocks": [
+        {
+          "type": "image-card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

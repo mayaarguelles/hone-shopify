@@ -1,32 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "simple-section",
-      "settings": {
-        "header_level": "h1",
-        "title": "Contact Us",
-        "subheader": "",
-        "color_scheme": "scheme-3"
-      },
       "blocks": {
         "text-intro": {
           "type": "text",
           "settings": {
-            "text": "<p>Have questions or need assistance? We're here to help! Reach out to our team via the contact form below, and we'll get back to you as soon as possible.<\/p>"
+            "text": "<p>Have questions or need assistance? We're here to help! Reach out to our team via the contact form below, and we'll get back to you as soon as possible.</p>"
           }
         },
         "phone-button": {
           "type": "cta",
           "settings": {
             "button_text": "+1 (669) 699-8822",
-            "button_url": "tel:+16696998822",
+            "button_url": "tel:+16696998822"
           }
         },
         "email-button": {
           "type": "cta",
           "settings": {
             "button_text": "hello@honepiercing.com",
-            "button_url": "mailto:hello@honepiercing.com",
+            "button_url": "mailto:hello@honepiercing.com"
           }
         }
       },
@@ -34,7 +37,13 @@
         "text-intro",
         "phone-button",
         "email-button"
-      ]
+      ],
+      "settings": {
+        "title": "Contact Us",
+        "header_level": "h1",
+        "subheader": "",
+        "color_scheme": "scheme-3"
+      }
     },
     "form": {
       "type": "contact-form",
@@ -78,23 +87,24 @@
       }
     },
     "newsletter_section": {
-        "type": "simple-section",
-        "name": "Simple Section",
-        "blocks": {
-            "newsletter": {
-                "type": "newsletter"
-            }
-        },
-        "block_order": [
-            "newsletter"
-        ],
-        "settings": {
-            "title": "Stay Connected",
-            "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
-            "color_scheme": "",
-            "sizing": "standard",
-            "section_type": "simple"
+      "type": "simple-section",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
         }
+      },
+      "block_order": [
+        "newsletter"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Stay Connected",
+        "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
     }
   },
   "order": [

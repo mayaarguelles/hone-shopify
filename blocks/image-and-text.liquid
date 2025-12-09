@@ -21,6 +21,9 @@
 <div
   class='flex gap-6 md:gap-0 flex-col items-center alignwide my-4 md:my-12 {{ flex_direction }}'
   {{ block.shopify_attributes }}
+  {% if block.settings.anchor != blank %}
+    id='{{ block.settings.anchor }}'
+  {% endif %}
 >
   <div class='md:w-1/2 box-border'>
     {%- if image != blank -%}
@@ -59,6 +62,12 @@
         { "value": "image-right", "label": "Image on right" }
       ],
       "default": "image-left"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Section Anchor",
+      "info": "Optional. Add an anchor link to this section for easy navigation."
     }
   ],
   "blocks": [{ "type": "@app" }, { "type": "@theme" }],

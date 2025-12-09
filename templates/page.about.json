@@ -32,19 +32,21 @@
       "blocks": {
         "statement-1": {
           "type": "image-and-text",
+          "settings": {
+            "image": "shopify://shop_images/PIERCINGROOM2_1699557753-1_jpeg_7fedd188-7b8b-47c4-a353-a516c3c02655.webp",
+            "image_alt": "",
+            "direction": "image-left"
+          },
           "blocks": {
             "statement-text-1": {
               "type": "text",
               "settings": {
-                "text": "<h4>About Hone</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius faucibus massa sollicitudin amet augue. Nibh metus a semper purus mauris duis. Lorem eu neque, tristique quis duis. Nibh scelerisque ac adipiscing velit non nulla in amet pellentesque. Sit turpis pretium eget maecenas. Vestibulum dolor mattis consectetur eget commodo vitae.</p>",
+                "text": "<h4>A space made for you</h4><p>At Hone, we want every piercing to feel entirely your own. From the moment you walk in, our team is here to guide you with care, expertise, and zero pressure—helping you discover pieces and placements that reflect your style.</p>",
+                "text_style": "base",
                 "alignment": "left"
               },
               "blocks": {}
             }
-          },
-          "settings": {
-            "direction": "image-left",
-            "image": "shopify://shop_images/piercing-mockup.jpg",
           },
           "block_order": [
             "statement-text-1"
@@ -52,19 +54,21 @@
         },
         "statement-2": {
           "type": "image-and-text",
+          "settings": {
+            "image": "shopify://shop_images/HoneAbout.jpg",
+            "image_alt": "",
+            "direction": "image-right"
+          },
           "blocks": {
             "statement-text-2": {
               "type": "text",
               "settings": {
-                "text": "<h4>About Hone</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius faucibus massa sollicitudin amet augue. Nibh metus a semper purus mauris duis. Lorem eu neque, tristique quis duis. Nibh scelerisque ac adipiscing velit non nulla in amet pellentesque. Sit turpis pretium eget maecenas. Vestibulum dolor mattis consectetur eget commodo vitae.</p>",
+                "text": "<h4>Contemporary style with a personal touch</h4><p>Our studio is designed with comfort and ease in mind. Every detail, from our sterilization processes to our carefully selected jewelry, reflects our commitment to safety and precision.</p>",
+                "text_style": "base",
                 "alignment": "left"
               },
               "blocks": {}
             }
-          },
-          "settings": {
-            "image": "shopify://shop_images/jordan-gonzalez-Jvz2Civ-Abk-unsplash.jpg",
-            "direction": "image-right"
           },
           "block_order": [
             "statement-text-2"
@@ -77,10 +81,14 @@
       ],
       "settings": {
         "title": "Who We Are",
+        "header_level": "h2",
         "subheader": "",
         "color_scheme": "",
         "sizing": "standard",
         "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     },
     "testimonials": {
@@ -161,7 +169,7 @@
       "type": "simple-section",
       "settings": {
         "title": "Our Studio",
-        "subheader": "Lorem ipsum studio subheader",
+        "subheader": "Our space is designed for comfort and care.",
         "anchor": "gallery"
       },
       "blocks": {

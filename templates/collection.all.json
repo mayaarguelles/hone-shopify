@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "collections": {
@@ -17,7 +26,7 @@
                 "use_custom_image": false,
                 "text_position": "bottom-left",
                 "overlay_opacity": "70",
-                "additional_classes": "",
+                "additional_classes": ""
               },
               "blocks": {}
             },
@@ -79,29 +88,28 @@
         "show_rating": false,
         "enable_filtering": true,
         "enable_sorting": false,
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "columns_mobile": "2"
       }
     },
     "newsletter_section": {
-        "type": "simple-section",
-        "name": "Simple Section",
-        "blocks": {
-            "newsletter": {
-                "type": "newsletter"
-            }
-        },
-        "block_order": [
-            "newsletter"
-        ],
-        "settings": {
-            "title": "Stay Connected",
-            "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
-            "color_scheme": "",
-            "sizing": "standard",
-            "section_type": "simple"
+      "type": "simple-section",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
         }
+      },
+      "block_order": [
+        "newsletter"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Stay Connected",
+        "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
     }
   },
   "order": [

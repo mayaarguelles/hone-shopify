@@ -72,10 +72,20 @@
 {%- if title != blank or subtitle != blank -%}
   <div class='{{ text_classes }}'>
     <div>
-      {%- if title != blank -%}
+      {%- if title != blank and block.settings.text_style == 'default' -%}
         <h2 class='text-lg md:text-xl'>
           {{ title }}
         </h2>
+      {%- elsif title != blank and block.settings.text_style == 'cta' -%}
+        <span>
+          {% render 'cta',
+            content: title,
+            tag: 'span',
+            icon: 'arrow-down-right',
+            classes: 'text-current',
+            uses_group_hover: true
+          %}
+        </span>
       {%- endif -%}
       {%- if subtitle != blank -%}
         <p class='text-sm text-current/70 mt-1'>
@@ -122,6 +132,16 @@
       "id": "link_url",
       "label": "Link URL",
       "info": "Leave blank to disable linking"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "Text Style",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "cta", "label": "CTA Style" }
+      ],
+      "default": "default"
     },
     {
       "type": "select",

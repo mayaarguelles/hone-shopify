@@ -15,7 +15,8 @@
      alt: 'Hero image description',
      hover_image: section.settings.hover_image,
      hover_image_alt: 'Hover image description',
-     content: '<h2>Your content here</h2>' %}
+     content: '<h2>Your content here</h2>'
+  %}
 {% endcomment %}
 
 {% if index != blank %}
@@ -32,17 +33,11 @@
       assign image_url_1200 = image | image_url: width: 1200
       assign image_url_800 = image | image_url: width: 800
     -%}
-    <img
-      src='{{ image_url_1920 }}'
-      srcset='{{ image_url_800 }} 800w, {{ image_url_1200 }} 1200w, {{ image_url_1920 }} 1920w'
-      sizes='(max-width: 768px) 100vw, 50vw'
-      alt='{{ image_alt }}'
-      width='{{ image.width }}'
-      height='{{ image.height }}'
-      loading='eager'
-      fetchpriority='high'
-      class='absolute left-0 top-0 w-full h-full object-cover z-1'
-    >
+    {{
+      image
+      | image_url: width: 1920
+      | image_tag: alt: image_alt, loading: 'eager', class: 'absolute left-0 top-0 w-full h-full object-cover z-1'
+    }}
   {% else %}
     {% assign placeholder_image = 'hero-l.jpg' | asset_url %}
     {% if unique_id == 2 %}

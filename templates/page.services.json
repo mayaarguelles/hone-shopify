@@ -8,475 +8,478 @@
  * ------------------------------------------------------------
  */
 {
-    "sections": {
-        "services": {
-            "type": "simple-section",
-            "blocks": {
-                "service-tabs": {
-                    "type": "service-tabs",
-                    "name": "Service Tabs",
-                    "settings": {},
-                    "blocks": {}
-                },
-            },
-            "block_order": [
-                "service-tabs"
-            ],
-            "settings": {
-                "title": "Piercing",
-                "subheader": "Explore our full range of piercing services.",
-            }
-        },
-        "simple_section_VQmUL7": {
-            "type": "simple-section",
-            "blocks": {
-                "image_and_text_T6EUMr": {
-                    "type": "image-and-text",
-                    "name": "Image and Text",
-                    "settings": {
-                        "image": "{{ metaobjects.studio_services[\"jewelry-exchange\"].main_image.value }}",
-                        "image_alt": "",
-                        "direction": "image-left"
-                    },
-                    "blocks": {
-                        "text_heading_FQjA6b": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<h2>{{ metaobjects.studio_services[\"jewelry-exchange\"].name | metafield_text }}</h2>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        },
-                        "text_FQjA6b": {
-                            "type": "text",
-                            "settings": {
-                                "text": "{{ metaobjects.studio_services[\"jewelry-exchange\"].service_description | metafield_tag }}",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        },
-                        "buttons_MXYFQy": {
-                            "type": "buttons",
-                            "name": "Buttons",
-                            "settings": {},
-                            "blocks": {
-                                "button_8Fg4iN": {
-                                    "type": "button",
-                                    "settings": {
-                                        "button_text": "Book Now",
-                                        "button_url": "{{ metaobjects.studio_services[\"jewelry-exchange\"].booking_link.value }}",
-                                        "button_style": "fill",
-                                        "button_target": false,
-                                        "button_icon": "arrow-up-right"
-                                    },
-                                    "blocks": {}
-                                }
-                            },
-                            "block_order": [
-                                "button_8Fg4iN"
-                            ]
-                        }
-                    },
-                    "block_order": [
-                        "text_heading_FQjA6b",
-                        "text_FQjA6b",
-                        "buttons_MXYFQy"
-                    ]
-                },
-                "image_and_text_aQ4kPL": {
-                    "type": "image-and-text",
-                    "name": "Image and Text",
-                    "settings": {
-                        "image": "{{ metaobjects.studio_services[\"curated-styling-sessions\"].main_image.value }}",
-                        "image_alt": "",
-                        "direction": "image-right"
-                    },
-                    "blocks": {
-                        "text_heading_wbNxQN": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<h2>{{ metaobjects.studio_services[\"curated-styling-sessions\"].name | metafield_text }}</h2>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        },
-                        "text_wbNxQN": {
-                            "type": "text",
-                            "settings": {
-                                "text": "{{ metaobjects.studio_services[\"curated-styling-sessions\"].service_description | metafield_tag }}",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        },
-                        "buttons_yrf4xF": {
-                            "type": "buttons",
-                            "name": "Buttons",
-                            "settings": {},
-                            "blocks": {
-                                "button_gP8ERn": {
-                                    "type": "button",
-                                    "settings": {
-                                        "button_text": "Book Now",
-                                        "button_url": "{{ metaobjects.studio_services[\"curated-styling-sessions\"].booking_link.value }}",
-                                        "button_style": "fill",
-                                        "button_target": false,
-                                        "button_icon": "arrow-up-right"
-                                    },
-                                    "blocks": {}
-                                }
-                            },
-                            "block_order": [
-                                "button_gP8ERn"
-                            ]
-                        }
-                    },
-                    "block_order": [
-                        "text_heading_wbNxQN",
-                        "text_wbNxQN",
-                        "buttons_yrf4xF"
-                    ]
-                }
-            },
-            "block_order": [
-                "image_and_text_T6EUMr",
-                "image_and_text_aQ4kPL"
-            ],
-            "name": "Simple Section",
-            "settings": {
-                "title": "Specialty Services",
-                "subheader": "Enhance your piercing experience with our curated specialty services.",
-                "color_scheme": "scheme-3",
-                "sizing": "standard",
-                "section_type": "simple"
-            }
-        },
-        "simple_section_NNHnWg": {
-            "type": "simple-section",
-            "blocks": {
-                "accordion_1": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "Is it necessary to make an appointment, or can I walk in for a piercing?",
-                        "is_open": true
-                    },
-                    "blocks": {
-                        "text_1": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>Currently we work by appointment to ensure we can provide you with our undivided attention and give you the best possible experience. However, we do accommodate walk-in clients if we are in the studio and time permits whenever possible.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_1"
-                    ]
-                },
-                "accordion_2": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "How do I prepare for my piercing appointment?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_2": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>It's important to arrive well-rested and nourished before your appointment. We advise avoiding alcohol or any blood-thinning medications prior to your piercing. Please ensure that you have eaten a light meal to help maintain your blood sugar levels during the process. Please gather necessary documents for adults this includes a a physical government identification. Minors must be accompanied by a legal guardian and provide a physical school identification, government identification, passport or birth certificate.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_2"
-                    ]
-                },
-                "accordion_3": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "Can I bring my own jewelry for the piercing?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_3": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>For your safety and to maintain our high standards of hygiene, we only use our sterilized, high-quality jewelry for the piercing process. Rest assured, we offer a wide range of exquisite jewelry options to choose from, ensuring you find something that matches your style.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_3"
-                    ]
-                },
-                "accordion_4": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "How long does the piercing process take?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_4": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>The duration depends on the type of piercing and your individual anatomy. On average, a single piercing takes approximately 30 minutes, including the consultation, marking, and the piercing itself.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_4"
-                    ]
-                },
-                "accordion_5": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "Does getting a piercing hurt?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_5": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>Pain tolerance varies from person to person, but most clients describe the sensation as a quick pinch or pressure that subsides shortly. Our highly trained piercers are skilled at minimizing discomfort and ensuring a smooth experience. We use high-quality, sharp needles designed for efficient and precise piercings.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_5"
-                    ]
-                },
-                "accordion_6": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "What age restrictions do you have for piercings?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_6": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>We adhere strictly to local laws and regulations regarding age restrictions for piercings. Generally, minors (under 18 years) require parental consent and accompaniment. Please check with us or your local regulations for specific details.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_6"
-                    ]
-                },
-                "accordion_7": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "How long does it take for a piercing to heal?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_7": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>Healing times vary depending on the piercing type. On average, earlobe piercings take 6-8 weeks to heal, while cartilage piercings can take 3-12 months. Our piercers will provide you with detailed aftercare instructions to help facilitate the healing process.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_7"
-                    ]
-                },
-                "accordion_8": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "Can I change the jewelry soon after getting a piercing?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_8": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>It's crucial to allow your piercing to heal fully before changing the jewelry. Premature jewelry changes can disrupt the healing process and increase the risk of complications. We recommend consulting with our piercers for appropriate timelines for jewelry changes.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_8"
-                    ]
-                },
-                "accordion_9": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "What aftercare routine should I follow for my new piercing?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_9": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>We provide detailed aftercare instructions tailored to your specific piercing. Generally, it involves cleaning the piercing twice a day with a saline solution or an aftercare product we provide. Avoid touching the piercing with dirty hands and be mindful of any potential irritants, such as hairspray or makeup.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_9"
-                    ]
-                },
-                "accordion_10": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "What if I experience any complications or have further questions after the piercing?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_10": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>Our commitment to your well-being extends beyond the piercing process. If you experience any complications or have additional questions, please don't hesitate to contact us. Our piercers are here to provide guidance and support throughout your healing journey.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_10"
-                    ]
-                },
-                "accordion_11": {
-                    "type": "accordion",
-                    "name": "Accordion",
-                    "settings": {
-                        "title": "Do you pierce babies?",
-                        "is_open": false
-                    },
-                    "blocks": {
-                        "text_11": {
-                            "type": "text",
-                            "settings": {
-                                "text": "<p>Unfortunately, we do not pierce children under five years of age or those children between 5-11 years of age who do not have the ability to sit for the piercing. We recommend piercing studios that specialize in infant and toddler piercings for this specialty.</p>",
-                                "text_style": "base",
-                                "alignment": "left"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "text_11"
-                    ]
-                },
-                "text_12": {
-                    "type": "text",
-                    "settings": {
-                        "text": "<p>More questions?</p>",
-                        "text_style": "medium",
-                        "alignment": "left"
-                    },
-                },
-                "buttons_13": {
-                    "type": "buttons",
-                    "name": "Buttons",
-                    "settings": {},
-                    "blocks": {
-                        "button_14": {
-                            "type": "button",
-                            "settings": {
-                                "button_text": "Contact Us",
-                                "button_url": "shopify://pages/contact",
-                                "button_style": "fill",
-                                "button_target": false,
-                                "button_icon": "arrow-down-right"
-                            },
-                            "blocks": {}
-                        }
-                    },
-                    "block_order": [
-                        "button_14"
-                    ]
-                }
-            },
-            "block_order": [
-                "accordion_1",
-                "accordion_2",
-                "accordion_3",
-                "accordion_4",
-                "accordion_5",
-                "accordion_6",
-                "accordion_7",
-                "accordion_8",
-                "accordion_9",
-                "accordion_10",
-                "accordion_11",
-                "text_12",
-                "buttons_13"
-            ],
-            "name": "Simple Section",
-            "settings": {
-                "title": "Frequently Asked Questions",
-                "subheader": "",
-                "color_scheme": "",
-                "sizing": "standard",
-                "section_type": "simple"
-            }
-        },
-        "newsletter_section": {
-            "type": "simple-section",
-            "name": "Simple Section",
-            "blocks": {
-                "newsletter": {
-                    "type": "newsletter"
-                }
-            },
-            "block_order": [
-                "newsletter"
-            ],
-            "settings": {
-                "title": "Stay Connected",
-                "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
-                "color_scheme": "",
-                "sizing": "standard",
-                "section_type": "simple"
-            }
+  "sections": {
+    "services": {
+      "type": "simple-section",
+      "blocks": {
+        "service-tabs": {
+          "type": "service-tabs",
+          "name": "Service Tabs",
+          "settings": {},
+          "blocks": {}
         }
+      },
+      "block_order": [
+        "service-tabs"
+      ],
+      "settings": {
+        "title": "Piercing",
+        "subheader": "Explore our full range of piercing services."
+      }
     },
-    "order": [
-        "services",
-        "simple_section_VQmUL7",
-        "simple_section_NNHnWg",
-        "newsletter_section"
-    ]
+    "simple_section_VQmUL7": {
+      "type": "simple-section",
+      "blocks": {
+        "image_and_text_T6EUMr": {
+          "type": "image-and-text",
+          "name": "Image and Text",
+          "settings": {
+            "image": "{{ metaobjects.studio_services[\"jewelry-exchange\"].main_image.value }}",
+            "image_alt": "",
+            "direction": "image-left",
+            "anchor": "jewelry-exchange"
+          },
+          "blocks": {
+            "text_heading_FQjA6b": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>{{ metaobjects.studio_services[\"jewelry-exchange\"].name | metafield_text }}</h2>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "text_FQjA6b": {
+              "type": "text",
+              "settings": {
+                "text": "{{ metaobjects.studio_services[\"jewelry-exchange\"].service_description | metafield_tag }}",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "buttons_MXYFQy": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {},
+              "blocks": {
+                "button_8Fg4iN": {
+                  "type": "button",
+                  "settings": {
+                    "button_text": "Book Now",
+                    "button_url": "{{ metaobjects.studio_services[\"jewelry-exchange\"].booking_link.value }}",
+                    "button_style": "fill",
+                    "button_target": false,
+                    "button_icon": "arrow-up-right"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "button_8Fg4iN"
+              ]
+            }
+          },
+          "block_order": [
+            "text_heading_FQjA6b",
+            "text_FQjA6b",
+            "buttons_MXYFQy"
+          ]
+        },
+        "image_and_text_aQ4kPL": {
+          "type": "image-and-text",
+          "name": "Image and Text",
+          "settings": {
+            "image": "{{ metaobjects.studio_services[\"curated-styling-sessions\"].main_image.value }}",
+            "image_alt": "",
+            "direction": "image-right",
+            "anchor": "curated-styling-sessions"
+          },
+          "blocks": {
+            "text_heading_wbNxQN": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>{{ metaobjects.studio_services[\"curated-styling-sessions\"].name | metafield_text }}</h2>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "text_wbNxQN": {
+              "type": "text",
+              "settings": {
+                "text": "{{ metaobjects.studio_services[\"curated-styling-sessions\"].service_description | metafield_tag }}",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "buttons_yrf4xF": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {},
+              "blocks": {
+                "button_gP8ERn": {
+                  "type": "button",
+                  "settings": {
+                    "button_text": "Book Now",
+                    "button_url": "{{ metaobjects.studio_services[\"curated-styling-sessions\"].booking_link.value }}",
+                    "button_style": "fill",
+                    "button_target": false,
+                    "button_icon": "arrow-up-right"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "button_gP8ERn"
+              ]
+            }
+          },
+          "block_order": [
+            "text_heading_wbNxQN",
+            "text_wbNxQN",
+            "buttons_yrf4xF"
+          ]
+        }
+      },
+      "block_order": [
+        "image_and_text_T6EUMr",
+        "image_and_text_aQ4kPL"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Specialty Services",
+        "subheader": "Enhance your piercing experience with our curated specialty services.",
+        "color_scheme": "scheme-3",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
+    },
+    "simple_section_NNHnWg": {
+      "type": "simple-section",
+      "blocks": {
+        "accordion_1": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "Is it necessary to make an appointment, or can I walk in for a piercing?",
+            "is_open": true
+          },
+          "blocks": {
+            "text_1": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Currently we work by appointment to ensure we can provide you with our undivided attention and give you the best possible experience. However, we do accommodate walk-in clients if we are in the studio and time permits whenever possible.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_1"
+          ]
+        },
+        "accordion_2": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "How do I prepare for my piercing appointment?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_2": {
+              "type": "text",
+              "settings": {
+                "text": "<p>It's important to arrive well-rested and nourished before your appointment. We advise avoiding alcohol or any blood-thinning medications prior to your piercing. Please ensure that you have eaten a light meal to help maintain your blood sugar levels during the process. Please gather necessary documents for adults this includes a a physical government identification. Minors must be accompanied by a legal guardian and provide a physical school identification, government identification, passport or birth certificate.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_2"
+          ]
+        },
+        "accordion_3": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "Can I bring my own jewelry for the piercing?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_3": {
+              "type": "text",
+              "settings": {
+                "text": "<p>For your safety and to maintain our high standards of hygiene, we only use our sterilized, high-quality jewelry for the piercing process. Rest assured, we offer a wide range of exquisite jewelry options to choose from, ensuring you find something that matches your style.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_3"
+          ]
+        },
+        "accordion_4": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "How long does the piercing process take?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_4": {
+              "type": "text",
+              "settings": {
+                "text": "<p>The duration depends on the type of piercing and your individual anatomy. On average, a single piercing takes approximately 30 minutes, including the consultation, marking, and the piercing itself.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_4"
+          ]
+        },
+        "accordion_5": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "Does getting a piercing hurt?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_5": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Pain tolerance varies from person to person, but most clients describe the sensation as a quick pinch or pressure that subsides shortly. Our highly trained piercers are skilled at minimizing discomfort and ensuring a smooth experience. We use high-quality, sharp needles designed for efficient and precise piercings.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_5"
+          ]
+        },
+        "accordion_6": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "What age restrictions do you have for piercings?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_6": {
+              "type": "text",
+              "settings": {
+                "text": "<p>We adhere strictly to local laws and regulations regarding age restrictions for piercings. Generally, minors (under 18 years) require parental consent and accompaniment. Please check with us or your local regulations for specific details.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_6"
+          ]
+        },
+        "accordion_7": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "How long does it take for a piercing to heal?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_7": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Healing times vary depending on the piercing type. On average, earlobe piercings take 6-8 weeks to heal, while cartilage piercings can take 3-12 months. Our piercers will provide you with detailed aftercare instructions to help facilitate the healing process.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_7"
+          ]
+        },
+        "accordion_8": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "Can I change the jewelry soon after getting a piercing?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_8": {
+              "type": "text",
+              "settings": {
+                "text": "<p>It's crucial to allow your piercing to heal fully before changing the jewelry. Premature jewelry changes can disrupt the healing process and increase the risk of complications. We recommend consulting with our piercers for appropriate timelines for jewelry changes.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_8"
+          ]
+        },
+        "accordion_9": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "What aftercare routine should I follow for my new piercing?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_9": {
+              "type": "text",
+              "settings": {
+                "text": "<p>We provide detailed aftercare instructions tailored to your specific piercing. Generally, it involves cleaning the piercing twice a day with a saline solution or an aftercare product we provide. Avoid touching the piercing with dirty hands and be mindful of any potential irritants, such as hairspray or makeup.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_9"
+          ]
+        },
+        "accordion_10": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "What if I experience any complications or have further questions after the piercing?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_10": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Our commitment to your well-being extends beyond the piercing process. If you experience any complications or have additional questions, please don't hesitate to contact us. Our piercers are here to provide guidance and support throughout your healing journey.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_10"
+          ]
+        },
+        "accordion_11": {
+          "type": "accordion",
+          "name": "Accordion",
+          "settings": {
+            "title": "Do you pierce babies?",
+            "is_open": false
+          },
+          "blocks": {
+            "text_11": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Unfortunately, we do not pierce children under five years of age or those children between 5-11 years of age who do not have the ability to sit for the piercing. We recommend piercing studios that specialize in infant and toddler piercings for this specialty.</p>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_11"
+          ]
+        },
+        "text_12": {
+          "type": "text",
+          "settings": {
+            "text": "<p>More questions?</p>",
+            "text_style": "medium",
+            "alignment": "left"
+          }
+        },
+        "buttons_13": {
+          "type": "buttons",
+          "name": "Buttons",
+          "settings": {},
+          "blocks": {
+            "button_14": {
+              "type": "button",
+              "settings": {
+                "button_text": "Contact Us",
+                "button_url": "shopify://pages/contact",
+                "button_style": "fill",
+                "button_target": false,
+                "button_icon": "arrow-down-right"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "button_14"
+          ]
+        }
+      },
+      "block_order": [
+        "accordion_1",
+        "accordion_2",
+        "accordion_3",
+        "accordion_4",
+        "accordion_5",
+        "accordion_6",
+        "accordion_7",
+        "accordion_8",
+        "accordion_9",
+        "accordion_10",
+        "accordion_11",
+        "text_12",
+        "buttons_13"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subheader": "",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
+    },
+    "newsletter_section": {
+      "type": "simple-section",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "newsletter"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Stay Connected",
+        "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
+    }
+  },
+  "order": [
+    "services",
+    "simple_section_VQmUL7",
+    "simple_section_NNHnWg",
+    "newsletter_section"
+  ]
 }

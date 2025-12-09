@@ -22,7 +22,7 @@
       assign image = custom_image
       assign alt_text = custom_title | default: collection.title
     else
-      assign image = collection.featured_image | default: collection.products.first.featured_image
+      assign image = collection.image | default: collection.products.first.featured_image
       assign alt_text = collection.title
     endif
   else

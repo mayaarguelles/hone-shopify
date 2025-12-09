@@ -16,7 +16,7 @@
           assign blocks = section.blocks
           if blocks != blank
             for block in blocks
-              if block.type == 'megamenu' and block.settings.index == navindex
+              if block.type == 'megamenu'
                 assign megamenu = block
               endif
             endfor

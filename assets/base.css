@@ -986,6 +986,7 @@
     .grid--peek.slider--mobile {
       margin: 0;
       width: 100%;
+      display: flex !important;
     }
 
     .grid--peek.slider--mobile .grid__item {

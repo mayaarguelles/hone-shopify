@@ -1,158 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "split-header": {
       "type": "split-header",
       "settings": {
-        "left_image": "",
+        "left_image": "shopify://shop_images/HoneHero6_df3dd767-705a-4435-8bd3-c498eb40a80d.jpg",
         "left_image_alt": "",
-        "left_hover_video": "",
-        "right_image": "",
-        "right_image_alt": "",
-        "right_hover_video": "",
+        "left_hover_video": "shopify://files/videos/hero-l-hover-alt-compressed.mp4",
         "left_button_text": "Get Pierced",
-        "left_button_link": "#",
+        "left_button_url": "shopify://pages/services",
+        "right_image": "shopify://shop_images/HoneHero_Alt_3.jpg",
+        "right_image_alt": "",
+        "right_hover_video": "shopify://files/videos/The%20knotted%20metal%20twists%20and%20undulates%20calmly%2C%20slowly%20hovering%20in%20space%2C%20reflecting%20light.mp4",
         "right_button_text": "Shop Jewelry",
-        "right_button_link": "#"
+        "right_button_url": "shopify://collections/all",
+        "tagline": "A contemporary piercing studio"
       }
     },
     "intro-section": {
       "type": "simple-section",
-      "settings": {
-        "title": "A new kind of piercing studio",
-        "subheader": "",
-        "color_scheme": "scheme-3"
-      },
       "blocks": {
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Hone is the authority on fine piercing and intentional placement. We've redefined the piercing experience in our safe, sophisticated boutique—combining clinical expertise with a refined design sensibility.<\/p>",
-            "text_style": "large"
-          }
+            "text": "<p>Hone is the authority on fine piercing and intentional placement. We've redefined the piercing experience in our safe, sophisticated boutique—combining clinical expertise with a refined design sensibility.</p>",
+            "text_style": "large",
+            "alignment": "left"
+          },
+          "blocks": {}
         },
         "buttons": {
           "type": "buttons",
+          "settings": {},
           "blocks": {
             "button-1": {
               "type": "button",
               "settings": {
                 "button_text": "Who We Are",
-                "button_icon": "arrow-down-right",
-                "button_link": "#",
-                "button_style": "fill"
-              }
+                "button_url": "shopify://pages/about",
+                "button_style": "fill",
+                "button_target": false,
+                "button_icon": "arrow-down-right"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "button-1"
-          ],
+          ]
         }
       },
       "block_order": [
         "text",
         "buttons"
-      ]
-    },
-    "about-section": {
-      "type": "simple-section",
+      ],
       "settings": {
-        "title": "Experience the Art of Piercing",
+        "title": "A new kind of piercing studio",
+        "header_level": "h2",
         "subheader": "",
         "color_scheme": "scheme-3",
-        "section_type": "cover-video",
-        "sizing": "browser-height"
-      },
-      "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>At Hone, every piercing is treated as a collaboration between anatomy, jewelry, and personal style. Our piercing experts bring both precision and artistry to each placement, ensuring your piece feels balanced, considered, and entirely your own.<\/p>",
-            "text_style": "medium"
-          }
-        },
-        "text-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>From consultation to aftercare, we make every step comfortable and clear. Whether it’s your first piercing or your next addition, our studio focuses on craftsmanship, safety, and a calm, elevated experience that lets you enjoy the experience as much as the result.<\/p>",
-          }
-        }
-      },
-      "block_order": [
-        "text",
-        "text-1"
-      ]
-    },
-    "testimonials": {
-      "type": "simple-section",
-      "settings": {
-        "title": "Testimonials",
-        "subheader": "Hear from our satisfied clients about their piercing experiences at Hone.",
-        "color_scheme": "scheme-5",
-      },
-      "blocks": {
-        "carousel_d4ciVe": {
-          "type": "carousel",
-          "name": "Testimonial Carousel",
-          "settings": {},
-          "blocks": {
-            "testimonial_LAPgXh": {
-              "type": "testimonial",
-              "settings": {
-                "quote": "<p>Whether you're a first-timer or experienced with piercings, Hone Piercing Studio offers a wonderful, professional, and personalized service that exceeds expectations. I highly recommend this studio to anyone looking for a high-quality, friendly, and clean piercing experience in San Jose.</p>",
-                "author_name": "Steven",
-                "author_location": "San Jose"
-              },
-              "blocks": {}
-            },
-            "testimonial_9PnhTw": {
-              "type": "testimonial",
-              "settings": {
-                "quote": "<p>I’ve had my daith cartilage piercing manipulated several times and never has it been so gentle and painless. The jewelry selection was good and I was able to find exactly what I wanted.<br/>Definitely going back to get my next piercing.</p>",
-                "author_name": "Mar",
-                "author_location": "San Jose"
-              },
-              "blocks": {}
-            },
-            "testimonial_T8Lcbf": {
-              "type": "testimonial",
-              "settings": {
-                "quote": "<p>Had my friend Chloe bring a few of us graduate students in. Sondra greeted us and gave us a friendly welcome and a fresh bev, and after talking with her about my hesitations about level of pain, I knew this was the right place for my nose piercing. The place is immaculate, pristine, and well thought out.</p>",
-                "author_name": "Sunny",
-                "author_location": "San Jose"
-              },
-              "blocks": {}
-            },
-            "testimonial_aRrzEp": {
-              "type": "testimonial",
-              "settings": {
-                "quote": "<p>Lorem ipsum dolor sit amet</p>",
-                "author_name": "Jane Doe",
-                "author_location": "San Jose"
-              },
-              "blocks": {}
-            },
-            "testimonial_L6chnD": {
-              "type": "testimonial",
-              "settings": {
-                "quote": "<p>Lorem ipsum dolor sit amet</p>",
-                "author_name": "Jane Doe",
-                "author_location": "San Jose"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "testimonial_LAPgXh",
-            "testimonial_9PnhTw",
-            "testimonial_T8Lcbf",
-            "testimonial_aRrzEp",
-            "testimonial_L6chnD"
-          ]
-        }
-      },
-      "block_order": [
-        "carousel_d4ciVe"
-      ]
+        "sizing": "standard",
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
+      }
     },
     "services": {
       "type": "simple-section",
@@ -168,7 +88,7 @@
           },
           "blocks": {
             "column_qDgKrX": {
-              "type": "column",
+              "type": "_column",
               "settings": {
                 "mobile_column_span": "2"
               },
@@ -181,7 +101,7 @@
                     "alt_text": "",
                     "title": "Ear Piercings",
                     "subtitle": "Curated ear piercings that reflect your unique style.",
-                    "link_url": "shopify://pages/services",
+                    "link_url": "/pages/services/#earlobe",
                     "text_position": "bottom-left",
                     "overlay_opacity": "70",
                     "additional_classes": ""
@@ -194,7 +114,7 @@
               ]
             },
             "column_KYLcDY": {
-              "type": "column",
+              "type": "_column",
               "settings": {
                 "mobile_column_span": "1"
               },
@@ -207,7 +127,7 @@
                     "alt_text": "",
                     "title": "Facial Piercings",
                     "subtitle": "Make a statement with a nose, eyebrow, or lip piercing.",
-                    "link_url": "shopify://pages/services",
+                    "link_url": "/pages/services/#facial",
                     "text_position": "bottom-left",
                     "overlay_opacity": "70",
                     "additional_classes": ""
@@ -220,7 +140,7 @@
               ]
             },
             "column_YMJeYG": {
-              "type": "column",
+              "type": "_column",
               "settings": {
                 "mobile_column_span": "1"
               },
@@ -233,7 +153,7 @@
                     "alt_text": "",
                     "title": "Body Piercings",
                     "subtitle": "Navel and nipple piercings done with precision and care.",
-                    "link_url": "shopify://pages/services",
+                    "link_url": "/pages/services/#body",
                     "text_position": "bottom-left",
                     "overlay_opacity": "70",
                     "additional_classes": ""
@@ -315,10 +235,130 @@
       "name": "Simple Section",
       "settings": {
         "title": "Our Services",
+        "header_level": "h2",
         "subheader": "Explore our full range of in-studio services.",
         "color_scheme": "scheme-4",
         "sizing": "standard",
-        "section_type": "simple"
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
+      }
+    },
+    "about-section": {
+      "type": "simple-section",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Hone, every piercing is treated as a collaboration between anatomy, jewelry, and personal style. Our piercing experts bring both precision and artistry to each placement, ensuring your piece feels balanced, considered, and entirely your own.</p>",
+            "text_style": "medium",
+            "alignment": "left"
+          },
+          "blocks": {}
+        },
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>From consultation to aftercare, we make every step comfortable and clear. Whether it’s your first piercing or your next addition, our studio focuses on craftsmanship, safety, and a calm, elevated experience that lets you enjoy the experience as much as the result.</p>",
+            "text_style": "base",
+            "alignment": "left"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text",
+        "text-1"
+      ],
+      "settings": {
+        "title": "Experience the Art of Piercing",
+        "header_level": "h2",
+        "subheader": "",
+        "color_scheme": "scheme-3",
+        "sizing": "browser-height",
+        "section_type": "cover-video",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
+      }
+    },
+    "testimonials": {
+      "type": "simple-section",
+      "blocks": {
+        "carousel_d4ciVe": {
+          "type": "carousel",
+          "name": "Testimonial Carousel",
+          "settings": {},
+          "blocks": {
+            "testimonial_LAPgXh": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Whether you're a first-timer or experienced with piercings, Hone Piercing Studio offers a wonderful, professional, and personalized service that exceeds expectations. I highly recommend this studio to anyone looking for a high-quality, friendly, and clean piercing experience in San Jose.</p>",
+                "author_name": "Steven",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_9PnhTw": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>I’ve had my daith cartilage piercing manipulated several times and never has it been so gentle and painless. The jewelry selection was good and I was able to find exactly what I wanted.<br/>Definitely going back to get my next piercing.</p>",
+                "author_name": "Mar",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_T8Lcbf": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Had my friend Chloe bring a few of us graduate students in. Sondra greeted us and gave us a friendly welcome and a fresh bev, and after talking with her about my hesitations about level of pain, I knew this was the right place for my nose piercing. The place is immaculate, pristine, and well thought out.</p>",
+                "author_name": "Sunny",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_aRrzEp": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Lorem ipsum dolor sit amet</p>",
+                "author_name": "Jane Doe",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            },
+            "testimonial_L6chnD": {
+              "type": "testimonial",
+              "settings": {
+                "quote": "<p>Lorem ipsum dolor sit amet</p>",
+                "author_name": "Jane Doe",
+                "author_location": "San Jose"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "testimonial_LAPgXh",
+            "testimonial_9PnhTw",
+            "testimonial_T8Lcbf",
+            "testimonial_aRrzEp",
+            "testimonial_L6chnD"
+          ]
+        }
+      },
+      "block_order": [
+        "carousel_d4ciVe"
+      ],
+      "settings": {
+        "title": "Testimonials",
+        "header_level": "h2",
+        "subheader": "Hear from our satisfied clients about their piercing experiences at Hone.",
+        "color_scheme": "scheme-5",
+        "sizing": "standard",
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     },
     "featured_collection": {
@@ -329,15 +369,18 @@
         "collection": "all",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "full_width": false,
         "show_view_all": true,
+        "view_all_style": "solid",
         "enable_desktop_slider": true,
-        "swipe_on_mobile": true,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
+        "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": true,
         "padding_top": 28,
         "padding_bottom": 36,
         "sale_display": "badge"
@@ -363,10 +406,14 @@
       "name": "Simple Section",
       "settings": {
         "title": "From Our Blog",
+        "header_level": "h2",
         "subheader": "A closer look at our approach from materials and methods to styling and aftercare.",
         "color_scheme": "scheme-3",
         "sizing": "standard",
-        "section_type": "simple"
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     },
     "instagram": {
@@ -431,10 +478,14 @@
       "name": "Simple Section",
       "settings": {
         "title": "Follow Us",
+        "header_level": "h2",
         "subheader": "Stay connected to Hone on social media for events, new pieces, and studio inspiration.",
         "color_scheme": "scheme-1",
         "sizing": "standard",
-        "section_type": "simple"
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     },
     "locations": {
@@ -459,12 +510,14 @@
       "name": "Simple Section",
       "settings": {
         "title": "Visit Hone",
+        "header_level": "h2",
         "subheader": "Get pierced or shop in person at our studio in Downtown Willow Glen.",
         "color_scheme": "scheme-5",
         "sizing": "standard",
         "section_type": "simple",
         "padding_top": "medium",
-        "padding_bottom": "medium"
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     }
   },
