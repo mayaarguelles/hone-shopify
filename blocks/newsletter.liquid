@@ -5,6 +5,26 @@
   assign heading = settings.newsletter_heading | default: ''
   assign subheading = settings.newsletter_subheading | default: ''
 
+  if block.settings.suppress_global_background_video
+    assign bg_video = ''
+  endif
+
+  if block.settings.newsletter_background_video != blank
+    assign bg_video = block.settings.newsletter_background_video
+  endif
+
+  if block.settings.newsletter_background_image != blank
+    assign bg_image = block.settings.newsletter_background_image
+  endif
+
+  if block.settings.newsletter_heading != blank
+    assign heading = block.settings.newsletter_heading
+  endif
+
+  if block.settings.newsletter_subheading != blank
+    assign subheading = block.settings.newsletter_subheading
+  endif
+
   assign classes = 'newsletter alignwide relative overflow-hidden p-6 md:p-16'
   assign overlay_classes = ' text-white before:absolute before:inset-0 before:bg-black/30 before:bg-linear-30 before:from-black/70 before:to-black/0 before:z-10 before:pointer-events-none'
   if bg_video != blank
@@ -13,6 +33,10 @@
     assign classes = classes | append: overlay_classes
   else
     assign classes = classes | append: ' color-' | append: color_scheme
+  endif
+
+  if section.settings.cover_video != blank and bg_video == ''
+    assign classes = classes | append: ' bg-[rgba(var(--color-background),0.4)]! backdrop-blur-md'
   endif
 -%}
 <div class='{{ classes }}'>
@@ -93,6 +117,44 @@
 {
   "name": "t:sections.newsletter.name",
   "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter Heading Override",
+      "default": "Subscribe to our Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_subheading",
+      "label": "Newsletter Subheading Override",
+      "default": "Get the latest updates and offers."
+    },
+    {
+      "type": "color_scheme",
+      "id": "newsletter_color_scheme",
+      "label": "Color Scheme Override",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "newsletter_background_image",
+      "label": "Background Image Override",
+      "info": "Upload an image to use as the background for the newsletter block."
+    },
+    {
+      "type": "checkbox",
+      "id": "suppress_global_background_video",
+      "label": "Suppress Global Background Video",
+      "default": false
+    },
+    {
+      "type": "video",
+      "id": "newsletter_background_video",
+      "label": "Background Video Override",
+      "info": "Upload a video to use as the background for the newsletter block."
+    }
+  ],
   "presets": [
     {
       "name": "Newsletter",
