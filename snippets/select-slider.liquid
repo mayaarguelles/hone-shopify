@@ -14,8 +14,8 @@
   assign input_name = input_name | default: 'variant'
 -%}
 
-<hone-indicator-hover class='flex'>
-  <ul class='flex gap-4 wrap group/indicator flex-none'>
+<hone-indicator-hover class='flex flex-wrap'>
+  <ul class='flex gap-4 flex-wrap group/indicator flex-none'>
     {%- for variant in variants -%}
       <li class=''>
         <input

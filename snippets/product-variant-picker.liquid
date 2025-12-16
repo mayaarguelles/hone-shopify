@@ -46,7 +46,7 @@
         <fieldset class='js product-form__input'>
           <legend class='form__label'>{{ option.name }}</legend>
           <hone-indicator-hover class='flex'>
-            <ul class='flex gap-4 wrap group/indicator flex-none'>
+            <ul class='flex gap-4 flex-wrap group/indicator flex-none w-full pointer-events-none'>
               {% render 'product-variant-options',
                 product: product,
                 option: option,

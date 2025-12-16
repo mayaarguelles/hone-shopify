@@ -92,7 +92,7 @@
         {{ input_dataset }}
       >
       <label
-        class='cursor-pointer hover-area group-hover/indicator:text-current/30! hover:text-current! text-current/50 peer-checked:text-current relative pb-px transition-colors'
+        class='{% if option_disabled %}hover-area pointer-events-auto text-current/30 cursor-not-allowed{% else %}cursor-pointer pointer-events-auto hover-area group-hover/indicator:text-current/30! hover:text-current! text-current/50 peer-checked:text-current{% endif %} relative pb-px transition-colors'
         for='{{ input_id }}'
       >
         {{ value -}}

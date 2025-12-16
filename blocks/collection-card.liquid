@@ -103,8 +103,8 @@
           %}
         </span>
       {%- endif -%}
-      {%- if subtitle != blank -%}
-        <p class='text-sm text-current/70 mt-1'>
+      {%- if subtitle != blank and block.settings.display_description -%}
+        <p class='text-sm text-current/60 mt-1'>
           {{ subtitle }}
         </p>
       {%- endif -%}
@@ -131,6 +131,12 @@
     {
       "type": "header",
       "content": "Custom Overrides"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_description",
+      "label": "Display description",
+      "default": false
     },
     {
       "type": "text",
