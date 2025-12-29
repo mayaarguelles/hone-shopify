@@ -6,7 +6,7 @@
         "text_heading": {
           "type": "text",
           "settings": {
-            "text": "<h1>A contemporary piercing studio.</h1><h2>From consultation to aftercare, we make every step comfortable and clear. Whether it’s your first piercing or your next addition, our studio focuses on craftsmanship, safety, and a calm, elevated experience that lets you enjoy the experience as much as the result.</h2>",
+            "text": "<h1>A contemporary piercing studio.</h1><h2>From consultation to aftercare, we ensure every step is comfortable, clear, and intentional. Whether you're beginning your style story or planning your next placement, our focus is on combining clinical expertise with a refined design sensibility. We deliver a personalized and elevated experience that guarantees the longevity and ideal placement of your chosen piece.</h2>",
             "text_style": "large",
             "alignment": "left"
           },
@@ -41,7 +41,7 @@
             "statement-text-1": {
               "type": "text",
               "settings": {
-                "text": "<h4>A space made for you</h4><p>At Hone, we want every piercing to feel entirely your own. From the moment you walk in, our team is here to guide you with care, expertise, and zero pressure—helping you discover pieces and placements that reflect your style.</p>",
+                "text": "<h4>A space made for you</h4><p>At Hone, we believe every placement should be an intentional statement of your personal style. From the moment you walk in, our piercing experts are here to guide you with clinical expertise and zero pressure. We're the trusted curator helping you refine your look and discover the perfect piece.</p>",
                 "text_style": "base",
                 "alignment": "left"
               },
@@ -63,7 +63,7 @@
             "statement-text-2": {
               "type": "text",
               "settings": {
-                "text": "<h4>Contemporary style with a personal touch</h4><p>Our studio is designed with comfort and ease in mind. Every detail, from our sterilization processes to our carefully selected jewelry, reflects our commitment to safety and precision.</p>",
+                "text": "<h4>Contemporary style with a personal touch</h4><p>Our space is designed to ensure an experience of assurance and comfort Every detail, from our precise procedures to our jewelry materials, reflects our unwavering commitment to safety, quality. We speak to the design, form, and curation of fine jewelry, treating it as wearable architecture for lifetime wear.</p>",
                 "text_style": "base",
                 "alignment": "left"
               },
