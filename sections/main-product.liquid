@@ -199,40 +199,42 @@
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
-                <hone-accordion class=''>
-                  <div class='accordion-section mb-4' {{ block.shopify_attributes }}>
-                    <button
-                      class='group accordion-title w-full border-b border-current/30 pb-2 text-left flex items-center justify-between mb-4 cursor-pointer'
-                      aria-controls='{{ block.id }}-{{ section.id }}'
-                      id='{{ block.id }}-{{ section.id }}-button'
-                      aria-expanded='{{ is_open }}'
-                      aria-disabled='false'
-                      data-accordion-toggle
-                    >
-                      <span>
-                        {% render 'icon-accordion', icon: block.settings.icon %}
-                        {{ block.settings.heading | default: block.settings.page.title | escape }}
-                      </span>
-                      {% render 'icon',
-                        name: 'arrow-down',
-                        class: 'inline-icon relative group-aria-expanded:rotate-180 transition-transform duration-300',
-                        aria_hidden: true
-                      %}
-                    </button>
-                    <div
-                      aria-labelledby='{{ block.id }}-{{ section.id }}-button'
-                      id='{{ block.id }}-{{ section.id }}'
-                      class='accordion-content [&>p]:text-current/80 [&>p]:mb-1 [&>p]:text-xs [&>p]:leading-relaxed contain-vertical-margins'
-                      {% unless is_open %}
-                        style='display:none;'
-                      {% endunless %}
-                      data-accordion-content
-                    >
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
+                {% if block.settings.content != blank %}
+                  <hone-accordion class=''>
+                    <div class='accordion-section mb-4' {{ block.shopify_attributes }}>
+                      <button
+                        class='group accordion-title w-full border-b border-current/30 pb-2 text-left flex items-center justify-between mb-4 cursor-pointer'
+                        aria-controls='{{ block.id }}-{{ section.id }}'
+                        id='{{ block.id }}-{{ section.id }}-button'
+                        aria-expanded='{{ is_open }}'
+                        aria-disabled='false'
+                        data-accordion-toggle
+                      >
+                        <span>
+                          {% render 'icon-accordion', icon: block.settings.icon %}
+                          {{ block.settings.heading | default: block.settings.page.title | escape }}
+                        </span>
+                        {% render 'icon',
+                          name: 'arrow-down',
+                          class: 'inline-icon relative group-aria-expanded:rotate-180 transition-transform duration-300',
+                          aria_hidden: true
+                        %}
+                      </button>
+                      <div
+                        aria-labelledby='{{ block.id }}-{{ section.id }}-button'
+                        id='{{ block.id }}-{{ section.id }}'
+                        class='accordion-content [&>p]:text-current/80 [&>p]:mb-1 [&>p]:text-xs [&>p]:leading-relaxed contain-vertical-margins'
+                        {% unless is_open %}
+                          style='display:none;'
+                        {% endunless %}
+                        data-accordion-content
+                      >
+                        {{ block.settings.content }}
+                        {{ block.settings.page.content }}
+                      </div>
                     </div>
-                  </div>
-                </hone-accordion>
+                  </hone-accordion>
+                {% endif %}
               {%- when 'popup' -%}
                 <modal-opener
                   class='product-popup-modal__opener quick-add-hidden'
