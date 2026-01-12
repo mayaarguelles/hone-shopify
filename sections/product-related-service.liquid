@@ -3,7 +3,7 @@
   assign header_level = section.settings.header_level | default: 'h2'
   assign is_piercing_eligible = false
 
-  if product.metafields.custom.eligible_for_initial_piercing != 'true'
+  if product.metafields.custom.eligible_for_initial_piercing
     assign is_piercing_eligible = true
   endif
 
