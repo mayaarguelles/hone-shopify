@@ -19,7 +19,7 @@
   }
 
   {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 990px) {
+    @media screen and (min-width: 768px) {
       header-drawer {
         display: none;
       }
@@ -99,7 +99,7 @@
     {%- if section.settings.logo_position != 'middle-center' -%}
       <div class='self-center flex-auto grow shrink-0 md:grow-0 -ml-4 md:ml-0 md:mr-4'>
         {%- if request.page_type == 'index' -%}
-          <h1 class='header__heading'>
+          <h1 class='header__heading justify-self-start'>
         {%- endif -%}
         <a href='{{ routes.root_url }}' class='block header__heading-link link link--text focus-inset'>
           {%- if settings.logo != blank and section.settings.uses_custom_logo -%}

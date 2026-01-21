@@ -144,33 +144,35 @@
 
       <!-- Localization & Payment -->
       <div class='flex flex-col sm:flex-row gap-6 mt-6 pt-6 border-t border-shadow/20'>
-        <div class='flex gap-6'>
-          {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-            <localization-form>
-              {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
-                <div>
-                  <h2 class='text-xs text-shadow mb-2' id='FooterCountryLabel'>
-                    {{ 'localization.country_label' | t }}
-                  </h2>
-                  {%- render 'country-localization', localPosition: 'FooterCountry' -%}
-                </div>
-              {%- endform -%}
-            </localization-form>
-          {%- endif -%}
+        {% if section.settings.enable_country_selector %}
+          <div class='flex gap-6'>
+            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+              <localization-form>
+                {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+                  <div>
+                    <h2 class='text-xs text-shadow mb-2' id='FooterCountryLabel'>
+                      {{ 'localization.country_label' | t }}
+                    </h2>
+                    {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
+            {%- endif -%}
 
-          {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-            <localization-form>
-              {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
-                <div>
-                  <h2 class='text-xs text-shadow mb-2' id='FooterLanguageLabel'>
-                    {{ 'localization.language_label' | t }}
-                  </h2>
-                  {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
-                </div>
-              {%- endform -%}
-            </localization-form>
-          {%- endif -%}
-        </div>
+            {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+              <localization-form>
+                {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+                  <div>
+                    <h2 class='text-xs text-shadow mb-2' id='FooterLanguageLabel'>
+                      {{ 'localization.language_label' | t }}
+                    </h2>
+                    {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
+            {%- endif -%}
+          </div>
+        {% endif %}
 
         {%- if section.settings.payment_enable -%}
           <div class='flex-1'>
@@ -385,7 +387,7 @@
     {
       "type": "checkbox",
       "id": "enable_follow_on_shop",
-      "default": true,
+      "default": false,
       "label": "t:sections.footer.settings.enable_follow_on_shop.label"
     },
     {

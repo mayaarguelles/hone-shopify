@@ -25,7 +25,7 @@
   {% assign unique_id = 0 %}
 {% endif %}
 
-<hone-split-section class='flex-1 relative grid text-brown group before:w-full before:h-48 before:absolute before:bottom-0 before:left-0 before:bg-gradient-to-t before:from-cloud/70 before:to-transparent overflow-hidden before:z-[3] before:transition-transform before:duration-300 hover:before:translate-y-1/2 cursor-pointer'>
+<hone-split-section class='flex-1 relative grid text-brown group before:w-full before:h-24 md:before:h-48 before:absolute before:bottom-0 before:left-0 before:bg-linear-to-t before:from-cloud/70 before:to-transparent overflow-hidden before:z-3 before:transition-transform before:duration-300 hover:before:translate-y-1/2 cursor-pointer'>
   {% if image != blank %}
     {%- liquid
       assign image_alt = image.alt | default: alt | default: ''
@@ -83,7 +83,7 @@
     }}
   {% endif %}
 
-  <div class='relative z-[4] p-12 flex justify-end items-start flex-col contain-vertical-margins'>
+  <div class='relative z-4 p-4 md:p-12 flex justify-end items-start flex-col contain-vertical-margins'>
     {{ content }}
   </div>
 </hone-split-section>

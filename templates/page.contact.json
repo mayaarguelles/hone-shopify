@@ -28,8 +28,8 @@
         "email-button": {
           "type": "cta",
           "settings": {
-            "button_text": "hello@honepiercing.com",
-            "button_url": "mailto:hello@honepiercing.com"
+            "button_text": "info@honepiercing.com",
+            "button_url": "mailto:info@honepiercing.com"
           }
         }
       },
@@ -67,7 +67,7 @@
             "show_map": true,
             "google_maps_api_key": "",
             "map_zoom": 12,
-            "contact_email": "hello@honepiercing.com"
+            "contact_email": "info@honepiercing.com"
           },
           "blocks": {}
         }

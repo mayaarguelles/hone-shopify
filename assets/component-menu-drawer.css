@@ -22,8 +22,8 @@
 menu-drawer>details[open]>summary::before {
   visibility: visible;
   opacity: 1;
-  transition: opacity var(--duration-default) ease,
-    visibility var(--duration-default) ease;
+  transition: opacity 400ms var(--default-transition-timing-function),
+    visibility 400ms var(--default-transition-timing-function);
 }
 
 .menu-drawer {
@@ -33,7 +33,8 @@ menu-drawer>details[open]>summary::before {
   z-index: 3;
   left: 0;
   top: 100%;
-  width: 100%;
+  width: 40rem;
+  max-width: calc(100vw - 3rem);
   padding: 0;
   background-color: rgb(var(--color-background));
   overflow-x: hidden;
@@ -47,8 +48,8 @@ menu-drawer>details[open]>summary::before {
 
 .js details[open]>.menu-drawer,
 .js details[open]>.menu-drawer__submenu {
-  transition: transform var(--duration-default) ease,
-    visibility var(--duration-default) ease;
+  transition: transform 400ms var(--default-transition-timing-function),
+    visibility 400ms var(--default-transition-timing-function);
 }
 
 .js details[open].menu-opening>.menu-drawer,

@@ -2591,7 +2591,8 @@
     width: 100%;
     display: block;
     position: absolute;
-    background: rgba(var(--color-foreground), 0.5);
+    background-color: color-mix(in oklab, var(--color-black) 10%, transparent);
+    backdrop-filter: blur(4px);
   }
 
   .header__icon--account shop-user-avatar {
