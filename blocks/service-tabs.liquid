@@ -152,9 +152,11 @@
               <div class='rte [&_p:first-child]:mt-0'>
                 {{ service_description | metafield_tag }}
                 {%- liquid
-                  assign shop_link = shop_jewelry_url
-                  assign shop_link = shop_link | append: '?filter.p.m.custom.piercing_type=gid%3A%2F%2Fshopify%2FMetaobject%2F'
-                  assign shop_link = shop_link | append: service.gid
+                  assign shop_link = ''
+                  assign shop_collection = service_name | handleize
+                  if collections[shop_collection] != null and collections[shop_collection].products_count > 0
+                    assign shop_link = collections[shop_collection].url
+                  endif
 
                   assign booking_url = service.booking_link | default: booking_url
                 -%}
@@ -169,7 +171,9 @@
                     uses_margins: 'no'
                   %}
                   {% assign shop_cta = 'Shop ' | append: service_name | append: ' Jewelry' %}
-                  {% render 'cta', classes: 'text-sm my-2', href: shop_link, content: shop_cta %}
+                  {% if shop_link != '' %}
+                    {% render 'cta', classes: 'text-sm my-2', href: shop_link, content: shop_cta %}
+                  {% endif %}
                 </div>
               </div>
             </div>
