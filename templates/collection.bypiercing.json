@@ -1,0 +1,157 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 12,
+        "columns_desktop": 4,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "enable_sorting": false,
+        "columns_mobile": "2"
+      }
+    },
+    "collections": {
+      "type": "simple-section",
+      "blocks": {
+        "carousel_97XJgm": {
+          "type": "carousel",
+          "name": "Collection Carousel",
+          "settings": {},
+          "blocks": {
+            "collection_card_VXqEeN": {
+              "type": "collection-card",
+              "settings": {
+                "collection": "earlobe",
+                "custom_title": "",
+                "custom_description": "",
+                "use_custom_image": false,
+                "text_position": "bottom-left",
+                "overlay_opacity": "70",
+                "additional_classes": ""
+              },
+              "blocks": {}
+            },
+            "collection_card_helix": {
+              "type": "collection-card",
+              "settings": {
+                "collection": "helix",
+                "custom_title": "",
+                "custom_description": "",
+                "use_custom_image": false,
+                "text_position": "bottom-left",
+                "overlay_opacity": "70",
+                "additional_classes": ""
+              },
+              "blocks": {}
+            },
+            "collection_card_flat": {
+              "type": "collection-card",
+              "settings": {
+                "collection": "flat",
+                "custom_title": "",
+                "custom_description": "",
+                "use_custom_image": false,
+                "text_position": "bottom-left",
+                "overlay_opacity": "70",
+                "additional_classes": ""
+              },
+              "blocks": {}
+            },
+            "collection_card_GgMfWU": {
+              "type": "collection-card",
+              "settings": {
+                "collection": "nostril",
+                "custom_title": "",
+                "custom_description": "",
+                "use_custom_image": false,
+                "text_position": "bottom-left",
+                "overlay_opacity": "70",
+                "additional_classes": ""
+              },
+              "blocks": {}
+            },
+            "collection_card_HYUAFz": {
+              "type": "collection-card",
+              "settings": {
+                "collection": "septum",
+                "custom_title": "",
+                "custom_description": "",
+                "use_custom_image": false,
+                "text_position": "bottom-left",
+                "overlay_opacity": "70",
+                "additional_classes": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection_card_VXqEeN",
+            "collection_card_helix",
+            "collection_card_flat",
+            "collection_card_GgMfWU",
+            "collection_card_HYUAFz"
+          ]
+        }
+      },
+      "block_order": [
+        "carousel_97XJgm"
+      ],
+      "settings": {
+        "title": "Shop By Piercing",
+        "subheader": "",
+        "color_scheme": "scheme-3",
+        "sizing": "standard",
+        "section_type": "simple",
+        "padding_top": "small",
+        "padding_bottom": "none"
+      }
+    },
+    "newsletter_section": {
+      "type": "simple-section",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "newsletter"
+      ],
+      "name": "Simple Section",
+      "settings": {
+        "title": "Stay Connected",
+        "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "collections",
+    "newsletter_section"
+  ]
+}
