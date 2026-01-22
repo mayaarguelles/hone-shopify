@@ -321,8 +321,8 @@
             "testimonial_aRrzEp": {
               "type": "testimonial",
               "settings": {
-                "quote": "<p>Lorem ipsum dolor sit amet</p>",
-                "author_name": "Jane Doe",
+                "quote": "<p>I'm now a 4+ time repeat customer of Hone! I absolutely love them. Everyone I've encountered (whether the piercers, or the front desk staff) have been so nice, professional, and their piercers do a fantastic job of working with you on exactly what you want, and consulting if you ever need it!</p>",
+                "author_name": "Michele",
                 "author_location": "San Jose"
               },
               "blocks": {}
@@ -330,8 +330,8 @@
             "testimonial_L6chnD": {
               "type": "testimonial",
               "settings": {
-                "quote": "<p>Lorem ipsum dolor sit amet</p>",
-                "author_name": "Jane Doe",
+                "quote": "<p>Such a calming place. Walked in and was immediately greeted with so much kindness and care. They were so consultative and helped me pick the right pieces to fit the flat and conch I got. Overall so glad I came here and 100% coming back soon!</p>",
+                "author_name": "Cindy",
                 "author_location": "San Jose"
               },
               "blocks": {}
