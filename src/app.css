@@ -145,6 +145,7 @@
 @utility rte {
   --tw-prose-body: color-mix(in oklab, currentcolor 80%, transparent 20%);
   --tw-prose-headings: rgba(from currentcolor r g b / 1);
+  --tw-prose-bullets: color-mix(in oklab, currentcolor 80%, transparent 20%);
 }
 
 @layer base {

@@ -73,6 +73,30 @@ module.exports = {
                 color: 'rgba(from currentcolor r g b / 1)',
               },
             },
+            ul: {
+              li: {
+                fontSize: 'var(--text-base)',
+                lineHeight: 'var(--text-base--line-height)',
+                fontWeight: '400',
+                color: 'rgba(from currentcolor r g b / 0.8)',
+                strong: {
+                  fontWeight: '500',
+                  color: 'rgba(from currentcolor r g b / 1)',
+                },
+              },
+            },
+            ol: {
+              li: {
+                fontSize: 'var(--text-base)',
+                lineHeight: 'var(--text-base--line-height)',
+                fontWeight: '400',
+                color: 'rgba(from currentcolor r g b / 0.8)',
+                strong: {
+                  fontWeight: '500',
+                  color: 'rgba(from currentcolor r g b / 1)',
+                },
+              },
+            },
           },
         },
         md: {
