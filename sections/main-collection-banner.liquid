@@ -10,15 +10,24 @@
 {%- endstyle -%}
 
 <div class='collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient'>
-  <div class='collection-hero__inner w-full px-4 {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
+  <div class='collection-hero__inner py-4 w-full px-4 {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
     <div class='collection-hero__text-wrapper'>
-      <h1 class='collection-hero__title text-hthree'>
+      <p class='text-xs mb-2 space-x-1'>
+        <a class='group' href='{{ routes.all_products_collection_url }}'>
+          {% assign all_collection_title = collections.all.title %}
+          {%- render 'inline-hover-underline', content: all_collection_title -%}
+        </a>
+        {% render 'icon', name: 'arrow-right' %}
+        <span>{{- collection.title | escape -}}</span>
+      </p>
+
+      <h1 class='collection-hero__title text-hthree my-0'>
         <span class='visually-hidden'>{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
       </h1>
 
       {%- if section.settings.show_collection_description -%}
-        <div class='collection-hero__description rte'>{{ collection.description }}</div>
+        <div class='collection-hero__description mt-2 mb-0 rte'>{{ collection.description }}</div>
       {%- endif -%}
     </div>
 
