@@ -198,11 +198,23 @@
                 "button_icon": "arrow-down-right"
               },
               "blocks": {}
+            },
+            "cta_permanent_jewelry": {
+              "type": "cta",
+              "name": "CTA",
+              "settings": {
+                "button_text": "Permanent Jewelry",
+                "button_url": "shopify://pages/services",
+                "button_target": false,
+                "button_icon": "arrow-down-right"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "cta_WapQGG",
-            "cta_YBfWKp"
+            "cta_YBfWKp",
+            "cta_permanent_jewelry"
           ]
         },
         "buttons_rmbfCb": {

@@ -15,7 +15,11 @@
         "service-tabs": {
           "type": "service-tabs",
           "name": "Service Tabs",
-          "settings": {},
+          "settings": {
+            "booking_url": "",
+            "shop_jewelry_url": "",
+            "default_description": "Professional piercing service with high-quality jewelry and expert care."
+          },
           "blocks": {}
         }
       },
@@ -24,7 +28,14 @@
       ],
       "settings": {
         "title": "Piercing",
-        "subheader": "Explore our full range of piercing services."
+        "header_level": "h2",
+        "subheader": "Explore our full range of piercing services.",
+        "color_scheme": "",
+        "sizing": "standard",
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     },
     "simple_section_VQmUL7": {
@@ -141,19 +152,80 @@
             "text_wbNxQN",
             "buttons_yrf4xF"
           ]
+        },
+        "image_and_text_QKgGXV": {
+          "type": "image-and-text",
+          "name": "Image and Text",
+          "settings": {
+            "image": "{{ metaobjects.studio_services[\"permanent-jewelry\"].main_image.value }}",
+            "image_alt": "",
+            "direction": "image-left",
+            "anchor": "permanent-jewelry"
+          },
+          "blocks": {
+            "text_V6PqF8": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>{{ metaobjects.studio_services[\"permanent-jewelry\"].name.value }}</h2>",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "text_94xNyP": {
+              "type": "text",
+              "settings": {
+                "text": "{{ metaobjects.studio_services[\"permanent-jewelry\"].service_description | metafield_tag }}",
+                "text_style": "base",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "buttons_wQEgRx": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {},
+              "blocks": {
+                "button_WrVcXp": {
+                  "type": "button",
+                  "settings": {
+                    "button_text": "Book Now",
+                    "button_url": "{{ metaobjects.studio_services[\"permanent-jewelry\"].booking_link.value }}",
+                    "button_style": "fill",
+                    "button_target": false,
+                    "button_icon": "arrow-up-right"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "button_WrVcXp"
+              ]
+            }
+          },
+          "block_order": [
+            "text_V6PqF8",
+            "text_94xNyP",
+            "buttons_wQEgRx"
+          ]
         }
       },
       "block_order": [
         "image_and_text_T6EUMr",
-        "image_and_text_aQ4kPL"
+        "image_and_text_aQ4kPL",
+        "image_and_text_QKgGXV"
       ],
       "name": "Simple Section",
       "settings": {
         "title": "Specialty Services",
+        "header_level": "h2",
         "subheader": "Enhance your piercing experience with our curated specialty services.",
         "color_scheme": "scheme-3",
         "sizing": "standard",
-        "section_type": "simple"
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     },
     "simple_section_NNHnWg": {
@@ -164,6 +236,7 @@
           "name": "Accordion",
           "settings": {
             "title": "Is it necessary to make an appointment, or can I walk in for a piercing?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": true
           },
           "blocks": {
@@ -186,6 +259,7 @@
           "name": "Accordion",
           "settings": {
             "title": "How do I prepare for my piercing appointment?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -208,6 +282,7 @@
           "name": "Accordion",
           "settings": {
             "title": "Can I bring my own jewelry for the piercing?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -230,6 +305,7 @@
           "name": "Accordion",
           "settings": {
             "title": "How long does the piercing process take?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -252,6 +328,7 @@
           "name": "Accordion",
           "settings": {
             "title": "Does getting a piercing hurt?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -274,6 +351,7 @@
           "name": "Accordion",
           "settings": {
             "title": "What age restrictions do you have for piercings?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -296,6 +374,7 @@
           "name": "Accordion",
           "settings": {
             "title": "How long does it take for a piercing to heal?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -318,6 +397,7 @@
           "name": "Accordion",
           "settings": {
             "title": "Can I change the jewelry soon after getting a piercing?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -340,6 +420,7 @@
           "name": "Accordion",
           "settings": {
             "title": "What aftercare routine should I follow for my new piercing?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -362,6 +443,7 @@
           "name": "Accordion",
           "settings": {
             "title": "What if I experience any complications or have further questions after the piercing?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -384,6 +466,7 @@
           "name": "Accordion",
           "settings": {
             "title": "Do you pierce babies?",
+            "content": "<p>Add your accordion content here.</p>",
             "is_open": false
           },
           "blocks": {
@@ -407,7 +490,8 @@
             "text": "<p>More questions?</p>",
             "text_style": "medium",
             "alignment": "left"
-          }
+          },
+          "blocks": {}
         },
         "buttons_13": {
           "type": "buttons",
@@ -449,10 +533,14 @@
       "name": "Simple Section",
       "settings": {
         "title": "Frequently Asked Questions",
+        "header_level": "h2",
         "subheader": "",
         "color_scheme": "",
         "sizing": "standard",
-        "section_type": "simple"
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     },
     "newsletter_section": {
@@ -460,7 +548,13 @@
       "blocks": {
         "newsletter": {
           "type": "newsletter",
-          "settings": {}
+          "settings": {
+            "newsletter_heading": "",
+            "newsletter_subheading": "",
+            "newsletter_color_scheme": "",
+            "suppress_global_background_video": false
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -469,10 +563,14 @@
       "name": "Simple Section",
       "settings": {
         "title": "Stay Connected",
+        "header_level": "h2",
         "subheader": "Subscribe to our newsletter for the latest on new arrivals, studio events, and exclusive offers.",
         "color_scheme": "",
         "sizing": "standard",
-        "section_type": "simple"
+        "section_type": "simple",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "anchor": ""
       }
     }
   },
