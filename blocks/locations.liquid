@@ -106,17 +106,13 @@
           </p>
 
           {%- if location.address != blank -%}
-            {%- assign directions_url = 'https://www.google.com/maps/dir/?api=1&destination='
-              | append: location.address.street
-              | url_encode
-            -%}
+            {% assign encoded_address = location.address.street %}
+            {%- assign directions_url = 'https://www.google.com/maps/dir/?api=1&destination=' -%}
             {%- if location.address.city != blank -%}
-              {%- assign directions_url = directions_url
-                | append: '%20'
-                | append: location.address.city
-                | url_encode
-              -%}
+              {%- assign encoded_address = encoded_address | append: ', ' | append: location.address.city -%}
             {%- endif -%}
+            {% assign encoded_address = encoded_address | url_encode %}
+            {% assign directions_url = directions_url | append: encoded_address %}
             {% render 'cta',
               icon: 'arrow-up-right',
               href: directions_url,
