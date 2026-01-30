@@ -31,6 +31,7 @@
   assign align = align | default: 'left'
   assign id = id | default: ''
   assign form = form | default: ''
+  assign icon_placement = icon_placement | default: 'after'
 
   if tag == blank
     assign tag = 'a'
@@ -120,8 +121,11 @@
     {% endif %}
   >
     <span class='hone-button__link-inner inline-flex items-center'>
+      {%- if icon != blank and icon != 'none' and icon_placement == 'before' -%}
+        {% render 'icon', name: icon, class: 'w-[1em] h-[1em] inline-block mr-[0.3em] relative' %}
+      {%- endif -%}
       {{ content }}
-      {%- if icon != blank and icon != 'none' -%}
+      {%- if icon != blank and icon != 'none' and icon_placement == 'after' -%}
         {% render 'icon', name: icon, class: 'w-[1em] h-[1em] inline-block ml-[0.3em] relative' %}
       {%- endif -%}
     </span>
