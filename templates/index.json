@@ -15,11 +15,13 @@
         "left_image": "shopify://shop_images/HoneHero6_df3dd767-705a-4435-8bd3-c498eb40a80d.jpg",
         "left_image_alt": "",
         "left_hover_video": "shopify://files/videos/hero-l-hover-alt-compressed.mp4",
+        "left_button_style": "fill",
         "left_button_text": "Get Pierced",
         "left_button_url": "shopify://pages/services",
         "right_image": "shopify://shop_images/HoneHero_Alt_3.jpg",
         "right_image_alt": "",
         "right_hover_video": "shopify://files/videos/The%20knotted%20metal%20twists%20and%20undulates%20calmly%2C%20slowly%20hovering%20in%20space%2C%20reflecting%20light.mp4",
+        "right_button_style": "fill",
         "right_button_text": "Shop Jewelry",
         "right_button_url": "shopify://collections/all",
         "tagline": "A contemporary piercing studio"
@@ -102,6 +104,7 @@
                     "title": "Ear Piercings",
                     "subtitle": "Curated ear piercings that reflect your unique style.",
                     "link_url": "/pages/services/#earlobe",
+                    "text_style": "default",
                     "text_position": "bottom-left",
                     "overlay_opacity": "70",
                     "additional_classes": ""
@@ -128,6 +131,7 @@
                     "title": "Facial Piercings",
                     "subtitle": "Make a statement with a nose, eyebrow, or lip piercing.",
                     "link_url": "/pages/services/#facial",
+                    "text_style": "default",
                     "text_position": "bottom-left",
                     "overlay_opacity": "70",
                     "additional_classes": ""
@@ -154,6 +158,7 @@
                     "title": "Body Piercings",
                     "subtitle": "Navel and nipple piercings done with precision and care.",
                     "link_url": "/pages/services/#body",
+                    "text_style": "default",
                     "text_position": "bottom-left",
                     "overlay_opacity": "70",
                     "additional_classes": ""
@@ -182,7 +187,7 @@
               "name": "CTA",
               "settings": {
                 "button_text": "Jewelry Exchange",
-                "button_url": "shopify://pages/services",
+                "button_url": "/pages/services#jewelry-exchange",
                 "button_target": false,
                 "button_icon": "arrow-down-right"
               },
@@ -193,7 +198,7 @@
               "name": "CTA",
               "settings": {
                 "button_text": "Curated Styling Sessions",
-                "button_url": "shopify://pages/services",
+                "button_url": "/pages/services#curated-styling-sessions",
                 "button_target": false,
                 "button_icon": "arrow-down-right"
               },
@@ -204,7 +209,7 @@
               "name": "CTA",
               "settings": {
                 "button_text": "Permanent Jewelry",
-                "button_url": "shopify://pages/services",
+                "button_url": "/pages/services#permanent-jewelry",
                 "button_target": false,
                 "button_icon": "arrow-down-right"
               },
