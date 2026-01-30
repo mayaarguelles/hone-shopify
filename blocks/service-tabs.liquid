@@ -33,7 +33,7 @@
 
 <div id='service-tabs' class='alignwide service-tabs-block' {{ block.shopify_attributes }}>
   <hone-indicator-hover class='flex mb-4 relative z-10'>
-    <ul class='flex p-1 border-current/30 border'>
+    <ul class='flex p-1 border-current/30 border' id='service-categories'>
       {%- for category in categories_array -%}
         {%- assign is_first = forloop.first -%}
         {%- case category -%}
@@ -278,15 +278,6 @@
             },
           );
         }
-
-        // Update hover indicator
-        document.querySelectorAll('.hover-indicator').forEach((indicator) => {
-          indicator.remove();
-        });
-
-        const indicator = document.createElement('span');
-        indicator.className = 'hover-indicator absolute h-full w-full bg-shadow/30 left-0 bottom-0 z-0';
-        this.nextElementSibling.appendChild(indicator);
       });
     });
 
