@@ -1362,11 +1362,6 @@
     animation: animateMenuOpen var(--duration-default) ease;
   }
 
-  .share-button__button:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
-  }
-
   .share-button__button,
   .share-button__fallback button {
     cursor: pointer;

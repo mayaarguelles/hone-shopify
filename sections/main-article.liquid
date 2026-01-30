@@ -87,7 +87,8 @@
   <div class='article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'>
     <div class='flex justify-center items-center'>
       {% assign back_to_blog = 'blogs.article.back_to_blog' | t: title: blog.title %}
-      {% render 'button', content: back_to_blog, url: blog.url, icon: 'arrow-left', icon_placement: 'before' %}
+      {% assign blog_url = blog.url %}
+      {% render 'button', content: back_to_blog, href: blog_url, icon: 'arrow-left', icon_placement: 'before' %}
     </div>
   </div>
   {%- if blog.comments_enabled? -%}

@@ -49,7 +49,9 @@
   </a>
 {%- elsif tag == 'span' -%}
   <span class='{{ combined_classes }}'>
-    {%- if classes != blank -%}
+    {%- if uses_group_hover -%}
+      {% render 'inline-hover-underline', uses_group_hover: uses_group_hover, content: content %}
+    {%- elsif classes != blank -%}
       <span class='{{ classes }}'>{{ content }}</span>
     {%- else -%}
       <span class='text-current/60'>{{ content }}</span>
